@@ -1,8 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="text_shadow_style">
+        <item name="android:shadowColor">@color/black_20_alpha</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">2.0</item>
+    </style>
+
+    <style name="text_small_shadow_style">
+        <item name="android:shadowColor">@color/black_30_alpha</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style>
 </resources>

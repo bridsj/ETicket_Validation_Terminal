@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">ETicket_Validation_Terminal</string>
+    <string name="app_name">电子票验证终端</string>
+    <string name="recount_ticket">验  票</string>
+    <string name="query_ticket">查  票</string>
+    <string name="sys_exit">系统退出</string>
+    <string name="sys_info">系统信息</string>
+    <string name="sys_info_address">系统地址：%s</string>
+    <string name="sys_info_id">设备编号：%s</string>
+    <string name="sys_info_upgrade">在线升级</string>
+    <string name="sys_info_no_upgrade">暂无更新版本</string>
+    <string name="paper_count">报表统计</string>
+    <string name="ticket_validation">电子票验证终端</string>
+    <string name="exit_sys_hint">请输入退出密码</string>
+    <string name="ok">确定</string>
+    <string name="validation_code">电子码验证</string>
+    <string name="validation_qrcode">二维码扫描</string>
+    <string name="validation_ID">身份证读取</string>
+    <string name="validation_re_print">重新打印</string>
 </resources>

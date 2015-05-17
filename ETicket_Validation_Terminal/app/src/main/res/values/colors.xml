@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sys_bg_color">#F7F7F7</color>
+
+    <color name="white_00_alpha">#00ffffff</color>
+    <color name="white_10_alpha">#1Affffff</color>
+    <color name="white_20_alpha">#33ffffff</color>
+    <color name="white_25_alpha">#40ffffff</color>
+    <color name="white_30_alpha">#4Dffffff</color>
+    <color name="white_40_alpha">#5Affffff</color>
+    <color name="white_45_alpha">#73ffffff</color>
+    <color name="white_50_alpha">#80ffffff</color>
+    <color name="white_55_alpha">#8Cffffff</color>
+    <color name="white_60_alpha">#99ffffff</color>
+    <color name="white_65_alpha">#A6ffffff</color>
+    <color name="white_70_alpha">#B3ffffff</color>
+    <color name="white_75_alpha">#BFffffff</color>
+    <color name="white_80_alpha">#BBffffff</color>
+    <color name="white_90_alpha">#E6ffffff</color>
+    <color name="white_95_alpha">#F3ffffff</color>
+
+    <color name="wallpaper_bg">#5A000000</color>
+    <color name="black_7_alpha">#12000000</color>
+    <color name="black_10_alpha">#1A000000</color>
+    <color name="black_15_alpha">#26000000</color>
+    <color name="black_20_alpha">#33000000</color>
+    <color name="black_30_alpha">#4D000000</color>
+    <color name="black_40_alpha">#5A000000</color>
+    <color name="black_50_alpha">#80000000</color>
+    <color name="black_55_alpha">#8C000000</color>
+    <color name="black_60_alpha">#99000000</color>
+    <color name="black_70_alpha">#B3000000</color>
+    <color name="black_80_alpha">#CC000000</color>
+    <color name="black_90_alpha">#E6000000</color>
+
+    <color name="home_title_color">#41A0FF</color>
+    <color name="board_bg_color">#FFFFFF</color>
+    <color name="board_border_color">#CCCCCC</color>
+</resources>

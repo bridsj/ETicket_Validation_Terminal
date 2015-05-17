@@ -11,15 +11,55 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            storeFile file('../keystore/keystore.keystore')
+            storePassword '123456'
+            keyAlias 'keystore'
+            keyPassword '123456'
+        }
+    }
     buildTypes {
         release {
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+    // Channels
+    productFlavors {
+        amazon {}
+        wandoujia {}
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
+    compile project(':android_utils')
+}
+android.applicationVariants.all { variant ->
+    variant.outputs[0].processManifest.doLast {
+        println "variant: ${variant.name}"
+        println "manifest:  ${variant.outputs[0].processResources.manifestFile}"
+        println "${buildDir}/intermediates/manifests/${variant.dirName}/AndroidManifest.xml"
+        copy {
+            from("${buildDir}/intermediates/manifests/full") {
+                include "${variant.dirName}/AndroidManifest.xml"
+            }
+            into("${buildDir}/intermediates/manifests/$variant.name/")
+
+            filter {
+                String line -> line.replaceAll("UMENG_CHANNEL_VALUE", "${variant.productFlavors[0].name}")
+            }
+
+            variant.outputs[0].processResources.manifestFile = file("${buildDir}/intermediates/manifests/${variant.name}/${variant.dirName}/AndroidManifest.xml")
+        }
+    }
+
 }
