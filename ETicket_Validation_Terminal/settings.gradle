@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':zxing_core'
 
 include ':android_utils'
 project(':android_utils').projectDir = new File('../../android_common_modules/AndroidCommonModules/android_utils')
