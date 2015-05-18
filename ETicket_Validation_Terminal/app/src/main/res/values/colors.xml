@@ -36,4 +36,10 @@
     <color name="home_title_color">#41A0FF</color>
     <color name="board_bg_color">#FFFFFF</color>
     <color name="board_border_color">#CCCCCC</color>
+
+    <!-- 二维码拍摄 -->
+    <color name="result_view">#D5D5D5</color>				<!-- 扫瞄区域的背景 -->
+    <color name="viewfinder_mask">@color/transparent</color>			<!-- 扫瞄外围区域的背景 -->
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="qr_gray">#A0A0A0</color>
 </resources>
