@@ -1,6 +1,8 @@
 package com.ticket.validation.terminal.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,8 +16,12 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
+import com.google.zxing.client.android.BeepManager;
 import com.google.zxing.client.android.CaptureActivityHandler;
+import com.google.zxing.client.android.DecodeFormatManager;
+import com.google.zxing.client.android.DecodeHintManager;
 import com.google.zxing.client.android.InactivityTimer;
+import com.google.zxing.client.android.Intents;
 import com.google.zxing.client.android.ViewfinderView;
 import com.google.zxing.client.android.camera.CameraManager;
 import com.ticket.validation.terminal.R;
@@ -37,14 +43,18 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
     private ViewfinderView viewfinderView;
     private String characterSet;
     private View mContentView;
+    private BeepManager beepManager;
+
     public static FragmentValidationQrCode newInstance() {
         FragmentValidationQrCode f = new FragmentValidationQrCode();
         return f;
     }
+
     @Override
     protected void initData() {
         hasSurface = false;
         inactivityTimer = new InactivityTimer(getActivity());
+        beepManager = new BeepManager(getActivity());
     }
 
     @Override
@@ -61,7 +71,9 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        Log.e("","onResume surfaceCreated"+hasSurface+",initCamera");
+        if (holder == null) {
+            Log.e("", "*** WARNING *** surfaceCreated() gave us a null surface!");
+        }
         if (!hasSurface) {
             hasSurface = true;
             initCamera(holder);
@@ -129,7 +141,8 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
     public void handleDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
         inactivityTimer.onActivity();
         handler.sendEmptyMessageDelayed(R.id.restart_preview, 500);
-        Toast.makeText(getApplicationContext(),"验证成功"+rawResult.getText(),Toast.LENGTH_SHORT).show();
+        beepManager.playBeepSoundAndVibrate();
+        Toast.makeText(getApplicationContext(), "验证成功" + rawResult.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -149,8 +162,76 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
             surfaceHolder.addCallback(this);
 //            surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         }
+        beepManager.updatePrefs();
+        inactivityTimer.onResume();
         characterSet = null;
         decodeFormats = null;
+        Intent intent = getActivity().getIntent();
+        if (intent != null) {
+
+            String action = intent.getAction();
+            String dataString = intent.getDataString();
+
+            if (Intents.Scan.ACTION.equals(action)) {
+
+                // Scan the formats the intent requested, and return the result to the calling activity.
+                decodeFormats = DecodeFormatManager.parseDecodeFormats(intent);
+                decodeHints = DecodeHintManager.parseDecodeHints(intent);
+
+                if (intent.hasExtra(Intents.Scan.WIDTH) && intent.hasExtra(Intents.Scan.HEIGHT)) {
+                    int width = intent.getIntExtra(Intents.Scan.WIDTH, 0);
+                    int height = intent.getIntExtra(Intents.Scan.HEIGHT, 0);
+                    if (width > 0 && height > 0) {
+                        cameraManager.setManualFramingRect(width, height);
+                    }
+                }
+
+                if (intent.hasExtra(Intents.Scan.CAMERA_ID)) {
+                    int cameraId = intent.getIntExtra(Intents.Scan.CAMERA_ID, -1);
+                    if (cameraId >= 0) {
+                        cameraManager.setManualCameraId(cameraId);
+                    }
+                }
+
+                String customPromptMessage = intent.getStringExtra(Intents.Scan.PROMPT_MESSAGE);
+                if (customPromptMessage != null) {
+                }
+
+            } else if (dataString != null &&
+                    dataString.contains("http://www.google") &&
+                    dataString.contains("/m/products/scan")) {
+
+                // Scan only products and send the result to mobile Product Search.
+                decodeFormats = DecodeFormatManager.PRODUCT_FORMATS;
+
+            } else if (isZXingURL(dataString)) {
+
+                // Scan formats requested in query string (all formats if none specified).
+                // If a return URL is specified, send the results there. Otherwise, handle it ourselves.
+                Uri inputUri = Uri.parse(dataString);
+                decodeFormats = DecodeFormatManager.parseDecodeFormats(inputUri);
+                // Allow a sub-set of the hints to be specified by the caller.
+                decodeHints = DecodeHintManager.parseDecodeHints(inputUri);
+
+            }
+
+            characterSet = intent.getStringExtra(Intents.Scan.CHARACTER_SET);
+
+        }
+    }
+
+    private static final String[] ZXING_URLS = {"http://zxing.appspot.com/scan", "zxing://scan/"};
+
+    private static boolean isZXingURL(String dataString) {
+        if (dataString == null) {
+            return false;
+        }
+        for (String url : ZXING_URLS) {
+            if (dataString.startsWith(url)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -159,6 +240,8 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
             handler.quitSynchronously();
             handler = null;
         }
+        inactivityTimer.onPause();
+        beepManager.close();
         cameraManager.closeDriver();
         if (!hasSurface) {
             SurfaceView surfaceView = (SurfaceView) mContentView.findViewById(R.id.preview_view);

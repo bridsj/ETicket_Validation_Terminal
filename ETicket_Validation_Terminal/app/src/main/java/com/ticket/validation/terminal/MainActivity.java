@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.zxing.client.android.CaptureActivity;
+
 /**
  * Created by dengshengjin on 15/5/13.
  */
 public class MainActivity extends BaseActivity {
-    private TextView mSysInfoText, mSysExitText, mValidationTicketText;
+    private TextView mSysInfoText, mSysExitText, mValidationTicketText, mQueryTicketText;
 
     @Override
     protected void initData() {
@@ -21,6 +23,7 @@ public class MainActivity extends BaseActivity {
         mSysInfoText = (TextView) findViewById(R.id.sys_info_text);
         mSysExitText = (TextView) findViewById(R.id.sys_exit_text);
         mValidationTicketText = (TextView) findViewById(R.id.validation_ticket_text);
+        mQueryTicketText = (TextView) findViewById(R.id.query_ticket_text);
     }
 
     @Override
@@ -43,6 +46,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ValidationTicketActivity.class);
+                startActivity(intent);
+            }
+        });
+        mQueryTicketText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
                 startActivity(intent);
             }
         });
