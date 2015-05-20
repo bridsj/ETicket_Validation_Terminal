@@ -7,13 +7,11 @@
         android:id="@+id/preview_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/qr_code_margin"
-        android:layout_marginTop="@dimen/qr_code_margin" />
+        android:layout_gravity="center"  />
 
 
     <com.google.zxing.client.android.ViewfinderView
         android:id="@+id/viewfinder_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

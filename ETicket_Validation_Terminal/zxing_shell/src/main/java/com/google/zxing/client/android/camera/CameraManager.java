@@ -23,7 +23,9 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
+
 import com.google.zxing.PlanarYUVLuminanceSource;
+import com.google.zxing.client.android.R;
 import com.google.zxing.client.android.camera.open.OpenCameraInterface;
 
 import java.io.IOException;
@@ -66,7 +68,7 @@ public final class CameraManager {
     this.configManager = new CameraConfigurationManager(context);
     previewCallback = new PreviewCallback(configManager);
   }
-  
+
   /**
    * Opens the camera driver and initializes the hardware parameters.
    *
@@ -227,7 +229,21 @@ public final class CameraManager {
     }
     return framingRect;
   }
-  
+
+  public synchronized Rect getFramingRect2(Context mContext) {
+    if (framingRect == null) {
+      if (camera == null) {
+        return null;
+      }
+        int width = mContext.getResources().getDimensionPixelOffset(R.dimen.view_finder_width);
+        int height = mContext.getResources().getDimensionPixelOffset(R.dimen.view_finder_height);
+        int leftOffset =  mContext.getResources().getDimensionPixelOffset(R.dimen.view_finder_left_margin);
+        int topOffset =  mContext.getResources().getDimensionPixelOffset(R.dimen.view_finder_top_margin);
+        framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
+    }
+    return framingRect;
+  }
+
   private static int findDesiredDimensionInRange(int resolution, int hardMin, int hardMax) {
     int dim = 5 * resolution / 8; // Target 5/8 of each dimension
     if (dim < hardMin) {
@@ -267,7 +283,7 @@ public final class CameraManager {
     return framingRectInPreview;
   }
 
-  
+
   /**
    * Allows third party apps to specify the camera ID, rather than determine
    * it automatically based on available cameras and their orientation.
@@ -277,7 +293,7 @@ public final class CameraManager {
   public synchronized void setManualCameraId(int cameraId) {
     requestedCameraId = cameraId;
   }
-  
+
   /**
    * Allows third party apps to specify the scanning rectangle dimensions, rather than determine
    * them automatically based on screen resolution.

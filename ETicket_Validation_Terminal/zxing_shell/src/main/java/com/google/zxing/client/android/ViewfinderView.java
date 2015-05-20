@@ -115,7 +115,7 @@ public final class ViewfinderView extends View {
         if (cameraManager == null) {
             return; // not ready yet, early draw before done configuring
         }
-        Rect frame = cameraManager.getFramingRect();
+        Rect frame = cameraManager.getFramingRect2(getContext().getApplicationContext());
         Rect previewFrame = cameraManager.getFramingRectInPreview();
         if (frame == null || previewFrame == null) {
             return;
@@ -127,7 +127,7 @@ public final class ViewfinderView extends View {
         }
         int width = canvas.getWidth();
         int height = canvas.getHeight();
-
+        canvas.drawColor(Color.WHITE);
         // Draw the exterior (i.e. outside the framing rect) darkened
         paint.setColor(resultBitmap != null ? resultColor : maskColor);
         canvas.drawRect(0, 0, width, frame.top, paint);

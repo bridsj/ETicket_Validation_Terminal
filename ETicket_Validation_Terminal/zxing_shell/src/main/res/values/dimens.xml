@@ -17,4 +17,9 @@
 <resources>
   <dimen name="standard_padding">8dip</dimen>
   <dimen name="half_padding">4dip</dimen>
+
+    <dimen name="view_finder_left_margin">0dp</dimen>
+    <dimen name="view_finder_top_margin">0dp</dimen>
+    <dimen name="view_finder_width">600dp</dimen>
+    <dimen name="view_finder_height">600dp</dimen>
 </resources>

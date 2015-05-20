@@ -115,17 +115,6 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     private BeepManager beepManager;
     private AmbientLightManager ambientLightManager;
 
-    ViewfinderView getViewfinderView() {
-        return viewfinderView;
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    CameraManager getCameraManager() {
-        return cameraManager;
-    }
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -709,7 +698,32 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
             cameraManager.openDriver(surfaceHolder);
             // Creating the handler starts the preview, which can also throw a RuntimeException.
             if (handler == null) {
-                handler = new CaptureActivityHandler(this, decodeFormats, decodeHints, characterSet, cameraManager);
+                handler = new CaptureActivityHandler(this, decodeFormats, decodeHints, characterSet, cameraManager, new CaptureActivityHandler.CaptureHandlerListener() {
+                    @Override
+                    public void drawViewfinder() {
+                        viewfinderView.drawViewfinder();
+                    }
+
+                    @Override
+                    public ViewfinderView getViewfinderView() {
+                        return viewfinderView;
+                    }
+
+                    @Override
+                    public void handleCaptureDecode(Result rawResult, Bitmap barcode, float scaleFactor) {
+                        handleDecode(rawResult, barcode, scaleFactor);
+                    }
+
+                    @Override
+                    public Handler getHandler() {
+                        return handler;
+                    }
+
+                    @Override
+                    public CameraManager getCameraManager() {
+                        return cameraManager;
+                    }
+                });
             }
             decodeOrStoreSavedBitmap(null, null);
         } catch (IOException ioe) {
@@ -747,7 +761,5 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         lastResult = null;
     }
 
-    public void drawViewfinder() {
-        viewfinderView.drawViewfinder();
-    }
+
 }
