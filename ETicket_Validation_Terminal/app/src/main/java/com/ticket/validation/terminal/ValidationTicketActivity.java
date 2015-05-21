@@ -4,8 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.FrameLayout;
 
+import com.ticket.validation.terminal.fragment.BaseFragment;
 import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
-import com.ticket.validation.terminal.fragment.FragmentValidationQrCode;
+import com.ticket.validation.terminal.fragment.FragmentValidationQrCodeForWizarpos;
 import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
 
 /**
@@ -16,7 +17,10 @@ public class ValidationTicketActivity extends BaseActivity {
     private FrameLayout mMenuFrame, mContentFrame;
     private FragmentValidationElectronic mFragmentValidationElectronic;
     private FragmentValidationTicketMenu mFragmentValidationTicketMenu;
-    private FragmentValidationQrCode mFragmentValidationQrCode;
+    private BaseFragment mFragmentValidationQrCode;
+    private final static String GOOGLE = "Google";
+    private final static String WIZARPOS = "Wizarpos";
+    private String type = WIZARPOS;
 
     @Override
     protected void initData() {
@@ -47,10 +51,7 @@ public class ValidationTicketActivity extends BaseActivity {
                     }
                     initContentFrame(mFragmentValidationElectronic);
                 } else if (Tag.equals(FragmentValidationTicketMenu.MenuType.QRCODE.name().toString())) {
-                    if (mFragmentValidationQrCode == null) {
-                        mFragmentValidationQrCode = FragmentValidationQrCode.newInstance();
-                    }
-                    initContentFrame(mFragmentValidationQrCode);
+                    createQrFragment();
                 } else {
                     if (mFragmentValidationElectronic == null) {
                         mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
@@ -71,5 +72,19 @@ public class ValidationTicketActivity extends BaseActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame, fragment);
         ft.commit();
+    }
+
+    private void createQrFragment() {
+        if (type.equals(WIZARPOS)) {
+            if (mFragmentValidationQrCode == null) {
+                mFragmentValidationQrCode = FragmentValidationQrCodeForWizarpos.newInstance();
+            }
+            initContentFrame(mFragmentValidationQrCode);
+        } else if (type.equals(GOOGLE)) {
+            if (mFragmentValidationQrCode == null) {
+//                mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
+            }
+            initContentFrame(mFragmentValidationQrCode);
+        }
     }
 }

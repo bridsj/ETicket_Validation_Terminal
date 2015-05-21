@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/validation_width">
+
+    <com.wizarpos.barcode.scanner.ScannerRelativeLayout
+        android:id="@+id/scanner_box"
+        android:layout_width="@dimen/view_finder_width"
+        android:layout_height="@dimen/view_finder_width"
+        android:layout_marginLeft="@dimen/view_finder_left_margin"
+        android:layout_marginTop="@dimen/view_finder_top_margin" />
+</RelativeLayout>

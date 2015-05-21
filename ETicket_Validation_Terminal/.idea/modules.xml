@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/ETicket_Validation_Terminal.iml" filepath="$PROJECT_DIR$/ETicket_Validation_Terminal.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../android_common_modules/AndroidCommonModules/android_utils/android_utils.iml" filepath="$PROJECT_DIR$/../../android_common_modules/AndroidCommonModules/android_utils/android_utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wizarpos_core/wizarpos_core.iml" filepath="$PROJECT_DIR$/wizarpos_core/wizarpos_core.iml" />
       <module fileurl="file://$PROJECT_DIR$/zxing_core/zxing_core.iml" filepath="$PROJECT_DIR$/zxing_core/zxing_core.iml" />
       <module fileurl="file://$PROJECT_DIR$/zxing_shell/zxing_shell.iml" filepath="$PROJECT_DIR$/zxing_shell/zxing_shell.iml" />
     </modules>
