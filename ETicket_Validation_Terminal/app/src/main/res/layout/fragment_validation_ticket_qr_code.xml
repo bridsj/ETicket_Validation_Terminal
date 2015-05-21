@@ -14,40 +14,49 @@
     android:layout_marginLeft="@dimen/view_finder_left_margin"
             android:layout_marginTop="@dimen/view_finder_top_margin" -->
 
-    <com.google.zxing.client.android.ViewfinderView
-        android:id="@+id/viewfinder_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/view_finder_height"
-        android:layout_marginLeft="@dimen/view_finder_right_view_left_margin"
-        android:layout_marginTop="@dimen/view_finder_top_margin">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/qr_light_text"
-            android:layout_marginBottom="15dp"
-            android:gravity="center"
-            android:text="扫描失败"
-            android:textColor="@color/red"
-            android:textSize="18sp" />
+        <com.google.zxing.client.android.ViewfinderView
+            android:id="@+id/viewfinder_view"
 
-        <TextView
-            android:id="@+id/qr_light_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/button_red_selector"
-            android:gravity="center"
-            android:paddingBottom="30dp"
-            android:paddingLeft="80dp"
-            android:paddingRight="80dp"
-            android:paddingTop="30dp"
-            android:text="@string/qr_light"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="140dp"
+            android:layout_marginRight="40dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/qr_light_text"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:paddingLeft="5dp"
+                android:text="扫描失败"
+                android:textColor="@color/red"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/qr_light_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_red_selector"
+                android:gravity="center"
+                android:paddingBottom="30dp"
+                android:paddingLeft="65dp"
+                android:paddingRight="65dp"
+                android:paddingTop="30dp"
+                android:text="@string/qr_light"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

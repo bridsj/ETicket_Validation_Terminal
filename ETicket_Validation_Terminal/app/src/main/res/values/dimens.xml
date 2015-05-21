@@ -6,9 +6,9 @@
     <dimen name="validation_icon">30dp</dimen>
 
 
-    <dimen name="view_finder_left_margin">150dp</dimen>
+    <dimen name="view_finder_left_margin">10dp</dimen>
     <dimen name="view_finder_top_margin">100dp</dimen>
-    <dimen name="view_finder_width">350dp</dimen>
-    <dimen name="view_finder_height">350dp</dimen>
-    <dimen name="view_finder_right_view_left_margin">550dp</dimen>
+    <dimen name="view_finder_width">400dp</dimen>
+    <dimen name="view_finder_height">400dp</dimen>
+    <dimen name="view_finder_right_view_left_margin">800dp</dimen>
 </resources>

@@ -154,7 +154,8 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
 
         viewfinderView.setCameraManager(cameraManager);
         handler = null;
-        SurfaceView surfaceView = (SurfaceView) mContentView.findViewById(R.id.preview_view);
+        SurfaceView surfaceView = (SurfaceView) getActivity().findViewById(R.id.preview_view);
+        surfaceView.setVisibility(View.VISIBLE);
         SurfaceHolder surfaceHolder = surfaceView.getHolder();
         if (hasSurface) {
             initCamera(surfaceHolder);
@@ -244,9 +245,9 @@ public class FragmentValidationQrCode extends BaseFragment implements SurfaceHol
         beepManager.close();
         cameraManager.closeDriver();
         if (!hasSurface) {
-            SurfaceView surfaceView = (SurfaceView) mContentView.findViewById(R.id.preview_view);
+            SurfaceView surfaceView = (SurfaceView) getActivity().findViewById(R.id.preview_view);
+            surfaceView.setVisibility(View.GONE);
             SurfaceHolder surfaceHolder = surfaceView.getHolder();
-
             surfaceHolder.removeCallback(this);
         }
         super.onPause();
