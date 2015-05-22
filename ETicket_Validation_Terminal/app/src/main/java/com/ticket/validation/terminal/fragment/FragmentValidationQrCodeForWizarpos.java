@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ticket.validation.terminal.R;
 import com.wizarpos.barcode.scanner.IScanEvent;
 import com.wizarpos.barcode.scanner.ScannerRelativeLayout;
 import com.wizarpos.barcode.scanner.ScannerResult;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 /**
  * Created by dengshengjin on 15/5/21.
@@ -83,6 +85,8 @@ public class FragmentValidationQrCodeForWizarpos extends BaseFragment {
 
         @Override
         public void scanCompleted(ScannerResult scannerResult) {
+            Toast.makeText(getApplicationContext(),"结果"+scannerResult.getResult(),Toast.LENGTH_SHORT).show();
+            LogUtil.e("scanCompleted=" + scannerResult.getResult());
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {

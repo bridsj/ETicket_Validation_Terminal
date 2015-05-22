@@ -21,72 +21,67 @@
 
     <style name="home_small_button_style">
         <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingLeft">20dp</item>
-        <item name="android:paddingRight">20dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:layout_marginLeft">30dp</item>
-    </style>
-
-    <style name="home_button_button_style" parent="@style/text_small_shadow_style">
-        <item name="android:paddingBottom">20dp</item>
-        <item name="android:paddingLeft">50dp</item>
-        <item name="android:paddingRight">50dp</item>
-        <item name="android:paddingTop">20dp</item>
-    </style>
-
-    <style name="keyboard_style">
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:textSize">@dimen/sys_info_warn_text</item>
-    </style>
-
-    <style name="edit_style">
-        <item name="android:padding">12dp</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="query_button_style">
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingLeft">20dp</item>
-        <item name="android:paddingRight">20dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="sys_info_button_style">
-        <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingRight">30dp</item>
         <item name="android:paddingTop">10dp</item>
-        <item name="android:textSize">@dimen/sys_info_normal_text</item>
+        <item name="android:layout_marginLeft">60dp</item>
     </style>
 
+    <style name="home_button_button_style" parent="@style/text_small_shadow_style">
+        <item name="android:paddingBottom">40dp</item>
+        <item name="android:paddingLeft">70dp</item>
+        <item name="android:paddingRight">70dp</item>
+        <item name="android:paddingTop">40dp</item>
+    </style>
+
+    <style name="keyboard_style">
+        <item name="android:paddingBottom">25dp</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:textSize">@dimen/sys_info_warn_text</item>
+    </style>
+    <style name="edit_style">
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="query_button_style">
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="sys_info_button_style">
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">60dp</item>
+        <item name="android:paddingRight">60dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:textSize">@dimen/sys_info_normal_text</item>
+    </style>
     <style name="go_back_style">
-        <item name="android:paddingLeft">20dp</item>
-        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingRight">30dp</item>
         <item name="android:paddingTop">30dp</item>
     </style>
 
     <style name="qr_code_button_style">
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingLeft">45dp</item>
-        <item name="android:paddingRight">45dp</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:paddingLeft">65dp</item>
+        <item name="android:paddingRight">65dp</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="ID_card_button_style">
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingLeft">40dp</item>
-        <item name="android:paddingRight">40dp</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:paddingLeft">80dp</item>
+        <item name="android:paddingRight">80dp</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:textSize">28sp</item>
     </style>
-
     <style name="report_title_style">
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
         <item name="android:textSize">@dimen/sys_info_normal_text</item>
     </style>
 </resources>

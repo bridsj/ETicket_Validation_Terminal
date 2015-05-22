@@ -15,4 +15,17 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
 
+
+    <TextView
+        android:id="@+id/user_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/validation_width"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="天下票务@南山滑雪场"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normal_text_size" />
+
 </RelativeLayout>

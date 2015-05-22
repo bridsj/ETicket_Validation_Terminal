@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 
 import com.ticket.validation.terminal.fragment.BaseFragment;
 import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
+import com.ticket.validation.terminal.fragment.FragmentValidationIDCard;
 import com.ticket.validation.terminal.fragment.FragmentValidationQrCodeForWizarpos;
 import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
 
@@ -17,6 +18,7 @@ public class ValidationTicketActivity extends BaseActivity {
     private FrameLayout mMenuFrame, mContentFrame;
     private FragmentValidationElectronic mFragmentValidationElectronic;
     private FragmentValidationTicketMenu mFragmentValidationTicketMenu;
+    private FragmentValidationIDCard mFragmentValidationIDCard;
     private BaseFragment mFragmentValidationQrCode;
     private final static String GOOGLE = "Google";
     private final static String WIZARPOS = "Wizarpos";
@@ -53,10 +55,10 @@ public class ValidationTicketActivity extends BaseActivity {
                 } else if (Tag.equals(FragmentValidationTicketMenu.MenuType.QRCODE.name().toString())) {
                     createQrFragment();
                 } else {
-                    if (mFragmentValidationElectronic == null) {
-                        mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
+                    if (mFragmentValidationIDCard == null) {
+                        mFragmentValidationIDCard = FragmentValidationIDCard.newInstance();
                     }
-                    initContentFrame(mFragmentValidationElectronic);
+                    initContentFrame(mFragmentValidationIDCard);
                 }
             }
         });

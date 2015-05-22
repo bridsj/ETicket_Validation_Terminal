@@ -1,14 +1,43 @@
 <resources>
     <dimen name="home_title_margin">50dp</dimen>
 
-    <dimen name="validation_width">150dp</dimen>
-    <dimen name="validation_icon_width">80dp</dimen>
+    <dimen name="validation_width">120dp</dimen>
+    <dimen name="validation_icon_padding">15dp</dimen>
+    <dimen name="validation_text_size">14sp</dimen>
+    <dimen name="validation_re_text_size">16sp</dimen>
     <dimen name="validation_icon">30dp</dimen>
+    <dimen name="keyboard_limit_width">400dp</dimen>
+    <dimen name="menu_padding">4dp</dimen>
+    <dimen name="keyboard_margin_top">60dp</dimen>
+    <dimen name="exit_keyboard_margin_top">25dp</dimen>
+    <dimen name="exit_keyboard_margin_top2">20dp</dimen>
 
-
-    <dimen name="view_finder_left_margin">10dp</dimen>
-    <dimen name="view_finder_top_margin">100dp</dimen>
-    <dimen name="view_finder_width">400dp</dimen>
-    <dimen name="view_finder_height">400dp</dimen>
+    <dimen name="view_finder_left_margin">40dp</dimen>
+    <dimen name="view_finder_top_margin">20dp</dimen>
+    <dimen name="view_finder_width">250dp</dimen>
+    <dimen name="view_finder_height">250dp</dimen>
     <dimen name="view_finder_right_view_left_margin">800dp</dimen>
+
+    <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="home_margin">40dp</dimen>
+    <dimen name="home_margin_h">50dp</dimen>
+    <dimen name="home_title_text">40sp</dimen>
+
+    <dimen name="sys_info_limit_width">400dp</dimen>
+    <dimen name="sys_info_title_margin">30dp</dimen>
+    <dimen name="sys_info_title_size">22sp</dimen>
+    <dimen name="sys_info_normal_text">16sp</dimen>
+    <dimen name="sys_info_warn_text">14sp</dimen>
+    <dimen name="sys_info_content_margin">30dp</dimen>
+    <dimen name="sys_info_button_margin">20dp</dimen>
+    <dimen name="sys_info_row_margin">20dp</dimen>
+
+    <dimen name="ID_button_margin">10dp</dimen>
+
+    <dimen name="report_limit_width">450dp</dimen>
+    <dimen name="report_max_height">150dp</dimen>
+    <dimen name="report_content_margin">20dp</dimen>
+    <dimen name="report_bottom_margin">10dp</dimen>
+    <dimen name="report_h_margin">25dp</dimen>
+
 </resources>

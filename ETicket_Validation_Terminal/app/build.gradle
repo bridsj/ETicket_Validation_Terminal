@@ -42,6 +42,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile project(':wizarpos_core')
+    compile project(':android_utils')
 }
 android.applicationVariants.all { variant ->
     variant.outputs[0].processManifest.doLast {

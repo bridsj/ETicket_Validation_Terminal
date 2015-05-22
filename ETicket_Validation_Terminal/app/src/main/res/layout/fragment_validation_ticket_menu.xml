@@ -16,18 +16,19 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/menu_bg"
             android:orientation="vertical"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp">
+            android:paddingBottom="@dimen/menu_padding"
+            android:paddingTop="@dimen/menu_padding">
 
             <RelativeLayout
-                android:layout_width="@dimen/validation_icon_width"
-                android:layout_height="@dimen/validation_icon_width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/button_red_selector">
+                android:background="@drawable/button_red_selector"
+                android:padding="@dimen/validation_icon_padding">
 
                 <ImageView
-                    android:layout_width="@dimen/validation_icon"
-                    android:layout_height="@dimen/validation_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/epcdm" />
             </RelativeLayout>
@@ -39,7 +40,7 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/validation_code"
                 android:textColor="@color/validation_text_color"
-                android:textSize="16sp" />
+                android:textSize="@dimen/validation_text_size" />
         </LinearLayout>
 
         <ImageView
@@ -55,18 +56,19 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/menu_bg"
             android:orientation="vertical"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp">
+            android:paddingBottom="@dimen/menu_padding"
+            android:paddingTop="@dimen/menu_padding">
 
             <RelativeLayout
-                android:layout_width="@dimen/validation_icon_width"
-                android:layout_height="@dimen/validation_icon_width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/button_red_selector">
+                android:background="@drawable/button_red_selector"
+                android:padding="@dimen/validation_icon_padding">
 
                 <ImageView
-                    android:layout_width="@dimen/validation_icon"
-                    android:layout_height="@dimen/validation_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:src="@drawable/qrcode" />
             </RelativeLayout>
@@ -78,7 +80,7 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/validation_qrcode"
                 android:textColor="@color/validation_text_color"
-                android:textSize="16sp" />
+                android:textSize="@dimen/validation_text_size" />
         </LinearLayout>
 
         <ImageView
@@ -94,18 +96,19 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/menu_bg"
             android:orientation="vertical"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp">
+            android:paddingBottom="@dimen/menu_padding"
+            android:paddingTop="@dimen/menu_padding">
 
             <RelativeLayout
-                android:layout_width="@dimen/validation_icon_width"
-                android:layout_height="@dimen/validation_icon_width"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/button_red_selector">
+                android:background="@drawable/button_red_selector"
+                android:padding="@dimen/validation_icon_padding">
 
                 <ImageView
-                    android:layout_width="@dimen/validation_icon"
-                    android:layout_height="@dimen/validation_icon"
+                    android:layout_width="25dp"
+                    android:layout_height="23dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/idcard" />
             </RelativeLayout>
@@ -117,7 +120,7 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/validation_ID"
                 android:textColor="@color/validation_text_color"
-                android:textSize="16sp" />
+                android:textSize="@dimen/validation_text_size" />
         </LinearLayout>
 
         <ImageView
@@ -141,7 +144,7 @@
             android:paddingTop="15dp"
             android:text="@string/validation_re_print"
             android:textColor="@color/white_50_alpha"
-            android:textSize="18sp" />
+            android:textSize="@dimen/validation_re_text_size" />
 
         <ImageView
             android:layout_width="match_parent"
@@ -150,8 +153,8 @@
             android:background="@color/black" />
 
         <ImageView
-            android:layout_width="@dimen/validation_icon"
-            android:layout_height="@dimen/validation_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"

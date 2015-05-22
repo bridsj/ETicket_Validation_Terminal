@@ -7,7 +7,40 @@
     <com.wizarpos.barcode.scanner.ScannerRelativeLayout
         android:id="@+id/scanner_box"
         android:layout_width="@dimen/view_finder_width"
-        android:layout_height="@dimen/view_finder_width"
+        android:layout_height="@dimen/view_finder_height"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/view_finder_left_margin"
         android:layout_marginTop="@dimen/view_finder_top_margin" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/view_finder_height"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="@dimen/view_finder_top_margin"
+        android:layout_toRightOf="@+id/scanner_box"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:text="扫描失败"
+            android:textColor="@color/red"
+            android:textSize="@dimen/sys_info_normal_text" />
+
+
+        <TextView
+            android:id="@+id/qr_light_text"
+            style="@style/qr_code_button_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_red_selector"
+            android:gravity="center"
+            android:text="@string/qr_light"
+            android:textColor="@color/white" />
+    </LinearLayout>
 </RelativeLayout>

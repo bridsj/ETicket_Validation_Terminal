@@ -1,65 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_marginLeft="@dimen/validation_width"
-    android:background="@drawable/bg"
-    android:layout_height="match_parent">
+    android:background="@color/sys_bg_color">
 
     <LinearLayout
-        android:id="@+id/edit_box"
-        android:layout_width="600dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
-        android:orientation="horizontal">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edit_sys_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:background="@drawable/button_empty_selector"
-            android:enabled="false"
-            android:gravity="left"
-            android:hint="@string/exit_sys_hint"
-            android:inputType="number"
-            android:padding="15dp"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/sys_info_text"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:background="@drawable/button_red_selector"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/idcardb" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/ID_button_margin"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:paddingTop="15dp"
-            android:text="@string/ok_query"
-            android:textColor="@color/black_50_alpha"
-            android:textSize="18sp" />
+            android:text="@string/id_card_warn"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sys_info_normal_text" />
+
+        <TextView
+            style="@style/ID_card_button_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_red_selector"
+            android:text="@string/id_card_sure"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="识别失败"
+            android:textColor="@color/red"
+            android:textSize="@dimen/sys_info_normal_text" />
     </LinearLayout>
 
-
-    <GridView
-        android:id="@+id/grid_view"
-        android:layout_width="600dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_box"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/border_bg2"
-        android:gravity="center"
-        android:horizontalSpacing="3dp"
-        android:listSelector="@android:color/transparent"
-        android:numColumns="4"
-        android:padding="5dp"
-        android:scrollbars="none"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="2dp" />
 </RelativeLayout>

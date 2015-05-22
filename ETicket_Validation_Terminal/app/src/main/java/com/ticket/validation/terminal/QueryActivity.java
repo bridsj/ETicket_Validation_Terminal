@@ -1,29 +1,26 @@
-package com.ticket.validation.terminal.fragment;
+package com.ticket.validation.terminal;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 
-import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
-import com.zuiapps.suite.utils.log.LogUtil;
 
 /**
- * Created by dengshengjin on 15/5/17.
+ * Created by dengshengjin on 15/5/16.
  */
-public class FragmentValidationElectronic extends BaseFragment {
+public class QueryActivity extends BaseActivity {
     private EditText mEditText;
     private GridView mGridView;
     private KeyboardAdapter mKeyboardAdapter;
+    private ImageView backImg;
     private final static int DEL_CODE = 1000;
     private Handler mHandler = new Handler() {
         @Override
@@ -38,38 +35,32 @@ public class FragmentValidationElectronic extends BaseFragment {
         }
     };
 
-    public static FragmentValidationElectronic newInstance() {
-        FragmentValidationElectronic f = new FragmentValidationElectronic();
-        return f;
-    }
-
     @Override
     protected void initData() {
-        mKeyboardAdapter = new KeyboardAdapter(getApplicationContext());
+        mKeyboardAdapter = new KeyboardAdapter(getContext());
     }
 
     @Override
-    protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_validation_ticket_electronic, container, false);
-        mEditText = (EditText) view.findViewById(R.id.edit_sys_text);
-        mGridView = (GridView) view.findViewById(R.id.grid_view);
+    protected void initWidgets() {
+        setContentView(R.layout.activity_sys_exit);
+        mEditText = (EditText) findViewById(R.id.edit_sys_text);
+        mGridView = (GridView) findViewById(R.id.grid_view);
         mGridView.setAdapter(mKeyboardAdapter);
-        return view;
+        backImg = (ImageView) findViewById(R.id.back_img);
     }
 
     @Override
-    protected void initWidgetActions() {
+    protected void initWidgetsActions() {
         mEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
             }
         });
         mKeyboardAdapter.setOnItemClickListener(new KeyboardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String str) {
-                LogUtil.e("mKeyboardAdapter onItemClick ");
                 if (!str.equals("del")) {
                     String text = mEditText.getText().toString();
                     mEditText.setText(text + str);
@@ -90,6 +81,12 @@ public class FragmentValidationElectronic extends BaseFragment {
                 if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                     mHandler.removeMessages(DEL_CODE);
                 }
+            }
+        });
+        backImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
