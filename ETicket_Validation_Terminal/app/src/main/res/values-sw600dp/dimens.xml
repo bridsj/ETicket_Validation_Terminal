@@ -10,7 +10,7 @@
     <dimen name="menu_padding">15dp</dimen>
     <dimen name="keyboard_limit_width2">600dp</dimen>
     <dimen name="keyboard_margin_top">90dp</dimen>
-    <dimen name="exit_keyboard_margin_top">50dp</dimen>
+    <dimen name="exit_keyboard_margin_top">30dp</dimen>
     <dimen name="exit_keyboard_margin_top2">40dp</dimen>
 
     <dimen name="view_finder_left_margin">120dp</dimen>
@@ -35,8 +35,14 @@
     <dimen name="ID_button_margin">20dp</dimen>
 
     <dimen name="report_limit_width">700dp</dimen>
-    <dimen name="report_max_height">180dp</dimen>
+    <dimen name="report_max_height">240dp</dimen>
     <dimen name="report_content_margin">30dp</dimen>
     <dimen name="report_bottom_margin">15dp</dimen>
     <dimen name="report_h_margin">20dp</dimen>
+
+    <dimen name="report_top_margin">30dp</dimen>
+    <dimen name="report_top2_margin">30dp</dimen>
+    <dimen name="report_top3_margin">15dp</dimen>
+
+    <dimen name="menu_progress_bar_margin">16dp</dimen>
 </resources>

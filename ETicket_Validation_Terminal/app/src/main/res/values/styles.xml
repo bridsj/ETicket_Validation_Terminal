@@ -41,24 +41,37 @@
     </style>
 
     <style name="edit_style">
-        <item name="android:padding">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">12dp</item>
         <item name="android:textSize">16sp</item>
     </style>
 
     <style name="query_button_style">
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingLeft">20dp</item>
-        <item name="android:paddingRight">20dp</item>
-        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">12dp</item>
         <item name="android:textSize">16sp</item>
     </style>
 
     <style name="sys_info_button_style">
         <item name="android:paddingBottom">10dp</item>
-        <item name="android:paddingLeft">30dp</item>
-        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingRight">40dp</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:textSize">@dimen/sys_info_normal_text</item>
+    </style>
+
+    <style name="sys_info_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">120dp</item>
+    </style>
+    <style name="print_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">90dp</item>
+    </style>
+    <style name="query_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">70dp</item>
     </style>
 
     <style name="go_back_style">
@@ -88,5 +101,10 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:textSize">@dimen/sys_info_normal_text</item>
+    </style>
+
+    <style name="progress_bar_style">
+        <item name="android:layout_width">14dp</item>
+        <item name="android:layout_height">14dp</item>
     </style>
 </resources>

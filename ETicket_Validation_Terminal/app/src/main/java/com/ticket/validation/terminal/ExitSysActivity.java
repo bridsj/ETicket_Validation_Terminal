@@ -6,6 +6,7 @@ import android.os.Message;
 import android.text.Editable;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -20,8 +21,9 @@ public class ExitSysActivity extends BaseActivity {
     private EditText mEditText;
     private GridView mGridView;
     private KeyboardAdapter mKeyboardAdapter;
-    private ImageView backImg;
+    private ViewGroup mBackBox;
     private final static int DEL_CODE = 1000;
+    private ImageView mClearImg;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -46,7 +48,8 @@ public class ExitSysActivity extends BaseActivity {
         mEditText = (EditText) findViewById(R.id.edit_sys_text);
         mGridView = (GridView) findViewById(R.id.grid_view);
         mGridView.setAdapter(mKeyboardAdapter);
-        backImg = (ImageView) findViewById(R.id.back_img);
+        mBackBox = (ViewGroup) findViewById(R.id.back_box);
+        mClearImg = (ImageView) findViewById(R.id.clear_img);
     }
 
     @Override
@@ -83,10 +86,16 @@ public class ExitSysActivity extends BaseActivity {
                 }
             }
         });
-        backImg.setOnClickListener(new View.OnClickListener() {
+        mBackBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        mClearImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEditText.setText("");
             }
         });
     }

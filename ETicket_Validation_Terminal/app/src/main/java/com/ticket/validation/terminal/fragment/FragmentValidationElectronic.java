@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
@@ -24,6 +25,7 @@ public class FragmentValidationElectronic extends BaseFragment {
     private EditText mEditText;
     private GridView mGridView;
     private KeyboardAdapter mKeyboardAdapter;
+    private ImageView mClearImg;
     private final static int DEL_CODE = 1000;
     private Handler mHandler = new Handler() {
         @Override
@@ -54,6 +56,7 @@ public class FragmentValidationElectronic extends BaseFragment {
         mEditText = (EditText) view.findViewById(R.id.edit_sys_text);
         mGridView = (GridView) view.findViewById(R.id.grid_view);
         mGridView.setAdapter(mKeyboardAdapter);
+        mClearImg = (ImageView) view.findViewById(R.id.clear_img);
         return view;
     }
 
@@ -90,6 +93,12 @@ public class FragmentValidationElectronic extends BaseFragment {
                 if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
                     mHandler.removeMessages(DEL_CODE);
                 }
+            }
+        });
+        mClearImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEditText.setText("");
             }
         });
     }

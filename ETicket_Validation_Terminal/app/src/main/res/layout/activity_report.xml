@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/sys_info_title_margin"
+        android:layout_marginTop="@dimen/report_top_margin"
         android:paddingLeft="30dp"
         android:text="@string/app_name"
         android:textColor="@color/black_50_alpha"
@@ -21,29 +21,36 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/report_content_margin"
+        android:layout_marginTop="@dimen/report_top2_margin"
         android:background="@drawable/border_bg"
         android:orientation="vertical"
-        android:paddingBottom="10dp"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="15dp">
+        android:paddingBottom="@dimen/report_top3_margin"
+        android:paddingLeft="40dp"
+        android:paddingRight="30dp"
+        android:paddingTop="@dimen/report_top3_margin">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/report_title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sys_info_normal_text" />
+            android:layout_gravity="center_horizontal">
 
-        <TextView
-            style="@style/report_title_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="2015-2-2"
-            android:textColor="@color/red" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/report_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sys_info_normal_text" />
+
+            <TextView
+                style="@style/report_title_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:text="(2015-2-2)"
+                android:textColor="@color/red" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -55,13 +62,14 @@
                 android:layout_height="@dimen/report_max_height"
                 android:cacheColorHint="#00000000"
                 android:divider="#00000000"
+                android:dividerHeight="0dp"
                 android:fadingEdge="none"
                 android:fastScrollEnabled="false"
                 android:footerDividersEnabled="false"
                 android:headerDividersEnabled="false"
                 android:listSelector="#00000000"
-                android:dividerHeight="0dp"
                 android:overScrollMode="never"
+                android:paddingRight="10dp"
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbarThumbVertical="@drawable/base_list_scrollbar_handle"
                 android:smoothScrollbar="true" />
@@ -76,18 +84,30 @@
                 android:textSize="16sp" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_marginTop="10dp"
-            style="@style/sys_info_button_style"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_red_selector"
-            android:text="@string/report_sure"
-            android:textColor="@color/white" />
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/sys_info_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_red_selector"
+                android:text="@string/report_sure"
+                android:textColor="@color/white" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/print_progress_bar_style"
+                android:layout_centerVertical="true"
+                android:indeterminateDrawable="@anim/lib_loading_anim" />
+        </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/back_box"
         style="@style/go_back_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

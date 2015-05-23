@@ -27,6 +27,6 @@
 
     <string name="id_card_warn">请把身份证放到电子感应区</string>
     <string name="id_card_sure">二代身份证识别</string>
-    <string name="report_sure">打 印</string>
+    <string name="report_sure">打\t印</string>
     <string name="report_title">当日报表统计</string>
 </resources>

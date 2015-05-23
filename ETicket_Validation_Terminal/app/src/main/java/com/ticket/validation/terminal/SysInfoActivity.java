@@ -1,6 +1,7 @@
 package com.ticket.validation.terminal;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 /**
@@ -8,6 +9,7 @@ import android.widget.ImageView;
  */
 public class SysInfoActivity extends BaseActivity {
     private ImageView backImg;
+    private ViewGroup mBackBox;
 
     @Override
     protected void initData() {
@@ -17,12 +19,12 @@ public class SysInfoActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_sys_info);
-        backImg = (ImageView) findViewById(R.id.back_img);
+        mBackBox = (ViewGroup) findViewById(R.id.back_box);
     }
 
     @Override
     protected void initWidgetsActions() {
-        backImg.setOnClickListener(new View.OnClickListener() {
+        mBackBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

@@ -2,6 +2,8 @@ package com.ticket.validation.terminal;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class ReportActivity extends BaseActivity {
     private ListView mListView;
     private TextView mTitleText;
     private TextView mEmptyView;
+    private ViewGroup mBackBox;
     private Executor mExecutor = Executors.newCachedThreadPool();
 
     @Override
@@ -39,6 +42,7 @@ public class ReportActivity extends BaseActivity {
         mTitleText = (TextView) findViewById(R.id.title_text);
         mListView = (ListView) findViewById(R.id.list_view);
         mEmptyView = (TextView) findViewById(R.id.empty_view);
+        mBackBox = (ViewGroup) findViewById(R.id.back_box);
         mListView.setAdapter(mAdapter);
         mListView.setEmptyView(mEmptyView);
     }
@@ -54,6 +58,12 @@ public class ReportActivity extends BaseActivity {
     }
 
     private void loadData() {
+        mBackBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mExecutor.execute(new Runnable() {
             @Override
             public void run() {
