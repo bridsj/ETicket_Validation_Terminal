@@ -14,7 +14,7 @@ import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
  * Created by dengshengjin on 15/5/17.
  * 验票
  */
-public class ValidationTicketActivity extends BaseActivity {
+public class ValidationTicketActivity extends BaseUserActivity {
     private FrameLayout mMenuFrame, mContentFrame;
     private FragmentValidationElectronic mFragmentValidationElectronic;
     private FragmentValidationTicketMenu mFragmentValidationTicketMenu;
@@ -32,6 +32,7 @@ public class ValidationTicketActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_validation_ticket);
+        super.initWidgets();
         mMenuFrame = (FrameLayout) findViewById(R.id.menu_frame);
         mContentFrame = (FrameLayout) findViewById(R.id.content_frame);
         mFragmentValidationTicketMenu = FragmentValidationTicketMenu.newInstance();

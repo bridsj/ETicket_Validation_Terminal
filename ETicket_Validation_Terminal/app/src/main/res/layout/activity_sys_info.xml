@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/sys_info_title_margin"
         android:paddingLeft="30dp"
-        android:text="@string/app_name"
+        android:text="@string/app_name2"
         android:textColor="@color/black_50_alpha"
         android:textSize="@dimen/sys_info_title_size" />
 
@@ -36,6 +36,7 @@
             android:textSize="@dimen/sys_info_normal_text" />
 
         <TextView
+            android:id="@+id/url_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/sys_info_row_margin"
@@ -45,6 +46,7 @@
             android:textSize="@dimen/sys_info_normal_text" />
 
         <TextView
+            android:id="@+id/id_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

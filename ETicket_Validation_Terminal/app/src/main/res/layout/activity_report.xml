@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/report_top_margin"
         android:paddingLeft="30dp"
-        android:text="@string/app_name"
+        android:text="@string/app_name2"
         android:textColor="@color/black_50_alpha"
         android:textSize="@dimen/sys_info_title_size" />
 
@@ -43,23 +43,25 @@
                 android:textSize="@dimen/sys_info_normal_text" />
 
             <TextView
+                android:id="@+id/date_text"
                 style="@style/report_title_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="center_vertical"
                 android:text="(2015-2-2)"
                 android:textColor="@color/red" />
+
+
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/report_max_height">
 
             <ListView
                 android:id="@+id/list_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/report_max_height"
+                android:layout_height="match_parent"
                 android:cacheColorHint="#00000000"
                 android:divider="#00000000"
                 android:dividerHeight="@dimen/report_bottom_margin"
@@ -79,12 +81,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/report_max_height"
                 android:gravity="center"
-                android:text="暂无报表"
                 android:textColor="@color/black_60_alpha"
                 android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/loading_data_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@color/black_10_alpha"
+                android:gravity="center">
+
+                <ProgressBar
+                    android:id="@+id/loading_data_progress_bar"
+                    style="@style/progress_bar_style"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminateDrawable="@anim/lib_loading_anim" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/loading_data_progress_bar"
+                    android:paddingLeft="5dp"
+                    android:text="@string/loading_data"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/progress_bar_text_size" />
+            </RelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/print_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

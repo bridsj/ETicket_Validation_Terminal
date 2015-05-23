@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 /**
  * Created by dengshengjin on 15/5/23.
  */
-public class ValidationResultActivity extends BaseActivity {
+public class ValidationResultActivity extends BaseUserActivity {
     private ViewGroup mBackBox;
     private ListView mListView;
     private ValidationResultAdapter mAdapter;
@@ -38,6 +38,7 @@ public class ValidationResultActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_validation_result);
+        super.initWidgets();
         mListView = (ListView) findViewById(R.id.list_view);
         mEmptyView = (TextView) findViewById(R.id.empty_view);
         mBackBox = (ViewGroup) findViewById(R.id.back_box);

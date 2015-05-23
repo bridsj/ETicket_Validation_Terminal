@@ -6,5 +6,5 @@ package com.ticket.validation.terminal.model;
 public class ReportModel {
     public String title;
     public String desc;
-    public int num;
+    public String num;
 }

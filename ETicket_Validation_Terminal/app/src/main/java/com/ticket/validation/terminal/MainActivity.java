@@ -8,7 +8,7 @@ import android.widget.TextView;
 /**
  * Created by dengshengjin on 15/5/13.
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseUserActivity {
     private TextView mSysInfoText, mSysExitText, mValidationTicketText, mQueryTicketText, mReportText;
 
     @Override
@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_main);
+        super.initWidgets();
         mSysInfoText = (TextView) findViewById(R.id.sys_info_text);
         mSysExitText = (TextView) findViewById(R.id.sys_exit_text);
         mValidationTicketText = (TextView) findViewById(R.id.validation_ticket_text);

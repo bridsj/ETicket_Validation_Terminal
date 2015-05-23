@@ -62,7 +62,7 @@
     </style>
 
     <style name="sys_info_progress_bar_style" parent="@style/progress_bar_style">
-        <item name="android:layout_marginLeft">200dp</item>
+        <item name="android:layout_marginLeft">190dp</item>
     </style>
 
     <style name="print_progress_bar_style" parent="@style/progress_bar_style">
@@ -74,7 +74,7 @@
     </style>
 
     <style name="ID_card_progress_bar_style" parent="@style/progress_bar_style">
-        <item name="android:layout_marginLeft">320dp</item>
+        <item name="android:layout_marginLeft">300dp</item>
     </style>
 
     <style name="validation_result_progress_bar_style" parent="@style/progress_bar_style">

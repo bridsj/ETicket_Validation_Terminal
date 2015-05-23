@@ -26,7 +26,7 @@ public class ReportAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (mList == null) {
-            return 100;
+            return 0;
         }
         return mList.size();
     }
