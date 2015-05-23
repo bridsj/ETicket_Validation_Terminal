@@ -28,14 +28,26 @@
             android:textColor="@color/black"
             android:textSize="@dimen/sys_info_normal_text" />
 
-        <TextView
-            style="@style/ID_card_button_style"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/button_red_selector"
-            android:text="@string/id_card_sure"
-            android:textColor="@color/white" />
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                style="@style/ID_card_button_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/button_red_selector"
+                android:text="@string/id_card_sure"
+                android:textColor="@color/white" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/ID_card_progress_bar_style"
+                android:layout_centerVertical="true"
+                android:indeterminateDrawable="@anim/lib_loading_anim" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.ticket.validation.terminal.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,8 +14,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.ticket.validation.terminal.R;
+import com.ticket.validation.terminal.ValidationResultActivity;
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
 import com.zuiapps.suite.utils.log.LogUtil;
 
@@ -27,6 +30,7 @@ public class FragmentValidationElectronic extends BaseFragment {
     private KeyboardAdapter mKeyboardAdapter;
     private ImageView mClearImg;
     private final static int DEL_CODE = 1000;
+    private RelativeLayout mQueryBox;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -56,6 +60,7 @@ public class FragmentValidationElectronic extends BaseFragment {
         mEditText = (EditText) view.findViewById(R.id.edit_sys_text);
         mGridView = (GridView) view.findViewById(R.id.grid_view);
         mGridView.setAdapter(mKeyboardAdapter);
+        mQueryBox = (RelativeLayout) view.findViewById(R.id.query_box);
         mClearImg = (ImageView) view.findViewById(R.id.clear_img);
         return view;
     }
@@ -99,6 +104,13 @@ public class FragmentValidationElectronic extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mEditText.setText("");
+            }
+        });
+        mQueryBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
+                startActivity(intent);
             }
         });
     }

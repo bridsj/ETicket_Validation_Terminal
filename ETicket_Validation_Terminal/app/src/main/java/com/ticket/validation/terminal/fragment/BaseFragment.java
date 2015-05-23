@@ -1,11 +1,14 @@
 package com.ticket.validation.terminal.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ticket.validation.terminal.R;
 
 /**
  * @author deng.shengjin
@@ -13,31 +16,48 @@ import android.view.ViewGroup;
  * @Description 父类
  */
 public abstract class BaseFragment extends Fragment {
-	private Context context;
+    private Context context;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		context = getActivity().getApplicationContext();
-		initData();
-		View view = initViews(inflater, container, savedInstanceState);
-		initWidgetActions();
-		return view;
-	}
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        context = getActivity().getApplicationContext();
+        initData();
+        View view = initViews(inflater, container, savedInstanceState);
+        initWidgetActions();
+        return view;
+    }
 
-	@Override
-	public void onLowMemory() {
-		super.onLowMemory();
-		System.gc();
-	}
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode) {
+        super.startActivityForResult(intent, requestCode);
+        getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.no_anim);
+    }
 
-	protected Context getApplicationContext() {
-		return context;
-	}
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        getActivity().overridePendingTransition(R.anim.push_left_in, R.anim.no_anim);
+    }
 
-	protected abstract void initData();
 
-	protected abstract View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+    protected boolean isFinishAnim() {
+        return true;
+    }
 
-	protected abstract void initWidgetActions();
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
+    }
+
+    protected Context getApplicationContext() {
+        return context;
+    }
+
+    protected abstract void initData();
+
+    protected abstract View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+
+    protected abstract void initWidgetActions();
 
 }

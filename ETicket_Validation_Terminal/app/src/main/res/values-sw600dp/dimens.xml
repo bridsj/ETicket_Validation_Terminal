@@ -45,4 +45,14 @@
     <dimen name="report_top3_margin">15dp</dimen>
 
     <dimen name="menu_progress_bar_margin">16dp</dimen>
+    <dimen name="progress_bar_text_size">20sp</dimen>
+
+    <dimen name="validation_result_limit_width">350dp</dimen>
+    <dimen name="validation_result_limit_height">330dp</dimen>
+    <dimen name="validation_result_available_text_size">28sp</dimen>
+    <dimen name="validation_result_info_text_size">20sp</dimen>
+    <dimen name="validation_result_num_text_size">32sp</dimen>
+    <dimen name="validation_result_info_margin">15dp</dimen>
+    <dimen name="validation_result_info_margin2">10dp</dimen>
+    <dimen name="validation_result_padding">20dp</dimen>
 </resources>

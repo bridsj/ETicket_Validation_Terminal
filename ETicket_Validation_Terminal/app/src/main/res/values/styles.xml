@@ -73,6 +73,12 @@
     <style name="query_progress_bar_style" parent="@style/progress_bar_style">
         <item name="android:layout_marginLeft">70dp</item>
     </style>
+    <style name="ID_card_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">170dp</item>
+    </style>
+    <style name="validation_result_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">120dp</item>
+    </style>
 
     <style name="go_back_style">
         <item name="android:paddingLeft">20dp</item>
@@ -97,6 +103,13 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="validation_result_button_style">
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingRight">40dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
     <style name="report_title_style">
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
@@ -106,5 +119,15 @@
     <style name="progress_bar_style">
         <item name="android:layout_width">14dp</item>
         <item name="android:layout_height">14dp</item>
+    </style>
+
+    <style name="validation_result_name_style">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+
+    <style name="validation_result_edit_style">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
     </style>
 </resources>
