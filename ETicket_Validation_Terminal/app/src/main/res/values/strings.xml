@@ -62,4 +62,11 @@
     <string name="re_print_str2" formatted="false">\n\n\n\n用户联(重新打印)\n%s</string>
 
     <string name="daily_print_str" formatted="false">当日验证统计联(%s)-共%s联\n打印时间:%s\n%s</string>
+    <string name="close">关闭</string>
+    <string name="query_result_title">票务信息</string>
+    <string name="validation_id_card_fail">识别失败</string>
+    <string name="validation_qr_code_fail">扫描失败</string>
+    <string name="validation_qr_code_result">扫描结果:\n%s</string>
+
+    <string name="un_login">您还未登录，请稍后再试</string>
 </resources>

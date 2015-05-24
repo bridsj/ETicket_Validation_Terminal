@@ -35,7 +35,7 @@ public abstract class BaseUserActivity extends BaseActivity {
         if (!TextUtils.isEmpty(CacheDBUtil.getUserName(getApplicationContext()))) {
             mUserText.setText(String.format(getString(R.string.login_user_info), CacheDBUtil.getUserName(getApplicationContext())));
         } else {
-            mUserText.setText(getString(R.string.login_fail));
+            mUserText.setText(String.format(getString(R.string.login_user_info), getString(R.string.login_fail)));
         }
     }
 

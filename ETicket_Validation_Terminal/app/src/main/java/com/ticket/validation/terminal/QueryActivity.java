@@ -1,7 +1,9 @@
 package com.ticket.validation.terminal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -13,9 +15,27 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
+import com.ticket.validation.terminal.db.CacheDBUtil;
+import com.ticket.validation.terminal.model.ErrorModel;
+import com.ticket.validation.terminal.model.ReportPrintModel;
+import com.ticket.validation.terminal.parse.ReportParse;
+import com.ticket.validation.terminal.restful.ReqRestAdapter;
+import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
+import com.ticket.validation.terminal.util.LoginInterceporUtil;
+import com.ticket.validation.terminal.util.ToastUtil;
+
+import org.json.JSONObject;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by dengshengjin on 15/5/16.
@@ -27,6 +47,8 @@ public class QueryActivity extends BaseActivity {
     private ImageView mClearImg;
     private ViewGroup mBackBox;
     private final static int DEL_CODE = 1000;
+    private ViewGroup mQueryBox;
+    private ProgressBar mProgressBar;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -40,9 +62,20 @@ public class QueryActivity extends BaseActivity {
         }
     };
 
+    protected RestfulRequest mRestfulRequest;
+    protected ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
+
+    public Handler getHandler() {
+        if (mHandler == null) {
+            mHandler = new Handler(Looper.myLooper());
+        }
+        return mHandler;
+    }
+
     @Override
     protected void initData() {
         mKeyboardAdapter = new KeyboardAdapter(getContext());
+        mRestfulRequest = ReqRestAdapter.getInstance(getApplicationContext()).create(RestfulRequest.class);
     }
 
     @Override
@@ -53,10 +86,71 @@ public class QueryActivity extends BaseActivity {
         mGridView.setAdapter(mKeyboardAdapter);
         mClearImg = (ImageView) findViewById(R.id.clear_img);
         mBackBox = (ViewGroup) findViewById(R.id.back_box);
+        mQueryBox = (ViewGroup) findViewById(R.id.query_box);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
     protected void initWidgetsActions() {
+        mQueryBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
+                String text = mEditText.getText().toString();
+                if (TextUtils.isEmpty(text)) {
+                    return;
+                }
+                if (mProgressBar.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                mProgressBar.setVisibility(View.VISIBLE);
+                mRestfulRequest.dailyreportJson(CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
+                    @Override
+                    public void success(final JSONObject jsonObject, Response response) {
+                        mExecutorService.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                final Object object = ReportParse.parse(getApplicationContext(), jsonObject);
+                                if (isFinishing()) {
+                                    return;
+                                }
+                                getHandler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (object == null) {
+                                            mProgressBar.setVisibility(View.GONE);
+                                            ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                                        } else {
+                                            if (object instanceof ErrorModel) {
+                                                mProgressBar.setVisibility(View.GONE);
+                                                ToastUtil.showToast(getApplicationContext(), ((ErrorModel) object).mInfo);
+                                            } else if (object instanceof ReportPrintModel) {
+                                                mProgressBar.setVisibility(View.GONE);
+                                                Intent intent = new Intent(QueryActivity.this, QueryResultActivity.class);
+                                                startActivity(intent);
+                                            } else {
+                                                mProgressBar.setVisibility(View.GONE);
+                                                ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                                            }
+                                        }
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        mProgressBar.setVisibility(View.GONE);
+                        ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                    }
+                });
+            }
+        });
         mEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

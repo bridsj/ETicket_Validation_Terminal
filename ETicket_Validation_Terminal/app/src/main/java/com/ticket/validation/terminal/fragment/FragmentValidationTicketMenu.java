@@ -17,6 +17,7 @@ import com.ticket.validation.terminal.parse.GoodsParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
+import com.ticket.validation.terminal.util.LoginInterceporUtil;
 import com.ticket.validation.terminal.util.ToastUtil;
 import com.zuiapps.suite.utils.log.LogUtil;
 
@@ -115,6 +116,9 @@ public class FragmentValidationTicketMenu extends BaseFragment {
         mRePrintBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 if (mProgressBar.getVisibility() == View.VISIBLE) {
                     return;
                 }

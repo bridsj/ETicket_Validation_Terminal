@@ -65,6 +65,7 @@
             android:textSize="@dimen/sys_info_warn_text" />
 
         <RelativeLayout
+            android:id="@+id/upgrade_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

@@ -24,6 +24,7 @@ import com.ticket.validation.terminal.adapter.KeyboardAdapter;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
+import com.ticket.validation.terminal.util.LoginInterceporUtil;
 import com.ticket.validation.terminal.util.ToastUtil;
 
 import java.util.LinkedList;
@@ -120,6 +121,9 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
         mQueryBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 String text = mEditText.getText().toString();
                 if (TextUtils.isEmpty(text)) {
                     return;

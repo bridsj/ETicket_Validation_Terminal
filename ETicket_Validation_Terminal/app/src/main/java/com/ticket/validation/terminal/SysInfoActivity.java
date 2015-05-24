@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ticket.validation.terminal.db.CacheDBUtil;
@@ -13,6 +14,7 @@ import com.ticket.validation.terminal.parse.UserParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
+import com.ticket.validation.terminal.util.LoginInterceporUtil;
 
 import org.json.JSONObject;
 
@@ -29,6 +31,8 @@ public class SysInfoActivity extends BaseActivity {
     private TextView mUrlText, mIdText;
     private RestfulRequest mRestfulRequest;
     private Handler mHandler;
+    private ViewGroup mUpgradeBox;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void initData() {
@@ -48,6 +52,9 @@ public class SysInfoActivity extends BaseActivity {
         mBackBox = (ViewGroup) findViewById(R.id.back_box);
         mUrlText = (TextView) findViewById(R.id.url_text);
         mIdText = (TextView) findViewById(R.id.id_text);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.GONE);
+        mUpgradeBox = (ViewGroup) findViewById(R.id.upgrade_box);
         mUrlText.setText(String.format(getString(R.string.sys_info_address), CacheDBUtil.getAppUrl(getApplicationContext())));
         mIdText.setText(String.format(getString(R.string.sys_info_id), CacheDBUtil.getName(getApplicationContext())));
     }
@@ -58,6 +65,18 @@ public class SysInfoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        mUpgradeBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
+                if (mProgressBar.getVisibility() == View.VISIBLE) {
+                    return;
+                }
+                mProgressBar.setVisibility(View.VISIBLE);
             }
         });
         getHandler().postDelayed(new Runnable() {
@@ -78,6 +97,9 @@ public class SysInfoActivity extends BaseActivity {
                 if (model != null) {
                     CacheDBUtil.saveAppUrl(getApplicationContext(), model.mUrl);
                     CacheDBUtil.saveName(getApplicationContext(), model.mUser);
+                    if (isFinishing()) {
+                        return;
+                    }
                     getHandler().post(new Runnable() {
                         @Override
                         public void run() {

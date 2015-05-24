@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ticket.validation.terminal.util.LoginInterceporUtil;
+
 
 /**
  * Created by dengshengjin on 15/5/13.
@@ -32,6 +34,9 @@ public class MainActivity extends BaseUserActivity {
         mSysInfoText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, SysInfoActivity.class);
                 startActivity(intent);
             }
@@ -39,6 +44,9 @@ public class MainActivity extends BaseUserActivity {
         mSysExitText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, ExitSysActivity.class);
                 startActivity(intent);
             }
@@ -46,6 +54,9 @@ public class MainActivity extends BaseUserActivity {
         mValidationTicketText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, ValidationTicketActivity.class);
                 startActivity(intent);
             }
@@ -55,6 +66,9 @@ public class MainActivity extends BaseUserActivity {
             public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
 //                startActivity(intent);
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, QueryActivity.class);
                 startActivity(intent);
             }
@@ -62,6 +76,9 @@ public class MainActivity extends BaseUserActivity {
         mReportText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 Intent intent = new Intent(MainActivity.this, ReportActivity.class);
                 startActivity(intent);
             }

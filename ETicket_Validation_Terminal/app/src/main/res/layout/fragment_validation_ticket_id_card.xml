@@ -29,6 +29,7 @@
             android:textSize="@dimen/sys_info_normal_text" />
 
         <RelativeLayout
+            android:id="@+id/id_card_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
@@ -50,6 +51,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

@@ -18,6 +18,7 @@ import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.DateUtil;
+import com.ticket.validation.terminal.util.LoginInterceporUtil;
 import com.zuiapps.suite.utils.log.LogUtil;
 
 import org.json.JSONObject;
@@ -90,6 +91,9 @@ public class ReportActivity extends BaseActivity {
         mPrintBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
                 if (mAdapter.getCount() == 0) {
                     return;
                 }

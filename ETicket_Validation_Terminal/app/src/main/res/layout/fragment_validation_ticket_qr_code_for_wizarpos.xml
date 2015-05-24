@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/view_finder_top_margin" />
 
     <RelativeLayout
+        android:id="@+id/verify_box"
         android:layout_width="@dimen/view_finder_width"
         android:layout_height="@dimen/view_finder_height"
         android:layout_centerVertical="true"
@@ -50,12 +51,12 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:gravity="center"
-            android:paddingLeft="5dp"
-            android:text="扫描失败"
+            android:paddingRight="20dp"
+            android:gravity="left"
             android:textColor="@color/red"
             android:textSize="@dimen/sys_info_normal_text" />
 

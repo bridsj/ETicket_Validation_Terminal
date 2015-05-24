@@ -55,4 +55,7 @@
     <dimen name="validation_result_info_margin">15dp</dimen>
     <dimen name="validation_result_info_margin2">10dp</dimen>
     <dimen name="validation_result_padding">20dp</dimen>
+
+
+    <dimen name="query_result_limit_height">280dp</dimen>
 </resources>
