@@ -124,6 +124,9 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
                 if (TextUtils.isEmpty(text)) {
                     return;
                 }
+                if (mProgressBar.getVisibility() == View.VISIBLE) {
+                    return;
+                }
                 mProgressBar.setVisibility(View.VISIBLE);
                 queryData(text, new RestfulCallback() {
                     @Override

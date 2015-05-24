@@ -22,8 +22,8 @@ import com.ticket.validation.terminal.model.GoodsModel;
 import com.ticket.validation.terminal.model.PrintModel;
 import com.ticket.validation.terminal.parse.GoodsParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
-import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
+import com.ticket.validation.terminal.restful.VerifyReqRestAdapter;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
 import com.ticket.validation.terminal.util.ToastUtil;
 
@@ -69,7 +69,8 @@ public class ValidationResultActivity extends BaseUserActivity {
         if (goodsList == null) {
             goodsList = new LinkedList<>();
         }
-        mRestfulRequest = ReqRestAdapter.getInstance(getApplicationContext(), ApiConstants.API_BASE_URL).create(RestfulRequest.class);
+        reqCount = 0;
+        mRestfulRequest = VerifyReqRestAdapter.getInstance(getApplicationContext(), ApiConstants.API_BASE_URL).create(RestfulRequest.class);
     }
 
     public Handler getHandler() {
@@ -167,9 +168,13 @@ public class ValidationResultActivity extends BaseUserActivity {
         mVerifyBox.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {
+                                              if (mProgressBar.getVisibility() == View.VISIBLE) {
+                                                  return;
+                                              }
                                               if (mGoodsModel == null) {
                                                   return;
                                               }
+
                                               int num = 0;
                                               try {
                                                   num = Integer.parseInt(mInputText.getText().toString());
@@ -183,8 +188,10 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                   ToastUtil.showToast(getApplicationContext(), R.string.verify_input_fail);
                                                   return;
                                               }
+
+                                              reqCount = 0;
                                               mProgressBar.setVisibility(View.VISIBLE);
-                                              loadData(num);
+                                              loadData(System.currentTimeMillis() + "", num);
                                           }
                                       }
 
@@ -214,8 +221,12 @@ public class ValidationResultActivity extends BaseUserActivity {
         );
     }
 
-    private void loadData(final int num) {
+    private int reqCount;
+    private int maxCount = 2;
+
+    private void loadData(final String outId, final int num) {
         mRestfulRequest.exchangefunc(mGoodsModel.mExchageFunc,
+                outId,
                 mGoodsModel.mSoldGoodsId,
                 num,
                 CacheDBUtil.getSessionId(getApplicationContext()), 0, new Callback<JSONObject>() {
@@ -232,8 +243,13 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                       @Override
                                                       public void run() {
                                                           if (object == null) {
-                                                              mProgressBar.setVisibility(View.GONE);
-                                                              ToastUtil.showToast(getApplicationContext(), R.string.verify_fail);
+                                                              if (reqCount < maxCount) {
+                                                                  reqCount = reqCount + 1;
+                                                                  loadData(outId, num);
+                                                              } else {
+                                                                  mProgressBar.setVisibility(View.GONE);
+                                                                  ToastUtil.showToast(getApplicationContext(), R.string.verify_fail);
+                                                              }
                                                           } else {
                                                               if (object instanceof PrintModel) {
                                                                   mProgressBar.setVisibility(View.GONE);
@@ -245,8 +261,13 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                                   ToastUtil.showToast(getApplicationContext(), ((ErrorModel) object).mInfo);
                                                                   return;
                                                               } else {
-                                                                  mProgressBar.setVisibility(View.GONE);
-                                                                  ToastUtil.showToast(getApplicationContext(), R.string.verify_fail);
+                                                                  if (reqCount < maxCount) {
+                                                                      reqCount = reqCount + 1;
+                                                                      loadData(outId, num);
+                                                                  } else {
+                                                                      mProgressBar.setVisibility(View.GONE);
+                                                                      ToastUtil.showToast(getApplicationContext(), R.string.verify_fail);
+                                                                  }
                                                               }
                                                           }
                                                       }
@@ -261,8 +282,13 @@ public class ValidationResultActivity extends BaseUserActivity {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        mProgressBar.setVisibility(View.GONE);
-                        ToastUtil.showToast(getApplicationContext(), R.string.verify_fail);
+                        if (reqCount < maxCount) {
+                            reqCount = reqCount + 1;
+                            loadData(outId, num);
+                        } else {
+                            mProgressBar.setVisibility(View.GONE);
+                            ToastUtil.showToast(getApplicationContext(), R.string.verify_fail);
+                        }
                     }
                 }
 

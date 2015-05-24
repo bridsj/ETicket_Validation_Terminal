@@ -28,6 +28,7 @@ public interface RestfulRequest {
     //核销协议
     @GET("/index.php/mobilesite/mobile/{exchangefunc}")
     void exchangefunc(@Path("exchangefunc") String exchangefunc,
+                      @Query("outid") String outid,
                       @Query("soldgoodsID") String soldgoodsID,
                       @Query("usedcount") int usedcount,
                       @Query("sessionid") String sessionid,

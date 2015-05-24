@@ -1,11 +1,12 @@
 {
-	"status": 1,
-	"info": "success",
-	"data": {
-		"print_content1": {
-			"\u6d4b\u8bd5\u5546\u54c1\uff08ceshi\uff09": "3"
-		},
-		"nowtime": "15-05-24 02:43:26",
-		"print_count": 1
-	}
+  "status": 1,
+  "info": "success",
+  "data": {
+	"print_content1": {
+	  "\u6d77\u5e95\u53cc\u9986": "1",
+	  "\u6d4b\u8bd5\u5546\u54c1\uff08ceshi\uff09": "8"
+	},
+	"nowtime": "15-05-24 03:22:15",
+	"print_count": 1
+  }
 }
