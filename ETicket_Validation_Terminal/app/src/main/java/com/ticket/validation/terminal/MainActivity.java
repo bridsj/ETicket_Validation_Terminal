@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ticket.validation.terminal.helper.SessionHelper;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
 
 
@@ -83,5 +84,11 @@ public class MainActivity extends BaseUserActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void finish() {
+        SessionHelper.getInstance(getApplicationContext()).closeSession();
+        super.finish();
     }
 }

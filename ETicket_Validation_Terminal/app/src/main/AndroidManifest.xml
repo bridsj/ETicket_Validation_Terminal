@@ -62,6 +62,12 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <receiver android:name="com.ticket.validation.terminal.receiver.SessionReceiver">
+            <intent-filter>
+                <action android:name="com.ticket.validation.terminal.receiver.SessionReceiver" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

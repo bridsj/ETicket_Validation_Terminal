@@ -56,13 +56,14 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void success(JSONObject jsonObject, Response response) {
                 LoginModel model = UserParse.parseLogin(jsonObject);
+
                 if (model != null && !TextUtils.isEmpty(model.mSession)) {
                     CacheDBUtil.saveSessionId(getApplicationContext(), model.mSession);
                     CacheDBUtil.saveUserName(getApplicationContext(), model.mUser);
+                    mSessionHelper.sendSession();
                     Intent intent = new Intent(BaseUserActivity.USER_BROADCASTRECEIVER);
                     intent.setPackage(getPackageName());
                     sendBroadcast(intent);
-                    mSessionHelper.session();
                     mSessionHelper.updateConfigJson(new Callback<JSONObject>() {
                         @Override
                         public void success(JSONObject jsonObject, Response response) {
@@ -78,6 +79,7 @@ public class SplashActivity extends BaseActivity {
 
                         }
                     });
+
                 }
             }
 
