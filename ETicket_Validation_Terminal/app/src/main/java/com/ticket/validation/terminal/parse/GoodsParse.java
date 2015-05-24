@@ -29,9 +29,8 @@ public class GoodsParse {
                         if (goodsArr != null && goodsArr.length() > 0) {
                             List<GoodsModel> goodsList = new LinkedList<>();
                             int len = goodsArr.length();
-                            len = 2;
                             for (int i = 0; i < len; i++) {
-                                JSONObject goodsObj = goodsArr.optJSONObject(0);
+                                JSONObject goodsObj = goodsArr.optJSONObject(i);
                                 GoodsModel goodsModel = new GoodsModel();
                                 goodsModel.mGoodsName = goodsObj.optString("goodsname");
                                 goodsModel.mEndTime = goodsObj.optString("endtime");

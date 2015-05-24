@@ -35,7 +35,7 @@
     <dimen name="ID_button_margin">20dp</dimen>
 
     <dimen name="report_limit_width">700dp</dimen>
-    <dimen name="report_max_height">240dp</dimen>
+    <dimen name="report_max_height">220dp</dimen>
     <dimen name="report_content_margin">30dp</dimen>
     <dimen name="report_bottom_margin">15dp</dimen>
     <dimen name="report_h_margin">20dp</dimen>

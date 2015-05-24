@@ -114,6 +114,9 @@ public class ReportActivity extends BaseActivity {
                     public void run() {
 
                         final List<ReportModel> list = ReportParse.parseLogin(jsonObject);
+                        if (isFinishing()) {
+                            return;
+                        }
                         if (list == null) {
                             failure(null);
                         } else {

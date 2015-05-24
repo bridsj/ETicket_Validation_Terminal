@@ -20,12 +20,12 @@ public class ReportParse {
             }
             int status = jObj.optInt("status");
             if (status == 1) {
-                JSONArray arr = jObj.optJSONArray("data");
-                if (arr != null) {
-                    if (arr.length() > 0) {
+                JSONArray dataArr = jObj.optJSONArray("data");
+                if (dataArr != null) {
+                    if (dataArr.length() > 0) {
                         List<ReportModel> list = new LinkedList<>();
-                        for (int i = 0, len = arr.length(); i < len; i++) {
-                            JSONObject obj = arr.optJSONObject(i);
+                        for (int i = 0, len = dataArr.length(); i < len; i++) {
+                            JSONObject obj = dataArr.optJSONObject(i);
                             Iterator<String> keys = obj.keys();
                             while (keys.hasNext()) {
                                 String key = keys.next();
@@ -40,6 +40,23 @@ public class ReportParse {
                         return list;
                     } else {
                         return new LinkedList<>();
+                    }
+                } else {
+                    JSONObject dataObj = jObj.optJSONObject("data");
+                    if (dataObj != null) {
+                        List<ReportModel> list = new LinkedList<>();
+
+                        JSONObject contentObj = dataObj.optJSONObject("print_content1");
+                        Iterator<String> keys = contentObj.keys();
+                        while (keys.hasNext()) {
+                            String key = keys.next();
+                            String value = contentObj.optString(key);
+                            ReportModel model = new ReportModel();
+                            model.title = key;
+                            model.num = value;
+                            list.add(model);
+                        }
+                        return list;
                     }
                 }
             } else {

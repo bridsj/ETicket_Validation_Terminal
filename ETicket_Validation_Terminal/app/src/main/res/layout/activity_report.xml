@@ -86,16 +86,18 @@
 
             <RelativeLayout
                 android:id="@+id/loading_data_box"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@color/black_10_alpha"
+                android:background="@drawable/dialog_bg"
+                android:padding="10dp"
                 android:gravity="center">
 
                 <ProgressBar
                     android:id="@+id/loading_data_progress_bar"
                     style="@style/progress_bar_style"
-                    android:layout_centerHorizontal="true"
+
                     android:layout_centerVertical="true"
                     android:indeterminateDrawable="@anim/lib_loading_anim" />
 

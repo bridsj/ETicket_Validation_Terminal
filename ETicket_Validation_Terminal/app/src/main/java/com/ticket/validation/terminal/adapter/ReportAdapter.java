@@ -54,10 +54,9 @@ public class ReportAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-//        ReportModel model = mList.get(position);
-//        holder.mTitleText.setText(model.title);
-//        holder.mDescText.setText(model.desc);
-//        holder.mNumText.setText(model.num);
+        ReportModel model = mList.get(position);
+        holder.mTitleText.setText(model.title);
+        holder.mNumText.setText(model.num);
         return convertView;
     }
 
