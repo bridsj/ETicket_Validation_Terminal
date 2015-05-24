@@ -144,12 +144,16 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
                     @Override
                     public void failureViaLocal() {
                         mProgressBar.setVisibility(View.GONE);
-                        ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
+                        ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
                     }
 
                     @Override
                     public void failureViaServer(ErrorModel errorModel) {
                         mProgressBar.setVisibility(View.GONE);
+                        if (errorModel == null) {
+                            ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
+                            return;
+                        }
                         ToastUtil.showToast(getApplicationContext(), errorModel.mInfo);
                     }
 

@@ -11,16 +11,17 @@ import android.widget.TextView;
 
 import com.ticket.validation.terminal.adapter.ReportAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
-import com.ticket.validation.terminal.model.ReportModel;
+import com.ticket.validation.terminal.model.ErrorModel;
+import com.ticket.validation.terminal.model.ReportPrintModel;
 import com.ticket.validation.terminal.parse.ReportParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.DateUtil;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 import org.json.JSONObject;
 
-import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -43,6 +44,7 @@ public class ReportActivity extends BaseActivity {
     private TextView mDateText;
     private RelativeLayout mLoadingBox, mPrintBox;
     private ProgressBar mProgressBar;
+    private ReportPrintModel mReportPrintModel;
 
 
     @Override
@@ -91,7 +93,11 @@ public class ReportActivity extends BaseActivity {
                 if (mAdapter.getCount() == 0) {
                     return;
                 }
+                if (mProgressBar.getVisibility() == View.VISIBLE) {
+                    return;
+                }
                 mProgressBar.setVisibility(View.VISIBLE);
+                LogUtil.e("print=" + mReportPrintModel.mPrintStr);
             }
         });
         getHandler().postDelayed(new Runnable() {
@@ -113,14 +119,17 @@ public class ReportActivity extends BaseActivity {
                     @Override
                     public void run() {
 
-                        final List<ReportModel> list = ReportParse.parseLogin(jsonObject);
+                        Object object = ReportParse.parse(getApplicationContext(), jsonObject);
                         if (isFinishing()) {
                             return;
                         }
-                        if (list == null) {
-                            failure(null);
+                        if (object == null) {
+                            failureWarn(getString(R.string.loading_fail));
                         } else {
-                            if (!list.isEmpty()) {
+                            if (object instanceof ErrorModel) {
+                                failureWarn(((ErrorModel) object).mInfo);
+                            } else if (object instanceof ReportPrintModel) {
+                                mReportPrintModel = (ReportPrintModel) object;
                                 getHandler().post(new Runnable() {
                                     @Override
                                     public void run() {
@@ -128,11 +137,14 @@ public class ReportActivity extends BaseActivity {
                                         mListView.setVisibility(View.VISIBLE);
                                         mLoadingBox.setVisibility(View.GONE);
                                         mEmptyView.setText(getString(R.string.loading_empty_data));
-                                        mAdapter.notifyDataSetChanged(list);
+                                        mAdapter.notifyDataSetChanged(mReportPrintModel.mReportList);
                                     }
                                 });
-
+                            } else {
+                                failureWarn(getString(R.string.loading_fail));
                             }
+
+
                         }
                     }
                 });
@@ -140,20 +152,23 @@ public class ReportActivity extends BaseActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                getHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mListView.setEmptyView(mEmptyView);
-                        mListView.setVisibility(View.GONE);
-                        mEmptyView.setText(getString(R.string.loading_fail));
-                        mLoadingBox.setVisibility(View.GONE);
-                    }
-                });
-
+                failureWarn(getString(R.string.loading_fail2));
             }
         });
 
 
+    }
+
+    private void failureWarn(final String warn) {
+        getHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                mListView.setEmptyView(mEmptyView);
+                mListView.setVisibility(View.GONE);
+                mEmptyView.setText(warn);
+                mLoadingBox.setVisibility(View.GONE);
+            }
+        });
     }
 
 }

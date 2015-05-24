@@ -1,5 +1,8 @@
 package com.ticket.validation.terminal.parse;
 
+import android.content.Context;
+
+import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
 import com.ticket.validation.terminal.model.PrintModel;
@@ -66,7 +69,7 @@ public class GoodsParse {
         return null;
     }
 
-    public static Object parseVerify(JSONObject jObj) {
+    public static Object parseVerify(Context mContext, JSONObject jObj) {
         try {
             if (jObj == null) {
                 return null;
@@ -78,6 +81,7 @@ public class GoodsParse {
                     PrintModel model = new PrintModel();
                     model.mPrintContent = dataObj.optString("print_content");
                     model.mPrintCount = dataObj.optInt("printcount");
+                    model.mPrintStr = createPrintStr(mContext, model);
                     return model;
                 }
             } else {
@@ -90,5 +94,52 @@ public class GoodsParse {
 
         }
         return null;
+    }
+
+    public static Object parseRePrint(Context mContext, JSONObject jObj) {
+        try {
+            if (jObj == null) {
+                return null;
+            }
+            int status = jObj.optInt("status");
+            if (status == 0) {
+                JSONObject dataObj = jObj.optJSONObject("data");
+                if (dataObj != null) {
+                    PrintModel model = new PrintModel();
+                    model.mPrintContent = dataObj.optString("print_content");
+                    model.mPrintCount = dataObj.optInt("printcount");
+                    model.mPrintStr = createRePrintStr(mContext, model);
+                    return model;
+                }
+            } else {
+                ErrorModel errorModel = new ErrorModel();
+                errorModel.mStatus = status;
+                errorModel.mInfo = jObj.optString("info");
+                return errorModel;
+            }
+        } catch (Throwable t) {
+
+        }
+        return null;
+    }
+
+    public static String createPrintStr(Context mContext, PrintModel model) {
+        String str1 = mContext.getResources().getString(R.string.normal_print_str1);
+        String printStr = String.format(str1, model.mPrintContent);
+        if (model.mPrintCount > 1) {
+            String str2 = mContext.getResources().getString(R.string.normal_print_str2);
+            printStr = printStr + String.format(str2, model.mPrintContent);
+        }
+        return printStr;
+    }
+
+    public static String createRePrintStr(Context mContext, PrintModel model) {
+        String str1 = mContext.getResources().getString(R.string.re_print_str1);
+        String printStr = String.format(str1, model.mPrintContent);
+        if (model.mPrintCount > 1) {
+            String str2 = mContext.getResources().getString(R.string.re_print_str2);
+            printStr = printStr + String.format(str2, model.mPrintContent);
+        }
+        return printStr;
     }
 }

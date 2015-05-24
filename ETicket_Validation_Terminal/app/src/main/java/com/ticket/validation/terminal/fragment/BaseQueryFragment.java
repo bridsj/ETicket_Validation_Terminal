@@ -56,7 +56,7 @@ public abstract class BaseQueryFragment extends BaseFragment {
                             public void run() {
                                 if (object == null) {
                                     if (callback != null) {
-                                        callback.failureViaLocal();
+                                        callback.failureViaServer(null);
                                     }
                                 } else {
                                     if (object instanceof ErrorModel) {
@@ -69,7 +69,7 @@ public abstract class BaseQueryFragment extends BaseFragment {
                                         }
                                     } else {
                                         if (callback != null) {
-                                            callback.failureViaLocal();
+                                            callback.failureViaServer(null);
                                         }
                                     }
                                 }

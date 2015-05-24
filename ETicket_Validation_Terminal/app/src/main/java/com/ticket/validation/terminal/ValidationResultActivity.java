@@ -26,6 +26,7 @@ import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.restful.VerifyReqRestAdapter;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
 import com.ticket.validation.terminal.util.ToastUtil;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 import org.json.JSONObject;
 
@@ -235,7 +236,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                         mExecutor.execute(new Runnable() {
                                               @Override
                                               public void run() {
-                                                  final Object object = GoodsParse.parseVerify(jsonObject);
+                                                  final Object object = GoodsParse.parseVerify(getApplicationContext(),jsonObject);
                                                   if (isFinishing()) {
                                                       return;
                                                   }
@@ -252,9 +253,11 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                               }
                                                           } else {
                                                               if (object instanceof PrintModel) {
+                                                                  PrintModel model = (PrintModel) object;
                                                                   mProgressBar.setVisibility(View.GONE);
                                                                   ToastUtil.showToast(getApplicationContext(), String.format(getString(R.string.verify_succ), num));
                                                                   mAdapter.verifySucc(mGoodsModel, num);
+                                                                  LogUtil.e("print=\n" + model.mPrintStr);
                                                                   return;
                                                               } else if (object instanceof ErrorModel) {
                                                                   mProgressBar.setVisibility(View.GONE);
