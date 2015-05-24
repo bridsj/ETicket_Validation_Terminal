@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,23 +15,31 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.ValidationResultActivity;
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
-import com.zuiapps.suite.utils.log.LogUtil;
+import com.ticket.validation.terminal.model.ErrorModel;
+import com.ticket.validation.terminal.model.GoodsModel;
+import com.ticket.validation.terminal.util.KeyCodeUtil;
+import com.ticket.validation.terminal.util.ToastUtil;
+
+import java.util.LinkedList;
 
 /**
  * Created by dengshengjin on 15/5/17.
  */
-public class FragmentValidationElectronic extends BaseFragment {
+public class FragmentValidationElectronic extends BaseQueryFragment {
     private EditText mEditText;
     private GridView mGridView;
     private KeyboardAdapter mKeyboardAdapter;
     private ImageView mClearImg;
     private final static int DEL_CODE = 1000;
     private RelativeLayout mQueryBox;
+    private ProgressBar mProgressBar;
+
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -51,6 +60,7 @@ public class FragmentValidationElectronic extends BaseFragment {
 
     @Override
     protected void initData() {
+        super.initData();
         mKeyboardAdapter = new KeyboardAdapter(getApplicationContext());
     }
 
@@ -62,6 +72,8 @@ public class FragmentValidationElectronic extends BaseFragment {
         mGridView.setAdapter(mKeyboardAdapter);
         mQueryBox = (RelativeLayout) view.findViewById(R.id.query_box);
         mClearImg = (ImageView) view.findViewById(R.id.clear_img);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.GONE);
         return view;
     }
 
@@ -77,7 +89,6 @@ public class FragmentValidationElectronic extends BaseFragment {
         mKeyboardAdapter.setOnItemClickListener(new KeyboardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String str) {
-                LogUtil.e("mKeyboardAdapter onItemClick ");
                 if (!str.equals("del")) {
                     String text = mEditText.getText().toString();
                     mEditText.setText(text + str);
@@ -109,8 +120,39 @@ public class FragmentValidationElectronic extends BaseFragment {
         mQueryBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
-                startActivity(intent);
+                String text = mEditText.getText().toString();
+                if (TextUtils.isEmpty(text)) {
+                    return;
+                }
+                mProgressBar.setVisibility(View.VISIBLE);
+                queryData(text, new RestfulCallback() {
+                    @Override
+                    public void success(LinkedList<GoodsModel> list) {
+                        mProgressBar.setVisibility(View.GONE);
+                        if (list.isEmpty()) {
+                            ToastUtil.showToast(getApplicationContext(), R.string.loading_empty_data);
+                            return;
+                        }
+                        Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
+                        intent.putExtra(ValidationResultActivity.MODELS, list);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void failureViaLocal() {
+                        mProgressBar.setVisibility(View.GONE);
+                        ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
+                    }
+
+                    @Override
+                    public void failureViaServer(ErrorModel errorModel) {
+                        mProgressBar.setVisibility(View.GONE);
+                        ToastUtil.showToast(getApplicationContext(), errorModel.mInfo);
+                    }
+
+
+                });
+
             }
         });
     }
@@ -126,5 +168,23 @@ public class FragmentValidationElectronic extends BaseFragment {
             mEditText.setText("");
             mEditText.setSelection(0);
         }
+    }
+
+    public void onKeyDown(int keyCode) {
+        String key = KeyCodeUtil.getKeyCode(keyCode, false);
+        if (!TextUtils.isEmpty(key)) {
+            if (key.equals("del")) {
+                onDelEvent();
+            } else {
+                onAddEvent(key);
+            }
+        }
+    }
+
+    private void onAddEvent(String key) {
+        String text = mEditText.getText().toString();
+        mEditText.setText(text + key);
+        mEditText.setSelection(text.length() + 1);
+
     }
 }

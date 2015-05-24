@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="left"
-        android:text="titletitletitletitletitletitletitletitletitle"
         android:textColor="@color/black"
         android:textSize="@dimen/sys_info_normal_text" />
 

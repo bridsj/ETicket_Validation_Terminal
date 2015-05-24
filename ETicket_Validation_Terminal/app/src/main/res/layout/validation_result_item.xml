@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_box"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/validation_result_selector"
@@ -13,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="南山滑雪平日半天滑雪票"
         android:textColor="@color/validation_result_text_color"
         android:textSize="@dimen/sys_info_normal_text" />
 

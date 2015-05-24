@@ -62,6 +62,7 @@ public class SplashActivity extends BaseActivity {
                     Intent intent = new Intent(BaseUserActivity.USER_BROADCASTRECEIVER);
                     intent.setPackage(getPackageName());
                     sendBroadcast(intent);
+                    mSessionHelper.session();
                     mSessionHelper.updateConfigJson(new Callback<JSONObject>() {
                         @Override
                         public void success(JSONObject jsonObject, Response response) {

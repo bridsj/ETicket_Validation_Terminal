@@ -100,12 +100,12 @@
                     android:textSize="@dimen/sys_info_normal_text" />
 
                 <TextView
+                    android:id="@+id/num_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="9"
                     android:textColor="@color/red"
                     android:textSize="@dimen/validation_result_num_text_size" />
 
@@ -125,15 +125,18 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/delete_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/order_num_delete" />
 
                 <EditText
+                    android:id="@+id/input_text"
                     style="@style/validation_result_edit_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/order_num_input"
+                    android:enabled="false"
                     android:gravity="center"
                     android:hint="0"
                     android:inputType="number"
@@ -141,12 +144,14 @@
                     android:textSize="@dimen/validation_result_num_text_size" />
 
                 <ImageView
+                    android:id="@+id/add_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/order_num_add" />
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/verify_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -173,7 +178,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/validation_result_info_margin">
+                android:layout_marginTop="@dimen/validation_result_info_margin"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -182,12 +188,21 @@
                     android:text="@string/validation_name"
                     android:textColor="@color/black_60_alpha"
                     android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/validation_result_info_margin2">
+                android:layout_marginTop="@dimen/validation_result_info_margin2"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -196,18 +211,12 @@
                     android:text="@string/validation_id_card"
                     android:textColor="@color/black_60_alpha"
                     android:textSize="@dimen/validation_result_info_text_size" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/validation_result_info_margin2">
 
                 <TextView
+                    android:id="@+id/id_card_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left"
-                    android:text="@string/validation_validity"
                     android:textColor="@color/black_60_alpha"
                     android:textSize="@dimen/validation_result_info_text_size" />
             </LinearLayout>
@@ -215,13 +224,45 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/validation_result_info_margin2">
+                android:layout_marginTop="@dimen/validation_result_info_margin2"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_validity"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/validity_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/validation_result_info_margin2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:text="@string/validation_mark"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/mark_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
                     android:textColor="@color/black_60_alpha"
                     android:textSize="@dimen/validation_result_info_text_size" />
             </LinearLayout>

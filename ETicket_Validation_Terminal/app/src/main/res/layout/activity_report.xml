@@ -44,19 +44,19 @@
 
             <TextView
                 android:id="@+id/date_text"
-                style="@style/report_title_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="(2015-2-2)"
-                android:textColor="@color/red" />
+                android:textColor="@color/red"
+                android:textSize="@dimen/sys_info_normal_text" />
 
 
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/report_max_height">
+            android:layout_height="@dimen/report_max_height"
+            android:layout_marginTop="10dp">
 
             <ListView
                 android:id="@+id/list_view"
@@ -116,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/report_top3_margin">
 
             <TextView
                 style="@style/sys_info_button_style"

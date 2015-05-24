@@ -14,7 +14,7 @@ public interface RestfulRequest {
     void login(@Query("user") String user, @Query("password") String password, Callback<JSONObject> callback);
 
     //保活
-    @GET("/index.php/mobilesite/mobile/CaptchaJsonV2")
+    @GET("/")
     void activate(@Query("sessionid") String sessionid, Callback<JSONObject> callback);
 
     //获取用户信息
@@ -22,12 +22,17 @@ public interface RestfulRequest {
     void updateConfigJson(@Query("sessionid") String sessionid, Callback<JSONObject> callback);
 
     //通过id或二维码 查询订单详情
-    @GET("/index.php/mobilesite/mobile/UpdateConfigJson")
+    @GET("/index.php/mobilesite/mobile/CaptchaJsonV2")
     void queryOrderInfo(@Query("credenceno") String credenceno, @Query("sessionid") String sessionid, Callback<JSONObject> callback);
 
     //核销协议
     @GET("/index.php/mobilesite/mobile/{exchangefunc}")
-    void exchangefunc(@Path("exchangefunc") String exchangefunc, @Query("credenceno") String credenceno, @Query("sessionid") String sessionid, Callback<JSONObject> callback);
+    void exchangefunc(@Path("exchangefunc") String exchangefunc,
+                      @Query("soldgoodsID") String soldgoodsID,
+                      @Query("usedcount") int usedcount,
+                      @Query("sessionid") String sessionid,
+                      @Query("retry") int retry,
+                      Callback<JSONObject> callback);
 
     //重新打印协议
     @GET("/index.php/mobilesite/mobile/reprintinfoJsonV2")

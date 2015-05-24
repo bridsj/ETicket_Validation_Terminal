@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
+import com.ticket.validation.terminal.util.KeyCodeUtil;
 
 /**
  * Created by dengshengjin on 15/5/16.
@@ -111,5 +114,25 @@ public class QueryActivity extends BaseActivity {
             mEditText.setText("");
             mEditText.setSelection(0);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        String key = KeyCodeUtil.getKeyCode(keyCode, false);
+        if (!TextUtils.isEmpty(key)) {
+            if (key.equals("del")) {
+                onDelEvent();
+            } else {
+                onAddEvent(key);
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void onAddEvent(String key) {
+        String text = mEditText.getText().toString();
+        mEditText.setText(text + key);
+        mEditText.setSelection(text.length() + 1);
+
     }
 }

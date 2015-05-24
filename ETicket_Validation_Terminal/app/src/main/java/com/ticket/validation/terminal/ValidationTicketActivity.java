@@ -2,6 +2,7 @@ package com.ticket.validation.terminal;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
 import com.ticket.validation.terminal.fragment.BaseFragment;
@@ -23,6 +24,7 @@ public class ValidationTicketActivity extends BaseUserActivity {
     private final static String GOOGLE = "Google";
     private final static String WIZARPOS = "Wizarpos";
     private String type = WIZARPOS;
+    private String currFragment = "";
 
     @Override
     protected void initData() {
@@ -41,6 +43,7 @@ public class ValidationTicketActivity extends BaseUserActivity {
             mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
         }
         initContentFrame(mFragmentValidationElectronic);
+        currFragment = "ValidationElectronic";
     }
 
     @Override
@@ -53,13 +56,16 @@ public class ValidationTicketActivity extends BaseUserActivity {
                         mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
                     }
                     initContentFrame(mFragmentValidationElectronic);
+                    currFragment = "ValidationElectronic";
                 } else if (Tag.equals(FragmentValidationTicketMenu.MenuType.QRCODE.name().toString())) {
                     createQrFragment();
+                    currFragment = "ValidationQrCode";
                 } else {
                     if (mFragmentValidationIDCard == null) {
                         mFragmentValidationIDCard = FragmentValidationIDCard.newInstance();
                     }
                     initContentFrame(mFragmentValidationIDCard);
+                    currFragment = "ValidationIDCard";
                 }
             }
         });
@@ -89,5 +95,15 @@ public class ValidationTicketActivity extends BaseUserActivity {
             }
             initContentFrame(mFragmentValidationQrCode);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (currFragment.equals("ValidationElectronic")) {
+            if (mFragmentValidationElectronic != null) {
+                mFragmentValidationElectronic.onKeyDown(keyCode);
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

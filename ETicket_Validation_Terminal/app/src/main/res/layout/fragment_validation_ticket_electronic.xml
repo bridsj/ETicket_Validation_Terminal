@@ -29,6 +29,7 @@
                 android:background="@drawable/button_empty_selector"
                 android:enabled="false"
                 android:gravity="left"
+                android:text="121232222221112221"
                 android:hint="@string/exit_sys_hint"
                 android:inputType="number"
                 android:textColor="@color/black" />

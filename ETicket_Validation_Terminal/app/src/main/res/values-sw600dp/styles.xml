@@ -121,6 +121,9 @@
     <style name="validation_result_edit_style">
         <item name="android:paddingTop">15dp</item>
         <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:maxWidth">150dp</item>
     </style>
 
 </resources>

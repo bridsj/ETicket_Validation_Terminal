@@ -48,4 +48,8 @@
     <string name="loading_empty_data">未查找到相关数据</string>
     <string name="login_fail">设备登录失败</string>
     <string name="login_user_info">天下票务@%s</string>
+
+    <string name="verify_input_fail">请输入正确的数量</string>
+    <string name="verify_fail">无法使用该商品,请稍后再试</string>
+    <string name="verify_succ">已成功使用%s张票</string>
 </resources>

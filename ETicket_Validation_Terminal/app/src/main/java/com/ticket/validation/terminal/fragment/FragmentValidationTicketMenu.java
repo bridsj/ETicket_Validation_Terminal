@@ -13,6 +13,7 @@ import com.ticket.validation.terminal.R;
  */
 public class FragmentValidationTicketMenu extends BaseFragment {
     private LinearLayout mElectronicBox, mQrCodeBox, mIdCardBox;
+    private ViewGroup mRePrintBox, mBackBox;
 
     public enum MenuType {
         ELECTRONIC, QRCODE, IDCARD
@@ -34,6 +35,8 @@ public class FragmentValidationTicketMenu extends BaseFragment {
         mElectronicBox = (LinearLayout) view.findViewById(R.id.electronic_box);
         mQrCodeBox = (LinearLayout) view.findViewById(R.id.qr_code_box);
         mIdCardBox = (LinearLayout) view.findViewById(R.id.id_card_box);
+        mRePrintBox = (ViewGroup) view.findViewById(R.id.qr_code_box);
+        mBackBox = (ViewGroup) view.findViewById(R.id.back_box);
         mElectronicBox.setTag(MenuType.ELECTRONIC.name().toString());
         mQrCodeBox.setTag(MenuType.QRCODE.name().toString());
         mIdCardBox.setTag(MenuType.IDCARD.name().toString());
@@ -42,6 +45,12 @@ public class FragmentValidationTicketMenu extends BaseFragment {
 
     @Override
     protected void initWidgetActions() {
+        mBackBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
         mElectronicBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -137,6 +137,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/re_print_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -165,13 +166,21 @@
             android:layout_marginTop="2dp"
             android:background="@color/black" />
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/back_box"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/goback" />
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal"
+
+                android:src="@drawable/goback" />
+        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>

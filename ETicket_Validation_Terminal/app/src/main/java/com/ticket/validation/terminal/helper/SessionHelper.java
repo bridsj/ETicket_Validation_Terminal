@@ -7,7 +7,11 @@ import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 
+import org.json.JSONObject;
+
 import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by dengshengjin on 15/5/23.
@@ -36,6 +40,21 @@ public class SessionHelper {
     public void updateConfigJson(Callback callback) {
         String session = CacheDBUtil.getSessionId(mContext);
         mRestfulRequest.updateConfigJson(session, callback);
+    }
+
+    public void session() {
+        String session = CacheDBUtil.getSessionId(mContext);
+        mRestfulRequest.activate(session, new Callback<JSONObject>() {
+            @Override
+            public void success(JSONObject jsonObject, Response response) {
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 
 }

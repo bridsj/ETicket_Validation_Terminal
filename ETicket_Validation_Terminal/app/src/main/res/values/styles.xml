@@ -111,8 +111,6 @@
         <item name="android:textSize">16sp</item>
     </style>
     <style name="report_title_style">
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
         <item name="android:textSize">@dimen/sys_info_normal_text</item>
     </style>
 
@@ -129,5 +127,8 @@
     <style name="validation_result_edit_style">
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:maxWidth">100dp</item>
     </style>
 </resources>
