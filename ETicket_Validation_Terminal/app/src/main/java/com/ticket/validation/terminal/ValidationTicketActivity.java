@@ -8,8 +8,9 @@ import android.widget.FrameLayout;
 import com.ticket.validation.terminal.fragment.BaseFragment;
 import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
 import com.ticket.validation.terminal.fragment.FragmentValidationIDCard;
-import com.ticket.validation.terminal.fragment.FragmentValidationQrCodeForWizarpos;
+import com.ticket.validation.terminal.fragment.FragmentValidationQrCodeForGoogle;
 import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 /**
  * Created by dengshengjin on 15/5/17.
@@ -23,12 +24,13 @@ public class ValidationTicketActivity extends BaseUserActivity {
     private BaseFragment mFragmentValidationQrCode;
     private final static String GOOGLE = "Google";
     private final static String WIZARPOS = "Wizarpos";
-    private String type = WIZARPOS;
+    private String type = GOOGLE;
     private String currFragment = "";
+    private boolean mIsOpenLight;
 
     @Override
     protected void initData() {
-
+        mIsOpenLight = false;
     }
 
     @Override
@@ -39,9 +41,7 @@ public class ValidationTicketActivity extends BaseUserActivity {
         mContentFrame = (FrameLayout) findViewById(R.id.content_frame);
         mFragmentValidationTicketMenu = FragmentValidationTicketMenu.newInstance();
         initMenuFrame(mFragmentValidationTicketMenu);
-        if (mFragmentValidationElectronic == null) {
-            mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
-        }
+        mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
         initContentFrame(mFragmentValidationElectronic);
         currFragment = "ValidationElectronic";
     }
@@ -52,18 +52,14 @@ public class ValidationTicketActivity extends BaseUserActivity {
             @Override
             public void onClick(String Tag) {
                 if (Tag.equals(FragmentValidationTicketMenu.MenuType.ELECTRONIC.name().toString())) {
-                    if (mFragmentValidationElectronic == null) {
-                        mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
-                    }
+                    mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
                     initContentFrame(mFragmentValidationElectronic);
                     currFragment = "ValidationElectronic";
                 } else if (Tag.equals(FragmentValidationTicketMenu.MenuType.QRCODE.name().toString())) {
                     createQrFragment();
                     currFragment = "ValidationQrCode";
                 } else {
-                    if (mFragmentValidationIDCard == null) {
-                        mFragmentValidationIDCard = FragmentValidationIDCard.newInstance();
-                    }
+                    mFragmentValidationIDCard = FragmentValidationIDCard.newInstance();
                     initContentFrame(mFragmentValidationIDCard);
                     currFragment = "ValidationIDCard";
                 }
@@ -85,14 +81,16 @@ public class ValidationTicketActivity extends BaseUserActivity {
 
     private void createQrFragment() {
         if (type.equals(WIZARPOS)) {
-            if (mFragmentValidationQrCode == null) {
-                mFragmentValidationQrCode = FragmentValidationQrCodeForWizarpos.newInstance();
-            }
+            mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
             initContentFrame(mFragmentValidationQrCode);
         } else if (type.equals(GOOGLE)) {
-            if (mFragmentValidationQrCode == null) {
-//                mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
-            }
+            mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
+            ((FragmentValidationQrCodeForGoogle) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForGoogle.OnLightClickListener() {
+                @Override
+                public void onChangeLight(boolean isOpenLight) {
+                    mIsOpenLight = isOpenLight;
+                }
+            });
             initContentFrame(mFragmentValidationQrCode);
         }
     }
@@ -105,5 +103,10 @@ public class ValidationTicketActivity extends BaseUserActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public boolean isOpenLight() {
+        LogUtil.e("mIsOpenLight 3=" + mIsOpenLight);
+        return mIsOpenLight;
     }
 }

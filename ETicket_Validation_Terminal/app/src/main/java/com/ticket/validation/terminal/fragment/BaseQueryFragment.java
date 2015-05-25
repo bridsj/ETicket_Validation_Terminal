@@ -1,7 +1,9 @@
 package com.ticket.validation.terminal.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.model.ErrorModel;
@@ -96,5 +98,15 @@ public abstract class BaseQueryFragment extends BaseFragment {
 
         void failureViaServer(ErrorModel errorModel);
 
+    }
+
+    protected void setFrontFacingCamera(boolean paramBoolean) {
+        SharedPreferences localSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor localEditor = localSharedPreferences.edit();
+        if (paramBoolean)
+            localEditor.putInt("preferences_camera_faceing", 1);
+        else
+            localEditor.putInt("preferences_camera_faceing", 0);
+        localEditor.commit();
     }
 }

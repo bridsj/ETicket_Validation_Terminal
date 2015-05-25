@@ -45,7 +45,7 @@
         <activity
             android:name="com.ticket.validation.terminal.ValidationTicketActivity"
             android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="com.ticket.validation.terminal.ReportActivity"

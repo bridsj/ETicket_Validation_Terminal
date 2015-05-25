@@ -70,17 +70,17 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
                 }
 
                 mStatusText.setText("");
-                animateFadeInOut(mIdCardWarnText);
+                mProgressBar.setVisibility(View.VISIBLE);
+//                animateFadeInOut(mIdCardWarnText);
                 getHandler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        pauseAnimation(mIdCardWarnText);
+//                        pauseAnimation(mIdCardWarnText);
                         boolean isValidationSucc = true;
                         if (getActivity() == null || getActivity().isFinishing()) {
                             return;
                         }
                         if (isValidationSucc) { //识别成功
-                            mProgressBar.setVisibility(View.VISIBLE);
                             queryData(test, new RestfulCallback() {
                                 @Override
                                 public void success(LinkedList<GoodsModel> list) {
@@ -125,12 +125,12 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
     private boolean mIsAnimation;
 
     public void animateFadeInOut(final View view) {
-        mAlphaAnimation = new AlphaAnimation(0.05f, 0.6f);
-        mAlphaAnimation.setDuration(1000);
+        mAlphaAnimation = new AlphaAnimation(0.1f, 0.8f);
+        mAlphaAnimation.setDuration(800);
         mAlphaAnimation.setRepeatMode(ValueAnimator.REVERSE);
         mAlphaAnimation.setRepeatCount(ValueAnimator.INFINITE);
         mAlphaAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        mIsAnimation = true;
+        mIsAnimation = false;
         view.startAnimation(mAlphaAnimation);
     }
 

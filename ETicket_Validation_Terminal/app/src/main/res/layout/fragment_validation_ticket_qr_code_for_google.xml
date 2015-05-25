@@ -8,11 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
-    <!--
-     android:layout_width="@dimen/view_finder_width"
-            android:layout_height="@dimen/view_finder_height"
-    android:layout_marginLeft="@dimen/view_finder_left_margin"
-            android:layout_marginTop="@dimen/view_finder_top_margin" -->
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,43 +16,97 @@
 
         <com.google.zxing.client.android.ViewfinderView
             android:id="@+id/viewfinder_view"
-
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="140dp"
-            android:layout_marginRight="40dp"
-            android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/qr_light_text"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:paddingLeft="5dp"
-                android:text="扫描失败"
-                android:textColor="@color/red"
-                android:textSize="18sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/scanner_box"
+                android:background="@color/sys_bg_color" />
 
-            <TextView
-                android:id="@+id/qr_light_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_red_selector"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/scanner_box"
+                android:background="@color/sys_bg_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/scanner_box"
+                android:background="@color/sys_bg_color" />
+
+
+            <RelativeLayout
+                android:id="@+id/scanner_box"
+                android:layout_width="@dimen/view_finder_width"
+                android:layout_height="@dimen/view_finder_height"
+                android:layout_centerInParent="true"
+                android:background="@color/black_50_alpha"
                 android:gravity="center"
-                android:paddingBottom="30dp"
-                android:paddingLeft="65dp"
-                android:paddingRight="65dp"
-                android:paddingTop="30dp"
-                android:text="@string/qr_light"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
-        </LinearLayout>
+                android:visibility="invisible">
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/progress_bar_style"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:indeterminateDrawable="@anim/lib_loading_anim" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/progress_bar"
+                    android:paddingLeft="5dp"
+                    android:text="@string/loading"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/progress_bar_text_size" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/scanner_box"
+                android:background="@color/sys_bg_color" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/view_finder_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="@dimen/view_finder_top_margin"
+                android:layout_toRightOf="@+id/scanner_box"
+                android:gravity="bottom"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:gravity="left"
+                    android:paddingRight="20dp"
+                    android:text="扫描失败"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/sys_info_normal_text" />
+
+
+                <TextView
+                    android:id="@+id/qr_light_text"
+                    style="@style/qr_code_button_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_red_selector"
+                    android:gravity="center"
+                    android:text="@string/qr_light"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
