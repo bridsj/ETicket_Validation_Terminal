@@ -1,10 +1,13 @@
 package com.ticket.validation.terminal.fragment;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
     private ViewGroup mIdCardBox;
     private ProgressBar mProgressBar;
     private TextView mStatusText;
+    private TextView mIdCardWarnText;
 
     public static FragmentValidationIDCard newInstance() {
         FragmentValidationIDCard f = new FragmentValidationIDCard();
@@ -35,6 +39,7 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
     @Override
     protected void initData() {
         super.initData();
+        mIsAnimation = false;
     }
 
     @Override
@@ -43,6 +48,7 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
         mIdCardBox = (ViewGroup) mContentView.findViewById(R.id.id_card_box);
         mProgressBar = (ProgressBar) mContentView.findViewById(R.id.progress_bar);
         mStatusText = (TextView) mContentView.findViewById(R.id.status_text);
+        mIdCardWarnText = (TextView) mContentView.findViewById(R.id.id_card_warn_text);
         mStatusText.setText("");
         mProgressBar.setVisibility(View.GONE);
         return mContentView;
@@ -59,17 +65,22 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
                 if (mProgressBar.getVisibility() == View.VISIBLE) {
                     return;
                 }
-                mProgressBar.setVisibility(View.VISIBLE);
+                if (mIsAnimation) {
+                    return;
+                }
+
                 mStatusText.setText("");
+                animateFadeInOut(mIdCardWarnText);
                 getHandler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
+                        pauseAnimation(mIdCardWarnText);
                         boolean isValidationSucc = true;
                         if (getActivity() == null || getActivity().isFinishing()) {
                             return;
                         }
                         if (isValidationSucc) { //识别成功
+                            mProgressBar.setVisibility(View.VISIBLE);
                             queryData(test, new RestfulCallback() {
                                 @Override
                                 public void success(LinkedList<GoodsModel> list) {
@@ -108,5 +119,24 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
                 }, 1000);
             }
         });
+    }
+
+    private AlphaAnimation mAlphaAnimation;
+    private boolean mIsAnimation;
+
+    public void animateFadeInOut(final View view) {
+        mAlphaAnimation = new AlphaAnimation(0.05f, 0.6f);
+        mAlphaAnimation.setDuration(1000);
+        mAlphaAnimation.setRepeatMode(ValueAnimator.REVERSE);
+        mAlphaAnimation.setRepeatCount(ValueAnimator.INFINITE);
+        mAlphaAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+        mIsAnimation = true;
+        view.startAnimation(mAlphaAnimation);
+    }
+
+    public void pauseAnimation(final View view) {
+        view.clearAnimation();
+        view.setAlpha(1.0f);
+        mIsAnimation = false;
     }
 }
