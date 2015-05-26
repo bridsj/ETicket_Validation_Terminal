@@ -25,7 +25,7 @@ import java.util.LinkedList;
  */
 public class FragmentValidationIDCard extends BaseQueryFragment {
     private View mContentView;
-    private String test = "124569874566325541";
+    private String test = "000007413078";
     private ViewGroup mIdCardBox;
     private ProgressBar mProgressBar;
     private TextView mStatusText;

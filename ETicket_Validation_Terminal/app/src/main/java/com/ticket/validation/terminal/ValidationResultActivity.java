@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.ticket.validation.terminal.adapter.ValidationResultAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
+import com.ticket.validation.terminal.helper.PrintHelper;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
 import com.ticket.validation.terminal.model.PrintModel;
@@ -27,7 +28,6 @@ import com.ticket.validation.terminal.restful.VerifyReqRestAdapter;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
 import com.ticket.validation.terminal.util.ToastUtil;
-import com.zuiapps.suite.utils.log.LogUtil;
 
 import org.json.JSONObject;
 
@@ -261,11 +261,33 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                               }
                                                           } else {
                                                               if (object instanceof PrintModel) {
-                                                                  PrintModel model = (PrintModel) object;
-                                                                  mProgressBar.setVisibility(View.GONE);
-                                                                  ToastUtil.showToast(getApplicationContext(), String.format(getString(R.string.verify_succ), num));
-                                                                  mAdapter.verifySucc(mGoodsModel, num);
-                                                                  LogUtil.e("print=\n" + model.mPrintStr);
+                                                                  final PrintModel model = (PrintModel) object;
+
+                                                                  PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(model.mPrintStr, new PrintHelper.PrintCallback() {
+                                                                      @Override
+                                                                      public void onErrorPrint() {
+                                                                          ToastUtil.showToast(getApplicationContext(), R.string.printing);
+                                                                      }
+
+                                                                      @Override
+                                                                      public void onStartPrint() {
+
+                                                                      }
+
+                                                                      @Override
+                                                                      public void onFinishPrint() {
+                                                                          ToastUtil.showToast(getApplicationContext(), String.format(getString(R.string.verify_succ), num));
+                                                                          mProgressBar.setVisibility(View.GONE);
+                                                                          mAdapter.verifySucc(mGoodsModel, num);
+                                                                      }
+
+                                                                      @Override
+                                                                      public void onFailPrint() {
+                                                                          ToastUtil.showToast(getApplicationContext(), R.string.print_fail);
+                                                                          mAdapter.verifySucc(mGoodsModel, num);
+                                                                          mProgressBar.setVisibility(View.GONE);
+                                                                      }
+                                                                  });
                                                                   return;
                                                               } else if (object instanceof ErrorModel) {
                                                                   mProgressBar.setVisibility(View.GONE);

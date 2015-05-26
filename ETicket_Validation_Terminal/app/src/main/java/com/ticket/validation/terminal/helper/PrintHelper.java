@@ -30,6 +30,7 @@ public class PrintHelper {
     private PrintHelper(Context context) {
         mContext = context;
         mExecutorService = Executors.newSingleThreadExecutor();
+        mSerialPrinter = SerialPrinter.GetSerialPrinter();
         HdxUtil.SwitchSerialFunction(HdxUtil.SERIAL_FUNCTION_PRINTER);
         try {
             mSerialPrinter.OpenPrinter(new SerialParam(115200, "/dev/ttyS1", 0), new SerialDataHandler());
@@ -37,10 +38,8 @@ public class PrintHelper {
             e1.printStackTrace();
         }
         mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "wake_lock");
-        mSerialPrinter = SerialPrinter.GetSerialPrinter();
         mHandler = new Handler();
-
-
+        mIsPrinting = false;
     }
 
     public static PrintHelper getInstance(Context context) {
@@ -51,10 +50,28 @@ public class PrintHelper {
     }
 
 
-    public void startPrintViaChar(final PrintCallback printCallback, final String printStr) {
-        if (printCallback != null) {
-            printCallback.onStartPrint();
+    public void startPrintViaChar(final String printStr, final PrintCallback printCallback) {
+        if (mIsPrinting) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (printCallback != null) {
+                        printCallback.onErrorPrint();
+                    }
+                }
+            });
+            return;
         }
+        mIsPrinting = true;
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (printCallback != null) {
+                    printCallback.onStartPrint();
+                }
+            }
+        });
+
         mExecutorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -66,19 +83,15 @@ public class PrintHelper {
                     startPrintAsync(printCallback, printStr);
                     SystemClock.sleep(5000);
                 } catch (Throwable t) {
-
+                    if (printCallback != null) {
+                        printCallback.onFailPrint();
+                    }
                 } finally {
                     mWakeLock.release();
                     HdxUtil.SetPrinterPower(0);
+                    mIsPrinting = false;
                 }
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (printCallback != null) {
-                            printCallback.onFinishPrint();
-                        }
-                    }
-                });
+
             }
         });
     }
@@ -90,13 +103,10 @@ public class PrintHelper {
 //    mSerialPrinter.enlargeFontSize(2, 1); 倍宽打印
     // mSerialPrinter.printString(arr.get(1)); 打印文字
     //mSerialPrinter.walkPaper(100); 继续走50点行
-    private void startPrintAsync(final PrintCallback printCallback, final String printStr) {
+    private void startPrintAsync(final PrintCallback printCallback, final String printStr) throws Throwable {
+
         mSerialPrinter.printString(printStr);
-        try {
-            mSerialPrinter.walkPaper(50);// 测试结束往下走纸25点行 */
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        mSerialPrinter.walkPaper(80);// 测试结束往下走纸25点行 */
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -122,8 +132,13 @@ public class PrintHelper {
     }
 
     public interface PrintCallback {
+
+        void onErrorPrint();
+
         void onStartPrint();
 
         void onFinishPrint();
+
+        void onFailPrint();
     }
 }

@@ -53,7 +53,7 @@ public class FragmentValidationQrCodeForGoogle extends BaseQueryFragment impleme
     private ViewGroup mVerifyBox;
     private TextView mStatusText;
     private boolean mIsOnPause;
-    private String test = "124569874566325541";
+    private String test = "000007437238";
     private TextView mQrLightText;
     private boolean mIsOpenLight;
 

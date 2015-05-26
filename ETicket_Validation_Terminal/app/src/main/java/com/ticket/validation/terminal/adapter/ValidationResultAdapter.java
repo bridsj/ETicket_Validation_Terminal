@@ -143,7 +143,11 @@ public class ValidationResultAdapter extends BaseAdapter {
     public void verifySucc(GoodsModel goodsModel, int num) {
         for (int i = 0, len = mList.size(); i < len; i++) {
             if (goodsModel == mList.get(i)) {
-                mList.get(i).mCount = mList.get(i).mCount - num;
+                int tNum = mList.get(i).mCount - num;
+                if (tNum < 0) {
+                    tNum = 0;
+                }
+                mList.get(i).mCount = tNum;
                 if (mOnItemClickListener != null) {
                     mOnItemClickListener.onItemClick(goodsModel);
                 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.ticket.validation.terminal.adapter.ReportAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
+import com.ticket.validation.terminal.helper.PrintHelper;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.ReportPrintModel;
 import com.ticket.validation.terminal.parse.ReportParse;
@@ -19,7 +20,7 @@ import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.DateUtil;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
-import com.zuiapps.suite.utils.log.LogUtil;
+import com.ticket.validation.terminal.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -97,11 +98,35 @@ public class ReportActivity extends BaseActivity {
                 if (mAdapter.getCount() == 0) {
                     return;
                 }
+                if (mReportPrintModel == null) {
+                    return;
+                }
                 if (mProgressBar.getVisibility() == View.VISIBLE) {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
-                LogUtil.e("print=" + mReportPrintModel.mPrintStr);
+                PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(mReportPrintModel.mPrintStr, new PrintHelper.PrintCallback() {
+                    @Override
+                    public void onErrorPrint() {
+                        ToastUtil.showToast(getApplicationContext(), R.string.printing);
+                    }
+
+                    @Override
+                    public void onStartPrint() {
+
+                    }
+
+                    @Override
+                    public void onFinishPrint() {
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onFailPrint() {
+                        ToastUtil.showToast(getApplicationContext(), R.string.print_fail);
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                });
             }
         });
         getHandler().postDelayed(new Runnable() {

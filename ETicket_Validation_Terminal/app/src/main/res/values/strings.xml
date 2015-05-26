@@ -56,10 +56,10 @@
     <string name="re_print_fail">无法重新打印</string>
 
     <string name="normal_print_str1" formatted="false">商户联\r\n%s</string>
-    <string name="normal_print_str2" formatted="false">\r\n\r\n\r\n\r\n用户联\r\n%s</string>
+    <string name="normal_print_str2" formatted="false">用户联\r\n%s</string>
 
     <string name="re_print_str1" formatted="false">商户联(重新打印)\r\n%s</string>
-    <string name="re_print_str2" formatted="false">\r\n\r\n\r\n\r\n用户联(重新打印)\r\n%s</string>
+    <string name="re_print_str2" formatted="false">用户联(重新打印)\r\n%s</string>
 
     <string name="daily_print_str" formatted="false">当日验证统计联(%s)-共%s联\n打印时间:%s\r\n%s\r\n\r\n\r\n</string>
     <string name="close">关闭</string>
@@ -73,4 +73,6 @@
     <string name="input_error">请输入正确的内容</string>
     <string name="validation_result_error">请先选择商品</string>
     <string name="exit_warn">再按一次即可退出</string>
+    <string name="printing">正在打印其它内容，请稍后再试</string>
+    <string name="print_fail">打印相关内容失败，请稍后再试</string>
 </resources>
