@@ -126,6 +126,7 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
                 }
                 String text = mEditText.getText().toString();
                 if (TextUtils.isEmpty(text)) {
+                    ToastUtil.showToast(getApplicationContext(), R.string.input_error);
                     return;
                 }
                 if (mProgressBar.getVisibility() == View.VISIBLE) {

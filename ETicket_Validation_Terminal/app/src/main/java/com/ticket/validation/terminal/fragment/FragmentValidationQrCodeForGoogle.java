@@ -240,21 +240,27 @@ public class FragmentValidationQrCodeForGoogle extends BaseQueryFragment impleme
 
     @Override
     public void onPause() {
-        if (handler != null) {
-            handler.quitSynchronously();
-            handler = null;
+        try {
+            if (handler != null) {
+                handler.quitSynchronously();
+                handler = null;
+            }
+            mIsOnPause = true;
+            inactivityTimer.onPause();
+            beepManager.close();
+            cameraManager.closeDriver();
+            if (!hasSurface) {
+                SurfaceView surfaceView = (SurfaceView) getActivity().findViewById(R.id.preview_view);
+                surfaceView.setVisibility(View.GONE);
+                SurfaceHolder surfaceHolder = surfaceView.getHolder();
+                surfaceHolder.removeCallback(this);
+            }
+        } catch (Throwable t) {
+
+        } finally {
+            super.onPause();
         }
-        mIsOnPause = true;
-        inactivityTimer.onPause();
-        beepManager.close();
-        cameraManager.closeDriver();
-        if (!hasSurface) {
-            SurfaceView surfaceView = (SurfaceView) getActivity().findViewById(R.id.preview_view);
-            surfaceView.setVisibility(View.GONE);
-            SurfaceHolder surfaceHolder = surfaceView.getHolder();
-            surfaceHolder.removeCallback(this);
-        }
-        super.onPause();
+
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.ticket.validation.terminal;
 
+import android.graphics.PixelFormat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
@@ -10,7 +12,6 @@ import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
 import com.ticket.validation.terminal.fragment.FragmentValidationIDCard;
 import com.ticket.validation.terminal.fragment.FragmentValidationQrCodeForGoogle;
 import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
-import com.zuiapps.suite.utils.log.LogUtil;
 
 /**
  * Created by dengshengjin on 15/5/17.
@@ -37,9 +38,11 @@ public class ValidationTicketActivity extends BaseUserActivity {
     protected void initWidgets() {
         setContentView(R.layout.activity_validation_ticket);
         super.initWidgets();
+        getWindow().setFormat(PixelFormat.TRANSLUCENT);
         mMenuFrame = (FrameLayout) findViewById(R.id.menu_frame);
         mContentFrame = (FrameLayout) findViewById(R.id.content_frame);
         mFragmentValidationTicketMenu = FragmentValidationTicketMenu.newInstance();
+        popBackStack();
         initMenuFrame(mFragmentValidationTicketMenu);
         mFragmentValidationElectronic = FragmentValidationElectronic.newInstance();
         initContentFrame(mFragmentValidationElectronic);
@@ -106,7 +109,15 @@ public class ValidationTicketActivity extends BaseUserActivity {
     }
 
     public boolean isOpenLight() {
-        LogUtil.e("mIsOpenLight 3=" + mIsOpenLight);
         return mIsOpenLight;
+    }
+
+    private void popBackStack() {
+        FragmentManager manager = getSupportFragmentManager();
+        int backStackCount = manager.getBackStackEntryCount();
+        for (int i = 0; i < backStackCount; i++) {
+            int backStackId = manager.getBackStackEntryAt(i).getId();
+            manager.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 }

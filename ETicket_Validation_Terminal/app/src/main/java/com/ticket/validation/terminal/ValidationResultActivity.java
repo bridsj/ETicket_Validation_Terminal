@@ -126,6 +126,7 @@ public class ValidationResultActivity extends BaseUserActivity {
             @Override
             public void onClick(View v) {
                 if (mGoodsModel == null) {
+                    ToastUtil.showToast(getApplicationContext(), R.string.validation_result_error);
                     return;
                 }
                 int num = 0;
@@ -145,6 +146,7 @@ public class ValidationResultActivity extends BaseUserActivity {
             @Override
             public void onClick(View v) {
                 if (mGoodsModel == null) {
+                    ToastUtil.showToast(getApplicationContext(), R.string.validation_result_error);
                     return;
                 }
                 int num = 0;
@@ -173,12 +175,14 @@ public class ValidationResultActivity extends BaseUserActivity {
                                               if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
                                                   return;
                                               }
+                                              if (mGoodsModel == null) {
+                                                  ToastUtil.showToast(getApplicationContext(), R.string.validation_result_error);
+                                                  return;
+                                              }
                                               if (mProgressBar.getVisibility() == View.VISIBLE) {
                                                   return;
                                               }
-                                              if (mGoodsModel == null) {
-                                                  return;
-                                              }
+
 
                                               int num = 0;
                                               try {
@@ -240,7 +244,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                         mExecutor.execute(new Runnable() {
                                               @Override
                                               public void run() {
-                                                  final Object object = GoodsParse.parseVerify(getApplicationContext(),jsonObject);
+                                                  final Object object = GoodsParse.parseVerify(getApplicationContext(), jsonObject);
                                                   if (isFinishing()) {
                                                       return;
                                                   }

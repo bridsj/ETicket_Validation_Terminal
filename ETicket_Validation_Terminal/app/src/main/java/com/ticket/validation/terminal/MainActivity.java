@@ -1,11 +1,14 @@
 package com.ticket.validation.terminal;
 
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ticket.validation.terminal.constant.Constants;
 import com.ticket.validation.terminal.helper.SessionHelper;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
+import com.ticket.validation.terminal.util.ToastUtil;
 
 
 /**
@@ -90,5 +93,30 @@ public class MainActivity extends BaseUserActivity {
     public void finish() {
         SessionHelper.getInstance(getApplicationContext()).closeSession();
         super.finish();
+    }
+
+    private long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (System.currentTimeMillis() - exitTime > 2000) {// 如果两次按键时间间隔大于800毫秒，则不退出
+                ToastUtil.showToast(getApplicationContext(), getString(R.string.exit_warn));
+                exitTime = System.currentTimeMillis();// 更新firstTime
+                return true;
+            } else {
+                Intent intent = new Intent(Constants.FINISH_ACTION_NAME);
+                sendBroadcast(intent);
+                finish();
+                getHandler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                    }
+                }, 1000);
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,11 +1,15 @@
 package com.ticket.validation.terminal;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.FragmentActivity;
+
+import com.ticket.validation.terminal.constant.Constants;
 
 /**
  * Created by dengshengjin on 15/5/15.
@@ -13,6 +17,7 @@ import android.support.v4.app.FragmentActivity;
 public abstract class BaseActivity extends FragmentActivity {
     private Context mContext;
     private Handler mHandler;
+    protected FinishBroadcastReceiver finishReceiver;
 
     public Context getContext() {
         return mContext;
@@ -26,6 +31,17 @@ public abstract class BaseActivity extends FragmentActivity {
         initData();
         initWidgets();
         initWidgetsActions();
+
+        try {
+            if (finishReceiver == null) {
+                finishReceiver = new FinishBroadcastReceiver();
+            }
+            IntentFilter finishIntent = new IntentFilter();
+            finishIntent.addAction(Constants.FINISH_ACTION_NAME);
+            registerReceiver(finishReceiver, finishIntent);
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
@@ -71,10 +87,35 @@ public abstract class BaseActivity extends FragmentActivity {
 
         return mHandler;
     }
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.gc();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            if (finishReceiver != null) {
+                unregisterReceiver(finishReceiver);
+            }
+        } catch (Exception e) {
 
+        }
+    }
     protected abstract void initData();
 
     protected abstract void initWidgets();
 
     protected abstract void initWidgetsActions();
+
+    final class FinishBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Constants.FINISH_ACTION_NAME)) {
+                finish();
+            }
+        }
+    }
 }

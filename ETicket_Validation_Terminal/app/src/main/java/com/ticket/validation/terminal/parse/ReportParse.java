@@ -76,7 +76,7 @@ public class ReportParse {
         while (keys.hasNext()) {
             String key = keys.next();
             String value = contentObj.optString(key);
-            contentStr = contentStr + (key + ":" + value + "\n");
+            contentStr = contentStr + (key + ":" + value + "\r\n");
         }
 
         str = str + String.format(mContext.getString(R.string.daily_print_str), (page + 1), count, time, contentStr);

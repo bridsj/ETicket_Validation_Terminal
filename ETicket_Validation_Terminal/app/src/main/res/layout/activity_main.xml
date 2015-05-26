@@ -6,6 +6,11 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
     <com.ticket.validation.terminal.custom.TVTextView
         android:id="@+id/title_img"
         style="@style/text_shadow_style"
@@ -67,9 +72,9 @@
             android:background="@drawable/button_empty_selector"
             android:gravity="center"
             android:text="@string/sys_exit"
-            android:visibility="gone"
             android:textColor="@color/black_70_alpha"
-            android:textSize="@dimen/normal_text_size" />
+            android:textSize="@dimen/normal_text_size"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/sys_info_text"

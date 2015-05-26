@@ -55,13 +55,13 @@
     <string name="verify_succ">已成功使用%s张票</string>
     <string name="re_print_fail">无法重新打印</string>
 
-    <string name="normal_print_str1" formatted="false">商户联\n%s</string>
-    <string name="normal_print_str2" formatted="false">\n\n\n\n用户联\n%s</string>
+    <string name="normal_print_str1" formatted="false">商户联\r\n%s</string>
+    <string name="normal_print_str2" formatted="false">\r\n\r\n\r\n\r\n用户联\r\n%s</string>
 
-    <string name="re_print_str1" formatted="false">商户联(重新打印)\n%s</string>
-    <string name="re_print_str2" formatted="false">\n\n\n\n用户联(重新打印)\n%s</string>
+    <string name="re_print_str1" formatted="false">商户联(重新打印)\r\n%s</string>
+    <string name="re_print_str2" formatted="false">\r\n\r\n\r\n\r\n用户联(重新打印)\r\n%s</string>
 
-    <string name="daily_print_str" formatted="false">当日验证统计联(%s)-共%s联\n打印时间:%s\n%s</string>
+    <string name="daily_print_str" formatted="false">当日验证统计联(%s)-共%s联\n打印时间:%s\r\n%s\r\n\r\n\r\n</string>
     <string name="close">关闭</string>
     <string name="query_result_title">票务信息</string>
     <string name="validation_id_card_fail">识别失败</string>
@@ -69,4 +69,8 @@
     <string name="validation_qr_code_result">扫描结果:\n%s</string>
 
     <string name="un_login">您还未登录，请稍后再试</string>
+
+    <string name="input_error">请输入正确的内容</string>
+    <string name="validation_result_error">请先选择商品</string>
+    <string name="exit_warn">再按一次即可退出</string>
 </resources>
