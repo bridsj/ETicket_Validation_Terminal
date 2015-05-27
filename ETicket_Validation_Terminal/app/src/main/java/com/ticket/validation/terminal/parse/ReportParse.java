@@ -69,7 +69,7 @@ public class ReportParse {
         }
         String str = "";
         if (page > 0) {
-            str += "\n\n\n\n";
+            str += "\r\n\r\n\r\n";
         }
         String contentStr = "";
         Iterator<String> keys = contentObj.keys();

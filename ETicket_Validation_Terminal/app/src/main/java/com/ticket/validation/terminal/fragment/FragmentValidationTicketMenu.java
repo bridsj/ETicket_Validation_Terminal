@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.helper.PrintHelper;
+import com.ticket.validation.terminal.helper.PrintStrategy;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.PrintModel;
 import com.ticket.validation.terminal.parse.GoodsParse;
@@ -143,7 +144,7 @@ public class FragmentValidationTicketMenu extends BaseFragment {
                                         } else {
                                             if (object instanceof PrintModel) {
                                                 final PrintModel model = (PrintModel) object;
-                                                PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(model.mPrintStr, new PrintHelper.PrintCallback() {
+                                                PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(model.mPrintStr, new PrintStrategy.PrintCallback() {
                                                     @Override
                                                     public void onErrorPrint() {
                                                         ToastUtil.showToast(getApplicationContext(), R.string.printing);

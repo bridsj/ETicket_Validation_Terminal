@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
+import com.ticket.validation.terminal.constant.Constants;
 import com.ticket.validation.terminal.fragment.BaseFragment;
 import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
 import com.ticket.validation.terminal.fragment.FragmentValidationIDCard;
@@ -23,9 +24,7 @@ public class ValidationTicketActivity extends BaseUserActivity {
     private FragmentValidationTicketMenu mFragmentValidationTicketMenu;
     private FragmentValidationIDCard mFragmentValidationIDCard;
     private BaseFragment mFragmentValidationQrCode;
-    private final static String GOOGLE = "Google";
-    private final static String WIZARPOS = "Wizarpos";
-    private String type = GOOGLE;
+
     private String currFragment = "";
     private boolean mIsOpenLight;
 
@@ -83,10 +82,10 @@ public class ValidationTicketActivity extends BaseUserActivity {
     }
 
     private void createQrFragment() {
-        if (type.equals(WIZARPOS)) {
+        if (Constants.type.equals(Constants.WIZARPOS)) {
             mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
             initContentFrame(mFragmentValidationQrCode);
-        } else if (type.equals(GOOGLE)) {
+        } else if (Constants.type.equals(Constants.HAO_DE_XIN)) {
             mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
             ((FragmentValidationQrCodeForGoogle) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForGoogle.OnLightClickListener() {
                 @Override

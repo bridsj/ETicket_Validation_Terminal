@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.ticket.validation.terminal.adapter.ReportAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.helper.PrintHelper;
+import com.ticket.validation.terminal.helper.PrintStrategy;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.ReportPrintModel;
 import com.ticket.validation.terminal.parse.ReportParse;
@@ -105,7 +106,7 @@ public class ReportActivity extends BaseActivity {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
-                PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(mReportPrintModel.mPrintStr, new PrintHelper.PrintCallback() {
+                PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(mReportPrintModel.mPrintStr, new PrintStrategy.PrintCallback() {
                     @Override
                     public void onErrorPrint() {
                         ToastUtil.showToast(getApplicationContext(), R.string.printing);

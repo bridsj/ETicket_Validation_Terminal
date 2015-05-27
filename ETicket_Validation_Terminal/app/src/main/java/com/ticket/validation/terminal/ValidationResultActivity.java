@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.ticket.validation.terminal.adapter.ValidationResultAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.helper.PrintHelper;
+import com.ticket.validation.terminal.helper.PrintStrategy;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
 import com.ticket.validation.terminal.model.PrintModel;
@@ -263,7 +264,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                               if (object instanceof PrintModel) {
                                                                   final PrintModel model = (PrintModel) object;
 
-                                                                  PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(model.mPrintStr, new PrintHelper.PrintCallback() {
+                                                                  PrintHelper.getInstance(getApplicationContext()).startPrintViaChar(model.mPrintStr, new PrintStrategy.PrintCallback() {
                                                                       @Override
                                                                       public void onErrorPrint() {
                                                                           ToastUtil.showToast(getApplicationContext(), R.string.printing);
