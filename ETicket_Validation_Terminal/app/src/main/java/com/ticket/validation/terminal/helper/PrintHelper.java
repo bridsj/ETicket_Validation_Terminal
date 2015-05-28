@@ -10,8 +10,10 @@ import com.ticket.validation.terminal.constant.Constants;
 public class PrintHelper {
     private static PrintHelper mPrintHelper;
     private PrintStrategy mPrintStrategy;
+    private Context mContext;
 
     private PrintHelper(Context context) {
+        mContext = context;
         if (Constants.type.equals(Constants.HAO_DE_XIN)) {
             mPrintStrategy = new PrintHaoDeXinStrategy(context);
         }

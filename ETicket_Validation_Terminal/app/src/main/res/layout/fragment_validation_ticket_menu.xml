@@ -9,20 +9,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/electronic_box"
+        <RelativeLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/menu_bg_selector"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/menu_padding"
+            android:paddingBottom="@dimen/menu_padding2"
             android:paddingTop="@dimen/menu_padding">
 
             <RelativeLayout
+                android:id="@+id/electronic_box"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_height"
+                android:layout_marginLeft="@dimen/menu_margin_left"
+                android:background="@drawable/menu_bg_selector" />
+
+            <RelativeLayout
+                android:id="@+id/electronic_box_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/menu_margin"
                 android:background="@drawable/menu_electronic_selector"
                 android:padding="@dimen/validation_icon_padding">
 
@@ -34,14 +41,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/electronic_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/electronic_box_box"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="@string/validation_code"
                 android:textColor="@color/validation_text_color"
                 android:textSize="@dimen/validation_text_size" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -49,20 +58,26 @@
             android:layout_marginTop="2dp"
             android:background="@color/black_50_alpha" />
 
-        <LinearLayout
-            android:id="@+id/qr_code_box"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/menu_bg_selector"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/menu_padding"
+            android:paddingBottom="@dimen/menu_padding2"
             android:paddingTop="@dimen/menu_padding">
 
             <RelativeLayout
+                android:id="@+id/qr_code_box"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_height"
+                android:layout_marginLeft="@dimen/menu_margin_left"
+                android:background="@drawable/menu_bg_selector" />
+
+            <RelativeLayout
+                android:id="@+id/qr_code_box_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/menu_margin"
                 android:background="@drawable/menu_qrcode_selector"
                 android:padding="@dimen/validation_icon_padding">
 
@@ -74,14 +89,16 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/qr_code_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/qr_code_box_box"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="@string/validation_qrcode"
                 android:textColor="@color/validation_text_color"
                 android:textSize="@dimen/validation_text_size" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -89,39 +106,47 @@
             android:layout_marginTop="2dp"
             android:background="@color/black_50_alpha" />
 
-        <LinearLayout
-            android:id="@+id/id_card_box"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/menu_bg_selector"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/menu_padding"
+            android:paddingBottom="@dimen/menu_padding2"
             android:paddingTop="@dimen/menu_padding">
 
             <RelativeLayout
+                android:id="@+id/id_card_box"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/menu_height"
+                android:layout_marginLeft="@dimen/menu_margin_left"
+                android:background="@drawable/menu_bg_selector" />
+
+            <RelativeLayout
+                android:id="@+id/id_card_box_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/menu_idcard_selector"
                 android:padding="@dimen/validation_icon_padding">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="23dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_centerInParent="true"
                     android:src="@drawable/idcard" />
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/id_card_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/id_card_box_box"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/menu_margin"
                 android:text="@string/validation_ID"
                 android:textColor="@color/validation_text_color"
                 android:textSize="@dimen/validation_text_size" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"

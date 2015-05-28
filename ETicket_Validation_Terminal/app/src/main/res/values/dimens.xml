@@ -1,17 +1,22 @@
 <resources>
     <dimen name="home_title_margin">50dp</dimen>
 
-    <dimen name="validation_width">120dp</dimen>
+    <dimen name="validation_width">115dp</dimen>
     <dimen name="validation_icon_padding">15dp</dimen>
     <dimen name="validation_text_size">14sp</dimen>
     <dimen name="validation_re_text_size">16sp</dimen>
     <dimen name="validation_icon">30dp</dimen>
     <dimen name="keyboard_limit_width">350dp</dimen>
     <dimen name="menu_padding">4dp</dimen>
+    <dimen name="menu_padding2">0dp</dimen>
     <dimen name="keyboard_margin_top">60dp</dimen>
     <dimen name="exit_keyboard_margin_top">30dp</dimen>
     <dimen name="exit_keyboard_margin_top2">20dp</dimen>
     <dimen name="exit_keyboard_margin_top3">25dp</dimen>
+
+    <dimen name="menu_height">92dp</dimen>
+    <dimen name="menu_margin">5dp</dimen>
+    <dimen name="menu_margin_left">6dp</dimen>
 
     <dimen name="view_finder_left_margin">40dp</dimen>
     <dimen name="view_finder_top_margin">20dp</dimen>

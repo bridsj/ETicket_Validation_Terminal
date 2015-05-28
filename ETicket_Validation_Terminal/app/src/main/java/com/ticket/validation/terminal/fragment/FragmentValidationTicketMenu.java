@@ -6,8 +6,8 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.db.CacheDBUtil;
@@ -35,7 +35,9 @@ import retrofit.client.Response;
  * Created by dengshengjin on 15/5/17.
  */
 public class FragmentValidationTicketMenu extends BaseFragment {
-    private LinearLayout mElectronicBox, mQrCodeBox, mIdCardBox;
+    private ViewGroup mElectronicBox, mQrCodeBox, mIdCardBox;
+    private TextView mElectronicText, mQrCodeText, mIdCardText;
+    private ViewGroup mElectronicBoxBox, mQrCodeBoxBox, mIdCardBoxBox;
     private ViewGroup mRePrintBox, mBackBox;
     private RestfulRequest mRestfulRequest;
     private ProgressBar mProgressBar;
@@ -66,9 +68,18 @@ public class FragmentValidationTicketMenu extends BaseFragment {
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_validation_ticket_menu, container, false);
-        mElectronicBox = (LinearLayout) view.findViewById(R.id.electronic_box);
-        mQrCodeBox = (LinearLayout) view.findViewById(R.id.qr_code_box);
-        mIdCardBox = (LinearLayout) view.findViewById(R.id.id_card_box);
+        mElectronicBox = (ViewGroup) view.findViewById(R.id.electronic_box);
+        mQrCodeBox = (ViewGroup) view.findViewById(R.id.qr_code_box);
+        mIdCardBox = (ViewGroup) view.findViewById(R.id.id_card_box);
+
+        mElectronicText = (TextView) view.findViewById(R.id.electronic_text);
+        mQrCodeText = (TextView) view.findViewById(R.id.qr_code_text);
+        mIdCardText = (TextView) view.findViewById(R.id.id_card_text);
+
+        mElectronicBoxBox = (ViewGroup) view.findViewById(R.id.electronic_box_box);
+        mQrCodeBoxBox = (ViewGroup) view.findViewById(R.id.qr_code_box_box);
+        mIdCardBoxBox = (ViewGroup) view.findViewById(R.id.id_card_box_box);
+
         mRePrintBox = (ViewGroup) view.findViewById(R.id.re_print_box);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         mProgressBar.setVisibility(View.GONE);
@@ -96,6 +107,12 @@ public class FragmentValidationTicketMenu extends BaseFragment {
                 }
             }
         });
+        mElectronicBoxBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mElectronicBox.performClick();
+            }
+        });
         mQrCodeBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +122,12 @@ public class FragmentValidationTicketMenu extends BaseFragment {
                 }
             }
         });
+        mQrCodeBoxBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mQrCodeBox.performClick();
+            }
+        });
         mIdCardBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +135,12 @@ public class FragmentValidationTicketMenu extends BaseFragment {
                 if (mOnMenuClickListener != null) {
                     mOnMenuClickListener.onClick((String) v.getTag());
                 }
+            }
+        });
+        mIdCardBoxBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mIdCardBox.performClick();
             }
         });
         mRePrintBox.setOnClickListener(new View.OnClickListener() {
@@ -197,14 +226,26 @@ public class FragmentValidationTicketMenu extends BaseFragment {
             mElectronicBox.setSelected(true);
             mQrCodeBox.setSelected(false);
             mIdCardBox.setSelected(false);
+
+            mElectronicText.setSelected(true);
+            mQrCodeText.setSelected(false);
+            mIdCardText.setSelected(false);
         } else if (view == mQrCodeBox) {
             mElectronicBox.setSelected(false);
             mQrCodeBox.setSelected(true);
             mIdCardBox.setSelected(false);
+
+            mElectronicText.setSelected(false);
+            mQrCodeText.setSelected(true);
+            mIdCardText.setSelected(false);
         } else {
             mElectronicBox.setSelected(false);
             mQrCodeBox.setSelected(false);
             mIdCardBox.setSelected(true);
+
+            mElectronicText.setSelected(false);
+            mQrCodeText.setSelected(false);
+            mIdCardText.setSelected(true);
         }
     }
 

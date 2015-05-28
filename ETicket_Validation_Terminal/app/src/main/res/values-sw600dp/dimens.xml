@@ -8,11 +8,15 @@
     <dimen name="validation_re_text_size">18sp</dimen>
     <dimen name="keyboard_limit_width">600dp</dimen>
     <dimen name="menu_padding">15dp</dimen>
+    <dimen name="menu_padding2">2dp</dimen>
     <dimen name="keyboard_limit_width2">600dp</dimen>
     <dimen name="keyboard_margin_top">90dp</dimen>
     <dimen name="exit_keyboard_margin_top">30dp</dimen>
     <dimen name="exit_keyboard_margin_top2">40dp</dimen>
     <dimen name="exit_keyboard_margin_top3">30dp</dimen>
+    <dimen name="menu_height">120dp</dimen>
+    <dimen name="menu_margin">6dp</dimen>
+    <dimen name="menu_margin_left">10dp</dimen>
 
     <dimen name="view_finder_left_margin">120dp</dimen>
     <dimen name="view_finder_top_margin">90dp</dimen>
@@ -21,6 +25,7 @@
     <dimen name="view_finder_right_view_left_margin">800dp</dimen>
     <dimen name="normal_text_size">20sp</dimen>
     <dimen name="home_margin">60dp</dimen>
+
     <dimen name="home_margin_h">100dp</dimen>
     <dimen name="home_title_text">70sp</dimen>
     <dimen name="home_sys_info_margin_left">60dp</dimen>

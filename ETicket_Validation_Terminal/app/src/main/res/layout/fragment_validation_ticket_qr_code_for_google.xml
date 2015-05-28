@@ -41,6 +41,11 @@
                 android:layout_below="@+id/scanner_box"
                 android:background="@drawable/bg" />
 
+            <RelativeLayout
+                android:layout_width="@dimen/view_finder_width"
+                android:layout_height="@dimen/view_finder_height"
+                android:layout_centerInParent="true"
+                android:background="@drawable/qrcode_foreground" />
 
             <RelativeLayout
                 android:id="@+id/scanner_box"

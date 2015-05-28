@@ -2,6 +2,7 @@ package com.ticket.validation.terminal.helper;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
@@ -39,7 +40,7 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
             e1.printStackTrace();
         }
         mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "wake_lock");
-        mHandler = new Handler();
+        mHandler = new Handler(Looper.getMainLooper());
         mIsPrinting = false;
     }
 
@@ -71,6 +72,14 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
             public void run() {
                 try {
                     mWakeLock.acquire();
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (printCallback != null) {
+                                printCallback.onStartPrint();
+                            }
+                        }
+                    });
                     HdxUtil.SetPrinterPower(1);
                     SystemClock.sleep(200);
                     //开始打印
