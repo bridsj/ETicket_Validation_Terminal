@@ -27,19 +27,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/scanner_box"
-                android:background="@color/sys_bg_color" />
+                android:background="@drawable/bg" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/scanner_box"
-                android:background="@color/sys_bg_color" />
+                android:background="@drawable/bg" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/scanner_box"
-                android:background="@color/sys_bg_color" />
+                android:background="@drawable/bg" />
 
 
             <RelativeLayout
@@ -73,7 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/scanner_box"
-                android:background="@color/sys_bg_color" />
+                android:background="@drawable/bg" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

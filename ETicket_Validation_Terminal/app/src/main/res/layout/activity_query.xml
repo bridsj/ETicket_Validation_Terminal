@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sys_bg_color"
+    android:background="@drawable/bg"
     android:orientation="vertical">
 
     <TextView
@@ -40,11 +40,10 @@
                 <EditText
                     android:id="@+id/edit_sys_text"
                     style="@style/edit_style"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/button_empty_selector"
+                    android:background="@drawable/input_bg"
                     android:enabled="false"
                     android:gravity="left"
                     android:hint="@string/exit_sys_hint"
@@ -74,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:background="@drawable/button_red_selector"
+                    android:background="@drawable/query_button_selector"
                     android:gravity="center"
                     android:text="@string/ok_query"
                     android:textColor="@color/white" />
@@ -94,8 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/edit_box"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/exit_keyboard_margin_top"
-            android:background="@drawable/border_bg2"
+            android:layout_marginTop="@dimen/exit_keyboard_margin_top3"
+            android:background="@drawable/keyboard_bg"
             android:gravity="center"
             android:horizontalSpacing="3dp"
             android:listSelector="@android:color/transparent"

@@ -6,11 +6,12 @@
     <dimen name="validation_text_size">14sp</dimen>
     <dimen name="validation_re_text_size">16sp</dimen>
     <dimen name="validation_icon">30dp</dimen>
-    <dimen name="keyboard_limit_width">400dp</dimen>
+    <dimen name="keyboard_limit_width">350dp</dimen>
     <dimen name="menu_padding">4dp</dimen>
     <dimen name="keyboard_margin_top">60dp</dimen>
     <dimen name="exit_keyboard_margin_top">30dp</dimen>
     <dimen name="exit_keyboard_margin_top2">20dp</dimen>
+    <dimen name="exit_keyboard_margin_top3">25dp</dimen>
 
     <dimen name="view_finder_left_margin">40dp</dimen>
     <dimen name="view_finder_top_margin">20dp</dimen>
@@ -19,9 +20,10 @@
     <dimen name="view_finder_right_view_left_margin">800dp</dimen>
 
     <dimen name="normal_text_size">16sp</dimen>
-    <dimen name="home_margin">40dp</dimen>
-    <dimen name="home_margin_h">50dp</dimen>
+    <dimen name="home_margin">35dp</dimen>
+    <dimen name="home_margin_h">40dp</dimen>
     <dimen name="home_title_text">40sp</dimen>
+    <dimen name="home_sys_info_margin_left">50dp</dimen>
 
     <dimen name="sys_info_limit_width">400dp</dimen>
     <dimen name="sys_info_title_margin">30dp</dimen>
@@ -42,7 +44,8 @@
 
     <dimen name="report_top_margin">10dp</dimen>
     <dimen name="report_top2_margin">10dp</dimen>
-    <dimen name="report_top3_margin">10dp</dimen>
+    <dimen name="report_top3_margin">15dp</dimen>
+    <dimen name="report_top4_margin">20dp</dimen>
 
     <dimen name="menu_progress_bar_margin">8dp</dimen>
     <dimen name="progress_bar_text_size">16sp</dimen>

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sys_bg_color"
+    android:background="@drawable/bg"
     android:orientation="vertical">
 
     <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/sys_info"
-            android:textColor="@color/black"
+            android:textColor="@color/sys_info_title_color"
             android:textSize="@dimen/sys_info_normal_text" />
 
         <TextView
