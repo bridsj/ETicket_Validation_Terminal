@@ -102,7 +102,7 @@
                     style="@style/qr_code_button_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_red_selector"
+                    android:background="@drawable/light_selector"
                     android:gravity="center"
                     android:text="@string/qr_light"
                     android:textColor="@color/white" />

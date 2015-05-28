@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -55,7 +54,7 @@ public class ValidationResultActivity extends BaseUserActivity {
     private Executor mExecutor = Executors.newCachedThreadPool();
 
     private TextView mNumText;
-    private ImageView mDeleteImg, mAddImg;
+    private TextView mDeleteImg, mAddImg;
     private EditText mInputText;
     private TextView mNameText, mIdCardText, mValidityText, mMarkText;
     private GoodsModel mGoodsModel;
@@ -95,8 +94,8 @@ public class ValidationResultActivity extends BaseUserActivity {
 
         mNumText = (TextView) findViewById(R.id.num_text);
         mNumText.setText("0");
-        mDeleteImg = (ImageView) findViewById(R.id.delete_img);
-        mAddImg = (ImageView) findViewById(R.id.add_img);
+        mDeleteImg = (TextView) findViewById(R.id.delete_img);
+        mAddImg = (TextView) findViewById(R.id.add_img);
         mInputText = (EditText) findViewById(R.id.input_text);
         mNameText = (TextView) findViewById(R.id.name_text);
         mIdCardText = (TextView) findViewById(R.id.id_card_text);

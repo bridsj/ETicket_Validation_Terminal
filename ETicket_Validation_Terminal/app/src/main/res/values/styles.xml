@@ -66,17 +66,21 @@
     <style name="sys_info_progress_bar_style" parent="@style/progress_bar_style">
         <item name="android:layout_marginLeft">120dp</item>
     </style>
+
     <style name="print_progress_bar_style" parent="@style/progress_bar_style">
         <item name="android:layout_marginLeft">90dp</item>
     </style>
+
     <style name="query_progress_bar_style" parent="@style/progress_bar_style">
         <item name="android:layout_marginLeft">70dp</item>
     </style>
+
     <style name="ID_card_progress_bar_style" parent="@style/progress_bar_style">
         <item name="android:layout_marginLeft">170dp</item>
     </style>
+
     <style name="validation_result_progress_bar_style" parent="@style/progress_bar_style">
-        <item name="android:layout_marginLeft">120dp</item>
+        <item name="android:layout_marginLeft">200dp</item>
     </style>
 
     <style name="go_back_style">
@@ -104,11 +108,12 @@
 
     <style name="validation_result_button_style">
         <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingLeft">40dp</item>
-        <item name="android:paddingRight">40dp</item>
+        <item name="android:paddingLeft">80dp</item>
+        <item name="android:paddingRight">80dp</item>
         <item name="android:paddingTop">15dp</item>
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="report_title_style">
         <item name="android:textSize">@dimen/sys_info_normal_text</item>
     </style>
@@ -128,6 +133,18 @@
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
-        <item name="android:maxWidth">100dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">60dp</item>
     </style>
+
+    <style name="validation_add_style">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">25dp</item>
+        <item name="android:paddingRight">25dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_height">60dp</item>
+
+    </style>
+
 </resources>

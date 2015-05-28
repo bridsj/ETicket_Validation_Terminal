@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/button_red_selector"
+                android:background="@drawable/idcard_selector"
                 android:text="@string/id_card_sure"
                 android:textColor="@color/white" />
 

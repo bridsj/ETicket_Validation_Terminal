@@ -22,7 +22,7 @@
         android:layout_below="@+id/title_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/sys_info_content_margin"
-        android:background="@drawable/border_bg"
+        android:background="@drawable/report_bg"
         android:orientation="vertical"
         android:paddingBottom="20dp"
         android:paddingTop="15dp">
@@ -75,7 +75,7 @@
                 style="@style/sys_info_button_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_red_selector"
+                android:background="@drawable/system_info_selector"
                 android:text="@string/sys_info_upgrade"
                 android:textColor="@color/white" />
 

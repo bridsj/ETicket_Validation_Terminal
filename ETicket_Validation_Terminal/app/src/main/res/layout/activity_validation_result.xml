@@ -29,7 +29,6 @@
             android:layout_width="@dimen/validation_result_limit_width"
             android:layout_height="wrap_content"
 
-            android:background="@drawable/border_bg"
             android:orientation="vertical">
 
 
@@ -38,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:background="@color/gray"
+                android:background="@drawable/goods_title_bg"
                 android:gravity="center"
                 android:text="商品名称"
                 android:textColor="@color/white"
@@ -47,7 +46,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@drawable/goods_content_bg">
 
                 <ListView
                     android:id="@+id/list_view"
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -124,18 +124,21 @@
                 android:layout_marginTop="@dimen/validation_result_info_margin"
                 android:orientation="horizontal">
 
-                <ImageView
+                <TextView
                     android:id="@+id/delete_img"
+                    style="@style/validation_add_style"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/order_num_delete" />
+                    android:background="@drawable/validation_delete_selector"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/white" />
 
                 <EditText
+
                     android:id="@+id/input_text"
                     style="@style/validation_result_edit_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/order_num_input"
+                    android:layout_gravity="center"
+                    android:background="@drawable/validation_input_bg"
                     android:enabled="false"
                     android:gravity="center"
                     android:hint="0"
@@ -143,11 +146,14 @@
                     android:textColor="@color/blue"
                     android:textSize="@dimen/validation_result_num_text_size" />
 
-                <ImageView
+                <TextView
                     android:id="@+id/add_img"
+                    style="@style/validation_add_style"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/order_num_add" />
+                    android:background="@drawable/validation_add_selector"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <RelativeLayout
@@ -164,7 +170,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_gravity="center_horizontal"
-                    android:background="@drawable/button_red_selector"
+                    android:background="@drawable/validation_sure_selector"
                     android:text="@string/validation_ok"
                     android:textColor="@color/white" />
 
