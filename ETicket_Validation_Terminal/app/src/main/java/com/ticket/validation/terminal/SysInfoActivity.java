@@ -25,7 +25,7 @@ import retrofit.client.Response;
 /**
  * Created by dengshengjin on 15/5/15.
  */
-public class SysInfoActivity extends BaseActivity {
+public class SysInfoActivity extends BaseUserActivity {
     private ImageView backImg;
     private ViewGroup mBackBox;
     private TextView mUrlText, mIdText;
@@ -49,6 +49,7 @@ public class SysInfoActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_sys_info);
+        super.initWidgets();
         mBackBox = (ViewGroup) findViewById(R.id.back_box);
         mUrlText = (TextView) findViewById(R.id.url_text);
         mIdText = (TextView) findViewById(R.id.id_text);

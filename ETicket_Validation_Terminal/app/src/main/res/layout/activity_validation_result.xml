@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/title_text"
+        android:id="@+id/title_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -20,7 +20,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_text"
+        android:layout_below="@+id/title_name_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/report_top2_margin"
         android:orientation="horizontal">
@@ -296,8 +296,6 @@
 
         <ImageView
             android:id="@+id/back_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/goback" />
+            style="@style/go_back" />
     </RelativeLayout>
 </RelativeLayout>

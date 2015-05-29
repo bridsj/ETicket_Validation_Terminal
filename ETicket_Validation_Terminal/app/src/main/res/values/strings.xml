@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">电子票验证终端</string>
-    <string name="app_name2">天下票务验证终端</string>
+    <string name="app_name2">%s验证终端</string>
     <string name="recount_ticket">验  票</string>
     <string name="query_ticket">查  票</string>
     <string name="sys_exit">系统退出</string>
@@ -48,7 +48,7 @@
     <string name="loading_fail2">服务器无应答，请检查网络连接</string>
     <string name="loading_empty_data">未查找到相关数据</string>
     <string name="login_fail">设备登录失败</string>
-    <string name="login_user_info">天下票务@%s</string>
+    <string name="login_user_info">%s</string>
 
     <string name="verify_input_fail">请输入正确的数量</string>
     <string name="verify_fail">无法使用该商品,请稍后再试</string>

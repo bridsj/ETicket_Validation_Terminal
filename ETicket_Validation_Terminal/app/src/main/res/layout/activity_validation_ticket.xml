@@ -24,7 +24,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="天下票务@南山滑雪场"
         android:textColor="@color/black_60_alpha"
         android:textSize="@dimen/normal_text_size" />
 

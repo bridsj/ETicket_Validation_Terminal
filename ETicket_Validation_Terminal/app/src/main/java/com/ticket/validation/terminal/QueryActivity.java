@@ -40,7 +40,7 @@ import retrofit.client.Response;
 /**
  * Created by dengshengjin on 15/5/16.
  */
-public class QueryActivity extends BaseActivity {
+public class QueryActivity extends BaseUserActivity {
     private EditText mEditText;
     private GridView mGridView;
     private KeyboardAdapter mKeyboardAdapter;
@@ -81,6 +81,7 @@ public class QueryActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_query);
+        super.initWidgets();
         mEditText = (EditText) findViewById(R.id.edit_sys_text);
         mGridView = (GridView) findViewById(R.id.grid_view);
         mGridView.setAdapter(mKeyboardAdapter);

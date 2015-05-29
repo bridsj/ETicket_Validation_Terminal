@@ -8,7 +8,7 @@ import com.ticket.validation.terminal.model.TicketModel;
 /**
  * Created by dengshengjin on 15/5/24.
  */
-public class QueryResultActivity extends BaseActivity {
+public class QueryResultActivity extends BaseUserActivity {
     public static final String MODEL = "model";
     private TicketModel mTicketModel;
     private ViewGroup mBackBox, mCloseBox;
@@ -21,6 +21,7 @@ public class QueryResultActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_query_result);
+        super.initWidgets();
         mBackBox = (ViewGroup) findViewById(R.id.back_box);
         mCloseBox = (ViewGroup) findViewById(R.id.close_box);
     }

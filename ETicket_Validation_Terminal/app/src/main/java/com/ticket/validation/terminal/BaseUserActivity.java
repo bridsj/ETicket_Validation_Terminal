@@ -15,6 +15,7 @@ import com.ticket.validation.terminal.db.CacheDBUtil;
  */
 public abstract class BaseUserActivity extends BaseActivity {
     private TextView mUserText;
+    private TextView mTitleText;
     private UserBroadcastReceiver mInstalledBroadcastReceiver;
     public static final String USER_BROADCASTRECEIVER = "USER_BROADCASTRECEIVER";
 
@@ -28,14 +29,24 @@ public abstract class BaseUserActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         mUserText = (TextView) findViewById(R.id.user_text);
+        mTitleText = (TextView) findViewById(R.id.title_name_text);
         updateUserInfo();
     }
 
     private void updateUserInfo() {
-        if (!TextUtils.isEmpty(CacheDBUtil.getUserName(getApplicationContext()))) {
-            mUserText.setText(String.format(getString(R.string.login_user_info), CacheDBUtil.getUserName(getApplicationContext())));
-        } else {
-            mUserText.setText(String.format(getString(R.string.login_user_info), getString(R.string.login_fail)));
+        if (mUserText != null) {
+            if (!TextUtils.isEmpty(CacheDBUtil.getUserName(getApplicationContext()))) {
+                mUserText.setText(String.format(getString(R.string.login_user_info), CacheDBUtil.getUserName(getApplicationContext())));
+            } else {
+                mUserText.setText(String.format(getString(R.string.login_user_info), getString(R.string.login_fail)));
+            }
+        }
+        if (mTitleText != null) {
+            if (!TextUtils.isEmpty(CacheDBUtil.getUserName(getApplicationContext()))) {
+                mTitleText.setText(String.format(getString(R.string.app_name2), CacheDBUtil.getUserName(getApplicationContext())));
+            } else {
+                mTitleText.setText(getString(R.string.app_name));
+            }
         }
     }
 

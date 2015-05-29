@@ -35,7 +35,7 @@ import retrofit.client.Response;
 /**
  * Created by dengshengjin on 15/5/22.
  */
-public class ReportActivity extends BaseActivity {
+public class ReportActivity extends BaseUserActivity {
     private ReportAdapter mAdapter;
     private Handler mHandler;
     private ListView mListView;
@@ -66,6 +66,7 @@ public class ReportActivity extends BaseActivity {
     @Override
     protected void initWidgets() {
         setContentView(R.layout.activity_report);
+        super.initWidgets();
         mTitleText = (TextView) findViewById(R.id.title_text);
         mListView = (ListView) findViewById(R.id.list_view);
         mEmptyView = (TextView) findViewById(R.id.empty_view);
