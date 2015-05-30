@@ -6,10 +6,10 @@
     <dimen name="validation_icon">30dp</dimen>
     <dimen name="validation_text_size">16sp</dimen>
     <dimen name="validation_re_text_size">18sp</dimen>
-    <dimen name="keyboard_limit_width">600dp</dimen>
+    <dimen name="keyboard_limit_width">500dp</dimen>
     <dimen name="menu_padding">15dp</dimen>
     <dimen name="menu_padding2">2dp</dimen>
-    <dimen name="keyboard_limit_width2">600dp</dimen>
+    <dimen name="keyboard_limit_width2">500dp</dimen>
     <dimen name="keyboard_margin_top">90dp</dimen>
     <dimen name="exit_keyboard_margin_top">30dp</dimen>
     <dimen name="exit_keyboard_margin_top2">40dp</dimen>
@@ -55,8 +55,8 @@
     <dimen name="menu_progress_bar_margin">16dp</dimen>
     <dimen name="progress_bar_text_size">20sp</dimen>
 
-    <dimen name="validation_result_limit_width">350dp</dimen>
-    <dimen name="validation_result_limit_height">330dp</dimen>
+    <dimen name="validation_result_limit_width">310dp</dimen>
+    <dimen name="validation_result_limit_height">320dp</dimen>
     <dimen name="validation_result_available_text_size">28sp</dimen>
     <dimen name="validation_result_info_text_size">20sp</dimen>
     <dimen name="validation_result_num_text_size">32sp</dimen>

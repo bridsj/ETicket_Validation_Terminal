@@ -39,7 +39,6 @@ public class ReportActivity extends BaseUserActivity {
     private ReportAdapter mAdapter;
     private Handler mHandler;
     private ListView mListView;
-    private TextView mTitleText;
     private TextView mEmptyView;
     private ViewGroup mBackBox;
     private Executor mExecutor = Executors.newCachedThreadPool();
@@ -67,7 +66,6 @@ public class ReportActivity extends BaseUserActivity {
     protected void initWidgets() {
         setContentView(R.layout.activity_report);
         super.initWidgets();
-        mTitleText = (TextView) findViewById(R.id.title_text);
         mListView = (ListView) findViewById(R.id.list_view);
         mEmptyView = (TextView) findViewById(R.id.empty_view);
         mBackBox = (ViewGroup) findViewById(R.id.back_box);

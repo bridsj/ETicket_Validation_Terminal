@@ -82,7 +82,7 @@
                 android:layout_height="@dimen/report_max_height"
                 android:gravity="center"
                 android:textColor="@color/black_60_alpha"
-                android:textSize="16sp" />
+                android:textSize="@dimen/progress_bar_text_size" />
 
             <RelativeLayout
                 android:id="@+id/loading_data_box"

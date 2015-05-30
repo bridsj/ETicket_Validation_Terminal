@@ -10,7 +10,6 @@
         android:id="@+id/edit_box"
         android:layout_width="@dimen/keyboard_limit_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title_text"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
@@ -39,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:paddingRight="10dp"
+                android:padding="10dp"
                 android:src="@drawable/clear_selector" />
         </RelativeLayout>
 
