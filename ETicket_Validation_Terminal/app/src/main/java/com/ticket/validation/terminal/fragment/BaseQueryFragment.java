@@ -29,6 +29,7 @@ public abstract class BaseQueryFragment extends BaseFragment {
     protected RestfulRequest mRestfulRequest;
     protected ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
     protected Handler mHandler = new Handler();
+    protected boolean mIsOnDestroyView;
 
     public Handler getHandler() {
         if (mHandler == null) {
@@ -39,7 +40,14 @@ public abstract class BaseQueryFragment extends BaseFragment {
 
     @Override
     protected void initData() {
+        mIsOnDestroyView = false;
         mRestfulRequest = ReqRestAdapter.getInstance(getApplicationContext()).create(RestfulRequest.class);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mIsOnDestroyView = true;
     }
 
     protected void queryData(String credenceno, final RestfulCallback callback) {
@@ -51,6 +59,9 @@ public abstract class BaseQueryFragment extends BaseFragment {
                     public void run() {
                         final Object object = GoodsParse.parse(jsonObject);
                         if (getActivity() == null || getActivity().isFinishing()) {
+                            return;
+                        }
+                        if (mIsOnDestroyView) {
                             return;
                         }
                         getHandler().post(new Runnable() {
