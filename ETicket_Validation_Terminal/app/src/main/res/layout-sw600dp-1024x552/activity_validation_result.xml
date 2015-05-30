@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/report_top_margin"
+        android:paddingLeft="30dp"
+        android:text="@string/app_name2"
+        android:textColor="@color/black_50_alpha"
+        android:textSize="@dimen/sys_info_title_size" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_name_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/report_top2_margin"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/validation_result_limit_width"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/validation_result_name_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/goods_title_bg"
+                android:gravity="center"
+                android:text="商品名称"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sys_info_normal_text" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/goods_content_bg">
+
+                <ListView
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/validation_result_limit_height"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#00000000"
+                    android:dividerHeight="0dp"
+                    android:fadingEdge="none"
+                    android:fastScrollEnabled="false"
+                    android:footerDividersEnabled="false"
+                    android:headerDividersEnabled="false"
+                    android:listSelector="#00000000"
+                    android:overScrollMode="never"
+                    android:padding="10dp"
+                    android:scrollbarStyle="outsideOverlay"
+                    android:scrollbarThumbVertical="@drawable/base_list_scrollbar_handle"
+                    android:smoothScrollbar="true" />
+
+                <TextView
+                    android:id="@+id/empty_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/validation_result_limit_height"
+                    android:gravity="center"
+                    android:text="暂无报表"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/progress_bar_text_size" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_available_num"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/sys_info_normal_text" />
+
+                <TextView
+                    android:id="@+id/num_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/validation_result_num_text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_available_num2"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/sys_info_normal_text" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/validation_result_info_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/delete_img"
+                    style="@style/validation_add_style"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/validation_delete_selector"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/white" />
+
+                <EditText
+
+                    android:id="@+id/input_text"
+                    style="@style/validation_result_edit_style"
+                    android:layout_gravity="center"
+                    android:background="@drawable/validation_input_bg"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/validation_result_num_text_size" />
+
+                <TextView
+                    android:id="@+id/add_img"
+                    style="@style/validation_add_style"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/validation_add_selector"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/verify_box"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/validation_result_info_margin">
+
+                <TextView
+                    style="@style/validation_result_button_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/validation_sure_selector"
+                    android:text="@string/validation_ok"
+                    android:textColor="@color/white" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/validation_result_progress_bar_style"
+                    android:layout_centerVertical="true"
+                    android:indeterminateDrawable="@anim/lib_loading_anim" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/validation_result_info_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_name"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/name_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/validation_result_info_margin2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_id_card"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/id_card_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/validation_result_info_margin2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_validity"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/validity_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/validation_result_info_margin2"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="@string/validation_mark"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+
+                <TextView
+                    android:id="@+id/mark_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textColor="@color/black_60_alpha"
+                    android:textSize="@dimen/validation_result_info_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/user_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="天下票务@南山滑雪场"
+        android:textColor="@color/black_60_alpha"
+        android:textSize="@dimen/normal_text_size" />
+
+    <RelativeLayout
+        android:id="@+id/back_box"
+        style="@style/go_back_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+
+        <ImageView
+            android:id="@+id/back_img"
+            style="@style/go_back" />
+    </RelativeLayout>
+</RelativeLayout>

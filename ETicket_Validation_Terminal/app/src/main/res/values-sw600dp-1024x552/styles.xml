@@ -1,0 +1,161 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="text_shadow_style">
+        <item name="android:shadowColor">@color/black_20_alpha</item>
+        <item name="android:shadowDx">2</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">2.0</item>
+    </style>
+
+    <style name="text_small_shadow_style">
+        <item name="android:shadowColor">@color/black_30_alpha</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">2</item>
+        <item name="android:shadowRadius">1.0</item>
+    </style>
+
+    <style name="home_small_button_style">
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">10dp</item>
+
+    </style>
+
+    <style name="home_button_button_style" parent="@style/text_small_shadow_style">
+        <item name="android:paddingBottom">50dp</item>
+        <item name="android:paddingLeft">100dp</item>
+        <item name="android:paddingRight">100dp</item>
+        <item name="android:paddingTop">60dp</item>
+    </style>
+
+    <style name="keyboard_style">
+        <item name="android:paddingBottom">25dp</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:textSize">@dimen/sys_info_warn_text</item>
+    </style>
+
+    <style name="edit_style">
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="query_button_style">
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingRight">40dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="sys_info_button_style">
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">60dp</item>
+        <item name="android:paddingRight">60dp</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:textSize">@dimen/sys_info_normal_text</item>
+    </style>
+
+    <style name="sys_info_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">190dp</item>
+    </style>
+
+    <style name="print_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">150dp</item>
+    </style>
+
+    <style name="query_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">85dp</item>
+    </style>
+
+    <style name="ID_card_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">300dp</item>
+    </style>
+
+    <style name="validation_result_progress_bar_style" parent="@style/progress_bar_style">
+        <item name="android:layout_marginLeft">290dp</item>
+    </style>
+
+    <style name="go_back_style">
+        <item name="android:paddingLeft">40dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingRight">30dp</item>
+        <item name="android:paddingTop">30dp</item>
+    </style>
+
+    <style name="qr_code_button_style">
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:paddingLeft">65dp</item>
+        <item name="android:paddingRight">65dp</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="validation_result_button_style">
+        <item name="android:paddingBottom">25dp</item>
+        <item name="android:paddingLeft">120dp</item>
+        <item name="android:paddingRight">120dp</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+
+    <style name="ID_card_button_style">
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:paddingLeft">80dp</item>
+        <item name="android:paddingRight">80dp</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="report_title_style">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">@dimen/sys_info_normal_text</item>
+    </style>
+
+    <style name="validation_result_edit_style">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+
+    <style name="validation_add_style">
+        <item name="android:paddingLeft">36dp</item>
+        <item name="android:paddingRight">36dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:layout_height">80dp</item>
+
+    </style>
+
+    <style name="splash_style">
+        <item name="android:layout_width">450dp</item>
+        <item name="android:layout_height">90dp</item>
+    </style>
+
+    <style name="go_back">
+        <item name="android:background">@drawable/goback</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+
+    <style name="border_white_style">
+        <item name="android:background">@drawable/report_bg</item>
+    </style>
+
+    <style name="border_transparent_style">
+        <item name="android:background">@drawable/keyboard_bg</item>
+    </style>
+
+    <style name="menu_bg_style">
+        <item name="android:background">@drawable/menu_bg_drawable</item>
+    </style>
+</resources>

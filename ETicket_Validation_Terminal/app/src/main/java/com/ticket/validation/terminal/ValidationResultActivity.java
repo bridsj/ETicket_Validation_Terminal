@@ -136,7 +136,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                         mValidityText.setText(goodsModel.mEndTime);
                         mMarkText.setText(goodsModel.mOrderCommments);
                     }
-                }, 500);
+                }, 300);
             }
         });
         mDeleteImg.setOnClickListener(new View.OnClickListener() {
