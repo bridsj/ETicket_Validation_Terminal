@@ -17,6 +17,7 @@ import com.ticket.validation.terminal.util.ToastUtil;
 import com.wizarpos.barcode.scanner.IScanEvent;
 import com.wizarpos.barcode.scanner.ScannerRelativeLayout;
 import com.wizarpos.barcode.scanner.ScannerResult;
+import com.wizarpos.barcode.scanner.ViewfinderView;
 import com.zuiapps.suite.utils.device.DoubleKeyUtils;
 
 import java.util.LinkedList;
@@ -33,6 +34,9 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
     private TextView mStatusText;
     private String test = "124569874566325541";
     private boolean mIsOnPause;
+    private TextView mQrLightText;
+    private boolean mIsOpenLight;
+    private ViewfinderView viewfinderView;
 
     public static FragmentValidationQrCodeForWizarpos newInstance() {
         FragmentValidationQrCodeForWizarpos f = new FragmentValidationQrCodeForWizarpos();
@@ -42,23 +46,28 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
     @Override
     protected void initData() {
         super.initData();
+        mIsOpenLight = false;
     }
 
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mContentView = inflater.inflate(R.layout.fragment_validation_ticket_qr_code_for_wizarpos, container, false);
-        mScanner = (ScannerRelativeLayout) mContentView.findViewById(R.id.scanner_box);
+        mScanner = (ScannerRelativeLayout) mContentView.findViewById(R.id.preview_view);
         mIScanSuccessListener = new ScanSuccesListener();
-
+        viewfinderView = (ViewfinderView) mContentView.findViewById(R.id.viewfinder_view);
+        viewfinderView.setCameraManager(mScanner.getCameraManager());
+        mScanner.getCameraManager().setManualFramingRect(getResources().getDimensionPixelOffset(R.dimen.view_finder_width), getResources().getDimensionPixelOffset(R.dimen.view_finder_height));
         mScanner.setFrontFacingCamera(true);
 
         mScanner.setEncodeFormat("CODE_128");
         mScanner.setScanSuccessListener(mIScanSuccessListener);
         mScanner.startScan();
 
-        mVerifyBox = (ViewGroup) mContentView.findViewById(R.id.verify_box);
-        mVerifyBox.setVisibility(View.GONE);
+        mVerifyBox = (ViewGroup) mContentView.findViewById(R.id.scanner_box);
+        mVerifyBox.setVisibility(View.INVISIBLE);
         mStatusText = (TextView) mContentView.findViewById(R.id.status_text);
+
+        mQrLightText = (TextView) mContentView.findViewById(R.id.qr_light_text);
         mStatusText.setText("");
         return mContentView;
     }
@@ -93,7 +102,25 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
 
     @Override
     protected void initWidgetActions() {
+        mQrLightText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mIsOpenLight) {
+                    mIsOpenLight = false;
+                    mScanner.closeLED();
+                    if (mOnLightClickListener != null) {
+                        mOnLightClickListener.onChangeLight(false);
+                    }
+                } else {
+                    mIsOpenLight = true;
+                    mScanner.openLED();
+                    if (mOnLightClickListener != null) {
+                        mOnLightClickListener.onChangeLight(true);
+                    }
+                }
 
+            }
+        });
     }
 
     private class ScanSuccesListener extends IScanEvent {
@@ -121,7 +148,7 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
             queryData(test, new BaseQueryFragment.RestfulCallback() {
                 @Override
                 public void success(LinkedList<GoodsModel> list) {
-                    mVerifyBox.setVisibility(View.GONE);
+                    mVerifyBox.setVisibility(View.INVISIBLE);
                     if (list.isEmpty()) {
                         ToastUtil.showToast(getApplicationContext(), R.string.loading_empty_data);
                         return;
@@ -133,13 +160,13 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
 
                 @Override
                 public void failureViaLocal() {
-                    mVerifyBox.setVisibility(View.GONE);
+                    mVerifyBox.setVisibility(View.INVISIBLE);
                     ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
                 }
 
                 @Override
                 public void failureViaServer(ErrorModel errorModel) {
-                    mVerifyBox.setVisibility(View.GONE);
+                    mVerifyBox.setVisibility(View.INVISIBLE);
                     if (errorModel == null) {
                         ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
                         return;

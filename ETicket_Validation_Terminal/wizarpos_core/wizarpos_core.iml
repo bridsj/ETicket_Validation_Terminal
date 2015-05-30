@@ -91,6 +91,6 @@
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="barcodedecoder-r12937" level="project" />
-    <orderEntry type="library" exported="" name="barcodescanner-r13195" level="project" />
+    <orderEntry type="module" module-name="android_utils" exported="" />
   </component>
 </module>

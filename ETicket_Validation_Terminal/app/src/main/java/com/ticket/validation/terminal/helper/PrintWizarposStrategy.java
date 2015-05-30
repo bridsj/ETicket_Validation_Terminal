@@ -104,7 +104,7 @@ public class PrintWizarposStrategy implements PrintStrategy {
         PrinterInterface.PrinterWrite(contentbytes, contentbytes.length);
         SystemClock.sleep(150);
         PrinterInterface.PrinterWrite(
-                PrinterCommand.getCmdEscDN(2),
-                PrinterCommand.getCmdEscDN(2).length);
+                PrinterCommand.getCmdEscDN(4),
+                PrinterCommand.getCmdEscDN(4).length);
     }
 }
