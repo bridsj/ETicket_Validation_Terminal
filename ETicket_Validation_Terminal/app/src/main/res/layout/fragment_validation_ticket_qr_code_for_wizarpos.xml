@@ -55,8 +55,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:paddingRight="20dp"
             android:gravity="left"
+            android:paddingRight="20dp"
+            android:text="扫描失败"
             android:textColor="@color/red"
             android:textSize="@dimen/sys_info_normal_text" />
 
@@ -66,7 +67,7 @@
             style="@style/qr_code_button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_red_selector"
+            android:background="@drawable/light_selector"
             android:gravity="center"
             android:text="@string/qr_light"
             android:textColor="@color/white" />

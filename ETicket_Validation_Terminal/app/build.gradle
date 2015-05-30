@@ -48,8 +48,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile project(':android_utils')
     compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile project(':zxing_shell')
+ //   compile project(':zxing_shell')
     compile project(':hao_de_xin_printer')
+    compile project(':wizarpos_core')
 }
 android.applicationVariants.all { variant ->
     variant.outputs[0].processManifest.doLast {
