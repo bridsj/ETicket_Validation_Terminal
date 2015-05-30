@@ -7,12 +7,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 
-import com.ticket.validation.terminal.constant.Constants;
 import com.ticket.validation.terminal.fragment.BaseFragment;
 import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
 import com.ticket.validation.terminal.fragment.FragmentValidationIDCard;
 import com.ticket.validation.terminal.fragment.FragmentValidationQrCodeForGoogle;
 import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
+import com.ticket.validation.terminal.util.DeviceTypeUtil;
 
 /**
  * Created by dengshengjin on 15/5/17.
@@ -82,10 +82,10 @@ public class ValidationTicketActivity extends BaseUserActivity {
     }
 
     private void createQrFragment() {
-        if (Constants.type.equals(Constants.WIZARPOS)) {
+        if (DeviceTypeUtil.isHaoDeXin()) {
             mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
             initContentFrame(mFragmentValidationQrCode);
-        } else if (Constants.type.equals(Constants.HAO_DE_XIN)) {
+        } else if (DeviceTypeUtil.isHaoDeXin()) {
             mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
             ((FragmentValidationQrCodeForGoogle) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForGoogle.OnLightClickListener() {
                 @Override
@@ -93,6 +93,9 @@ public class ValidationTicketActivity extends BaseUserActivity {
                     mIsOpenLight = isOpenLight;
                 }
             });
+            initContentFrame(mFragmentValidationQrCode);
+        } else {
+            mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
             initContentFrame(mFragmentValidationQrCode);
         }
     }

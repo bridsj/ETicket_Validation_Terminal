@@ -1,8 +1,10 @@
 package com.ticket.validation.terminal.helper;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
-import com.ticket.validation.terminal.constant.Constants;
+import com.ticket.validation.terminal.util.DeviceTypeUtil;
 
 /**
  * Created by dengshengjin on 15/5/26.
@@ -11,10 +13,11 @@ public class PrintHelper {
     private static PrintHelper mPrintHelper;
     private PrintStrategy mPrintStrategy;
     private Context mContext;
+    private Handler mHandler = new Handler(Looper.getMainLooper());
 
     private PrintHelper(Context context) {
         mContext = context;
-        if (Constants.type.equals(Constants.HAO_DE_XIN)) {
+        if (DeviceTypeUtil.isHaoDeXin()) {
             mPrintStrategy = new PrintHaoDeXinStrategy(context);
         }
     }
@@ -29,6 +32,16 @@ public class PrintHelper {
     public void startPrintViaChar(final String printStr, final PrintStrategy.PrintCallback printCallback) {
         if (mPrintStrategy != null) {
             mPrintStrategy.startPrintViaChar(printStr, printCallback);
+        } else {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (printCallback != null) {
+                        printCallback.onFinishPrint();
+                    }
+                    return;
+                }
+            });
         }
     }
 
