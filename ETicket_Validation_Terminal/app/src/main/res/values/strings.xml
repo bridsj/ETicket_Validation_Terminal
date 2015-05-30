@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">电子票验证终端</string>
+    <string name="app_name2">%s验证终端</string>
+    <string name="recount_ticket">验  票</string>
+    <string name="query_ticket">查  票</string>
+    <string name="sys_exit">系统退出</string>
+    <string name="sys_info">系统信息</string>
+    <string name="sys_info_address">系统地址：%s</string>
+    <string name="sys_info_id">设备编号：%s</string>
+    <string name="sys_info_upgrade">在线升级</string>
+    <string name="sys_info_no_upgrade">暂无更新版本</string>
+    <string name="paper_count">报表统计</string>
+    <string name="ticket_validation">电子票验证终端</string>
+    <string name="exit_sys_hint">请输入退出密码</string>
+    <string name="ok">确定</string>
+    <string name="validation_code">电子码验证</string>
+    <string name="validation_qrcode">二维码扫描</string>
+    <string name="validation_ID">身份证读取</string>
+    <string name="validation_re_print">重新打印</string>
+    <string name="ok_query">查询</string>
+    <!-- 二维码拍摄 -->
+    <string name="qr_capture_title">扫描二维码</string>
+    <string name="qr_input_title">手动输入</string>
+    <string name="qr_empty_title">请核查</string>
+    <string name="qr_warn_text1">将二维码放入框内, 即可自动扫描</string>
+    <string name="qr_warn_text2">可扫描：优惠券验证二维码/会员号二维码</string>
+    <string name="qr_light">灯光</string>
+
+    <string name="id_card_warn">请把身份证放到电子感应区</string>
+    <string name="id_card_sure">二代身份证识别</string>
+    <string name="report_sure">打\t印</string>
+    <string name="report_title">当日报表统计</string>
+    <string name="date">(%s)</string>
+
+    <string name="loading">正在验证中...</string>
+    <string name="loading_data">正在加载中</string>
+
+
+    <string name="validation_ok">确认使用</string>
+    <string name="validation_available_num">可用数量：</string>
+    <string name="validation_available_num2">张</string>
+    <string name="validation_name">姓名：</string>
+    <string name="validation_id_card">身份证：</string>
+    <string name="validation_validity">有效期：</string>
+    <string name="validation_mark">备注：</string>
+
+    <string name="loading_fail">请求失败，请检查网络连接</string>
+    <string name="loading_fail2">服务器无应答，请检查网络连接</string>
+    <string name="loading_empty_data">未查找到相关数据</string>
+    <string name="login_fail">设备登录失败</string>
+    <string name="login_user_info">%s</string>
+
+    <string name="verify_input_fail">请输入正确的数量</string>
+    <string name="verify_fail">无法使用该商品,请稍后再试</string>
+    <string name="verify_succ">已成功使用%s张票</string>
+    <string name="re_print_fail">无法重新打印</string>
+
+    <string name="normal_print_str1" formatted="false">商户联\r\n%s</string>
+    <string name="normal_print_str2" formatted="false">用户联\r\n%s</string>
+
+    <string name="re_print_str1" formatted="false">商户联(重新打印)\r\n%s</string>
+    <string name="re_print_str2" formatted="false">用户联(重新打印)\r\n%s</string>
+
+    <string name="daily_print_str" formatted="false">当日验证统计联(%s)-共%s联\r\n打印时间:%s\r\n%s</string>
+    <string name="close">关闭</string>
+    <string name="query_result_title">票务信息</string>
+    <string name="validation_id_card_fail">识别失败</string>
+    <string name="validation_qr_code_fail">扫描失败</string>
+    <string name="validation_qr_code_result">扫描结果:\n%s</string>
+
+    <string name="un_login">您还未登录，请稍后再试</string>
+
+    <string name="input_error">请输入正确的内容</string>
+    <string name="validation_result_error">请先选择商品</string>
+    <string name="exit_warn">再按一次即可退出</string>
+    <string name="printing">正在打印其它内容，请稍后再试</string>
+    <string name="print_fail">打印相关内容失败，请稍后再试</string>
+</resources>
