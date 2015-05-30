@@ -101,10 +101,20 @@ public class ValidationTicketActivity extends BaseUserActivity {
     }
 
     @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (currFragment.equals("ValidationElectronic")) {
+            if (mFragmentValidationElectronic != null) {
+                mFragmentValidationElectronic.dispatchKeyEvent(event);
+            }
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (currFragment.equals("ValidationElectronic")) {
             if (mFragmentValidationElectronic != null) {
-                mFragmentValidationElectronic.onKeyDown(keyCode);
+                mFragmentValidationElectronic.onKeyDown(keyCode, event);
             }
         }
         return super.onKeyDown(keyCode, event);

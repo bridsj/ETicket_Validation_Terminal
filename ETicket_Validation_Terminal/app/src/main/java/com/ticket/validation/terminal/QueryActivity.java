@@ -102,7 +102,7 @@ public class QueryActivity extends BaseUserActivity {
                 }
                 String text = mEditText.getText().toString();
                 if (TextUtils.isEmpty(text)) {
-                    ToastUtil.showToast(getApplicationContext(),R.string.input_error);
+                    ToastUtil.showToast(getApplicationContext(), R.string.input_error);
                     return;
                 }
                 if (mProgressBar.getVisibility() == View.VISIBLE) {
@@ -213,11 +213,21 @@ public class QueryActivity extends BaseUserActivity {
     }
 
     @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (KeyCodeUtil.isEnterKeyCode(event)) {
+            mQueryBox.performClick();
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        String key = KeyCodeUtil.getKeyCode(keyCode, false);
+        String key = KeyCodeUtil.getKeyCode(keyCode, event, false);
         if (!TextUtils.isEmpty(key)) {
             if (key.equals("del")) {
                 onDelEvent();
+            } else if (key.equals("enter")) {
+                mQueryBox.performClick();
             } else {
                 onAddEvent(key);
             }

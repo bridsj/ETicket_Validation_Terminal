@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -182,11 +183,19 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
         }
     }
 
-    public void onKeyDown(int keyCode) {
-        String key = KeyCodeUtil.getKeyCode(keyCode, false);
+    public void dispatchKeyEvent(KeyEvent event) {
+        if (KeyCodeUtil.isEnterKeyCode(event)) {
+            mQueryBox.performClick();
+        }
+    }
+
+    public void onKeyDown(int keyCode, KeyEvent event) {
+        String key = KeyCodeUtil.getKeyCode(keyCode, event, false);
         if (!TextUtils.isEmpty(key)) {
             if (key.equals("del")) {
                 onDelEvent();
+            } else if (key.equals("enter")) {
+                mQueryBox.performClick();
             } else {
                 onAddEvent(key);
             }

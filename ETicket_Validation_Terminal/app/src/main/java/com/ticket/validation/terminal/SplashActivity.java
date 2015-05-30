@@ -9,6 +9,8 @@ import com.ticket.validation.terminal.helper.SessionHelper;
 import com.ticket.validation.terminal.model.LoginModel;
 import com.ticket.validation.terminal.model.UserModel;
 import com.ticket.validation.terminal.parse.UserParse;
+import com.zuiapps.suite.utils.device.PhoneUtil;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 import org.json.JSONObject;
 
@@ -50,6 +52,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        LogUtil.e("display="+ PhoneUtil.getResolution(getApplicationContext()));
         final SessionHelper mSessionHelper = SessionHelper.getInstance(getApplicationContext());
         mSessionHelper.loginUser(new Callback<JSONObject>() {
 

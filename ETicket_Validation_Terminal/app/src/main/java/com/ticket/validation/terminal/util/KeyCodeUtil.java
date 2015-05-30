@@ -7,7 +7,14 @@ import android.view.KeyEvent;
  */
 public class KeyCodeUtil {
 
-    public static String getKeyCode(int keyCode, boolean isOnlyNum) {
+    public static boolean isEnterKeyCode(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+            return true;
+        }
+        return false;
+    }
+
+    public static String getKeyCode(int keyCode, KeyEvent keyEvent, boolean isOnlyNum) {
         if (keyCode == KeyEvent.KEYCODE_0) {
             return "0";
         } else if (keyCode == KeyEvent.KEYCODE_1) {

@@ -329,11 +329,21 @@ public class ValidationResultActivity extends BaseUserActivity {
     }
 
     @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (KeyCodeUtil.isEnterKeyCode(event)) {
+            mVerifyBox.performClick();
+        }
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        String key = KeyCodeUtil.getKeyCode(keyCode, true);
+        String key = KeyCodeUtil.getKeyCode(keyCode, event, true);
         if (!TextUtils.isEmpty(key)) {
             if (key.equals("del")) {
                 onDelEvent();
+            } else if (key.contains("enter")) {
+                mVerifyBox.performClick();
             } else {
                 onAddEvent(key);
             }
