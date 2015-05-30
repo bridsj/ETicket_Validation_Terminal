@@ -163,4 +163,8 @@
     <style name="border_transparent_style">
         <item name="android:background">@drawable/keyboard_bg</item>
     </style>
+
+    <style name="menu_bg_style">
+        <item name="android:background">@drawable/menu_bg_drawable</item>
+    </style>
 </resources>

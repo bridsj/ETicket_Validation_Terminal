@@ -121,6 +121,23 @@ public class ValidationResultActivity extends BaseUserActivity {
                 mValidityText.setText(goodsModel.mEndTime);
                 mMarkText.setText(goodsModel.mOrderCommments);
             }
+
+            @Override
+            public void onItemClickAuto(final GoodsModel goodsModel) {
+                getHandler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mGoodsModel = goodsModel;
+
+                        mNumText.setText(goodsModel.mCount + "");
+                        mInputText.setText("0");
+                        mNameText.setText(goodsModel.mUserName);
+                        mIdCardText.setText(goodsModel.mIdCard);
+                        mValidityText.setText(goodsModel.mEndTime);
+                        mMarkText.setText(goodsModel.mOrderCommments);
+                    }
+                }, 500);
+            }
         });
         mDeleteImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,21 +230,12 @@ public class ValidationResultActivity extends BaseUserActivity {
                                     }
 
         );
-        mExecutor.execute(new Runnable() {
-                              @Override
-                              public void run() {
-
-                                  getHandler().post(new Runnable() {
-                                      @Override
-                                      public void run() {
-                                          mAdapter.notifyDataSetChanged(goodsList);
-                                      }
-                                  });
-
-                              }
-                          }
-
-        );
+        getHandler().post(new Runnable() {
+            @Override
+            public void run() {
+                mAdapter.notifyDataSetChanged(goodsList);
+            }
+        });
     }
 
     private int reqCount;

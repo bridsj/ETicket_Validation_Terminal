@@ -8,4 +8,6 @@
 
     <dimen name="report_top_margin">30dp</dimen>
     <dimen name="report_top2_margin">30dp</dimen>
+
+    <dimen name="query_result_limit_height">205dp</dimen>
 </resources>

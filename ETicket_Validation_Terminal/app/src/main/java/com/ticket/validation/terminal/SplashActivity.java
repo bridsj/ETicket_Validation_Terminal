@@ -52,7 +52,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        LogUtil.e("display="+ PhoneUtil.getResolution(getApplicationContext()));
+        LogUtil.i("display="+ PhoneUtil.getResolution(getApplicationContext())+","+PhoneUtil.getDisplayDensity(getApplicationContext()));//800x444,120.0
         final SessionHelper mSessionHelper = SessionHelper.getInstance(getApplicationContext());
         mSessionHelper.loginUser(new Callback<JSONObject>() {
 

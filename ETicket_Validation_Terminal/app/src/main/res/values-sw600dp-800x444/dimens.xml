@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sys_info_content_margin">50dp</dimen>
+    <dimen name="sys_info_title_margin">50dp</dimen>
+    <dimen name="report_max_height">230dp</dimen>
+
+    <dimen name="exit_keyboard_margin_top">50dp</dimen>
+    <dimen name="exit_keyboard_margin_top2">50dp</dimen>
+
+    <dimen name="report_top_margin">50dp</dimen>
+    <dimen name="report_top2_margin">40dp</dimen>
+
+    <dimen name="query_result_limit_height">320dp</dimen>
+
+    <dimen name="keyboard_limit_width">550dp</dimen>
+    <dimen name="keyboard_limit_width2">550dp</dimen>
+
+    <dimen name="validation_result_limit_height">345dp</dimen>
+</resources>

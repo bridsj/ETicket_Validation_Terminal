@@ -60,7 +60,7 @@ public class ValidationResultAdapter extends BaseAdapter {
             holder.mTitleText.setSelected(true);
             holder.mBox.setBackgroundResource(R.color.black_10_alpha);
             if (mOnItemClickListener != null) {
-                mOnItemClickListener.onItemClick(model);
+                mOnItemClickListener.onItemClickAuto(model);
             }
         } else {
             if (model.mIsSelected) {
@@ -106,11 +106,10 @@ public class ValidationResultAdapter extends BaseAdapter {
         if (mList == null) {
             mList = new LinkedList<>();
         }
-
+        mList.clear();
         if (list != null) {
-            list.addAll(mList);
+            mList.addAll(list);
         }
-        mList = list;
         super.notifyDataSetChanged();
     }
 
@@ -127,6 +126,8 @@ public class ValidationResultAdapter extends BaseAdapter {
 
     public interface OnItemClickListener {
         void onItemClick(GoodsModel goodsModel);
+
+        void onItemClickAuto(GoodsModel goodsModel);
     }
 
     private void updateDataAndViews(GoodsModel goodsModel) {

@@ -37,9 +37,9 @@ public class GoodsModel extends BaseModel {
                 ", mExchageFunc='" + mExchageFunc + '\'' +
                 ", mStatus=" + mStatus +
                 ", mIsSelected=" + mIsSelected +
+                ", mCount=" + mCount +
                 '}';
     }
-
 
 
 }
