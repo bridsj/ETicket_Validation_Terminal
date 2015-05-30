@@ -16,6 +16,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.zuiapps.suite.utils.device.PhoneUtil;
+
 public final class CameraManager {
     private boolean previewing = false;
     private PreviewCallback mPreviewCallback = null;
@@ -127,29 +129,30 @@ public final class CameraManager {
             int leftOffset = (screenResolution.x - width) / 2;
             int topOffset = (screenResolution.y - height) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
-            Log.d("", "Calculated framing rect: " + framingRect);
+            Log.d("", "Calculated framing rect: " +  + width + "," + height);
         }
         return framingRect;
     }
 
     public synchronized void setManualFramingRect(int width, int height) {
         if (initialized) {
-            Point screenResolution = manager.getScreenResolution();
-            if (width > screenResolution.x) {
-                width = screenResolution.x;
-            }
-            if (height > screenResolution.y) {
-                height = screenResolution.y;
-            }
-            int leftOffset = (screenResolution.x - width) / 2;
-            int topOffset = (screenResolution.y - height) / 2;
+            int leftOffset = (PhoneUtil.getDisplayWidth(mContext) - width) / 2;
+            int topOffset = (PhoneUtil.getDisplayHeight(mContext) - height) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
             Log.d("", "Calculated manual framing rect: " + framingRect);
             framingRectInPreview = null;
-        }else{
+        } else {
             requestedFramingRectWidth = width;
             requestedFramingRectHeight = height;
         }
+    }
+
+    public synchronized void setManualFramingRectForce(int width, int height) {
+        int leftOffset = (PhoneUtil.getDisplayWidth(mContext) - width) / 2;
+        int topOffset = (PhoneUtil.getDisplayHeight(mContext) - height) / 2;
+        framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
+        Log.d("", "Calculated manual framing rect: " + framingRect);
+        framingRectInPreview = null;
     }
 
     public synchronized Rect getFramingRectInPreview() {

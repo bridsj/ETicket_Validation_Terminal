@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.ValidationResultActivity;
+import com.ticket.validation.terminal.ValidationTicketActivity;
 import com.ticket.validation.terminal.fragment.BaseQueryFragment;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
@@ -47,6 +48,9 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
     protected void initData() {
         super.initData();
         mIsOpenLight = false;
+        if (getActivity() != null && getActivity() instanceof ValidationTicketActivity) {
+            mIsOpenLight = ((ValidationTicketActivity) getActivity()).isOpenLight();
+        }
     }
 
     @Override
@@ -54,9 +58,10 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
         mContentView = inflater.inflate(R.layout.fragment_validation_ticket_qr_code_for_wizarpos, container, false);
         mScanner = (ScannerRelativeLayout) mContentView.findViewById(R.id.preview_view);
         mIScanSuccessListener = new ScanSuccesListener();
+        mScanner.getCameraManager().setManualFramingRectForce(800, 800);
         viewfinderView = (ViewfinderView) mContentView.findViewById(R.id.viewfinder_view);
         viewfinderView.setCameraManager(mScanner.getCameraManager());
-        mScanner.getCameraManager().setManualFramingRect(getResources().getDimensionPixelOffset(R.dimen.view_finder_width), getResources().getDimensionPixelOffset(R.dimen.view_finder_height));
+
         mScanner.setFrontFacingCamera(true);
 
         mScanner.setEncodeFormat("CODE_128");
@@ -64,6 +69,7 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
         mScanner.startScan();
 
         mVerifyBox = (ViewGroup) mContentView.findViewById(R.id.scanner_box);
+
         mVerifyBox.setVisibility(View.INVISIBLE);
         mStatusText = (TextView) mContentView.findViewById(R.id.status_text);
 
@@ -142,6 +148,7 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
             if (getActivity() == null || getActivity().isFinishing()) {
                 return;
             }
+            mScanner.playMedia();
             mVerifyBox.setVisibility(View.VISIBLE);
             mStatusText.setText(String.format(getString(R.string.validation_qr_code_result), scannerResult.getResult()));
 

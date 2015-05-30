@@ -30,7 +30,7 @@ public class ValidationTicketActivity extends BaseUserActivity {
 
     @Override
     protected void initData() {
-        mIsOpenLight = false;
+        mIsOpenLight = true;
     }
 
     @Override

@@ -11,10 +11,9 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PreviewCallback;
@@ -27,13 +26,10 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback2;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.SurfaceHolder.Callback2;
-import android.view.View.OnClickListener;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 
 import com.google.zxing.client.android.PlanarYUVLuminanceSource;
 import com.wizarpos.barcode.decode.BarcodeDecoder;
@@ -208,18 +204,22 @@ public class ScannerRelativeLayout extends RelativeLayout {
     }
 
     public synchronized void stopScan() {
-        if (!this.cameraIsRelease) {
-            Log.v("ScannerRelativeLayout", "stopScan");
-            this.setBoolInXml();
-            this.mCameraManager.resetCamera();
-            if (null != this.mSurfaceHolder) {
-                this.mSurfaceHolder.removeCallback(this.mInnerSurfaceHolderCallback);
+        try {
+            if (!this.cameraIsRelease) {
+                Log.v("ScannerRelativeLayout", "stopScan");
+                this.setBoolInXml();
+                this.mCameraManager.resetCamera();
+                if (null != this.mSurfaceHolder) {
+                    this.mSurfaceHolder.removeCallback(this.mInnerSurfaceHolderCallback);
+                }
+
+                this.cameraIsRelease = true;
             }
 
-            this.cameraIsRelease = true;
+            this.cameraStopPreview = true;
+        } catch (Throwable t) {
+            
         }
-
-        this.cameraStopPreview = true;
     }
 
     public boolean isCameraStopPreview() {
@@ -278,11 +278,6 @@ public class ScannerRelativeLayout extends RelativeLayout {
             }
         } else {
             var7 = var6.renderCroppedGreyscaleBitmap();
-            if (this.mediaPlayer != null) {
-                this.mediaPlayer.start();
-            } else {
-                this.audioManager.playSoundEffect(0, 0.8F);
-            }
 
             Log.d("ScannerRelativeLayout", "find a barcode");
             ByteArrayOutputStream var12 = new ByteArrayOutputStream();
@@ -303,6 +298,14 @@ public class ScannerRelativeLayout extends RelativeLayout {
             }
         }
 
+    }
+
+    public void playMedia(){
+        if (this.mediaPlayer != null) {
+            this.mediaPlayer.start();
+        } else {
+            this.audioManager.playSoundEffect(0, 0.8F);
+        }
     }
 
     private MediaPlayer buildMediaPlayer(Context var1) {
@@ -341,7 +344,7 @@ public class ScannerRelativeLayout extends RelativeLayout {
         }
     }
 
-    public CameraManager getCameraManager(){
+    public CameraManager getCameraManager() {
         return mCameraManager;
     }
 

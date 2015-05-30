@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/scanner_box"
-                android:background="@drawable/bg" />
+                android:background="@drawable/bg"/>
 
             <View
                 android:layout_width="match_parent"
