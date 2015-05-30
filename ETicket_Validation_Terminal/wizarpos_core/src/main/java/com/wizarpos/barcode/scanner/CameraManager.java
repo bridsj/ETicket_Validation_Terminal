@@ -129,7 +129,7 @@ public final class CameraManager {
             int leftOffset = (screenResolution.x - width) / 2;
             int topOffset = (screenResolution.y - height) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
-            Log.d("", "Calculated framing rect: " +  + width + "," + height);
+            Log.d("", "Calculated framing rect: " + +width + "," + height);
         }
         return framingRect;
     }
@@ -152,7 +152,15 @@ public final class CameraManager {
         int topOffset = (PhoneUtil.getDisplayHeight(mContext) - height) / 2;
         framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
         Log.d("", "Calculated manual framing rect: " + framingRect);
-        framingRectInPreview = null;
+
+        Rect rect = new Rect(framingRect);
+        int x = PhoneUtil.getDisplayWidth(mContext);
+        int y = PhoneUtil.getDisplayHeight(mContext);
+        rect.left = rect.left * x / x;
+        rect.right = rect.right * x / x;
+        rect.top = rect.top * y / y;
+        rect.bottom = rect.bottom * y / y;
+        framingRectInPreview = rect;
     }
 
     public synchronized Rect getFramingRectInPreview() {
