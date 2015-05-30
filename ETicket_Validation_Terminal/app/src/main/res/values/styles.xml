@@ -155,4 +155,12 @@
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
     </style>
+
+    <style name="border_white_style">
+        <item name="android:background">@drawable/report_bg</item>
+    </style>
+
+    <style name="border_transparent_style">
+        <item name="android:background">@drawable/keyboard_bg</item>
+    </style>
 </resources>

@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="border_white_style">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="border_transparent_style">
+        <item name="android:background">@drawable/border_bg2</item>
+    </style>
+</resources>

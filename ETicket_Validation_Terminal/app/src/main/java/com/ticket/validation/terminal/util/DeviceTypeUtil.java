@@ -8,10 +8,23 @@ import android.text.TextUtils;
  */
 public class DeviceTypeUtil {
     public static boolean isHaoDeXin() {
-        if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.contains("hdx")) {
+        if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.toLowerCase().contains("hdx")) {
             return true;
         }
         return false;
     }
 
+    public static boolean isGuZhiLian() {
+        if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.toLowerCase().contains("x210")) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isWizarpos(){
+        if (!TextUtils.isEmpty(Build.MODEL) && Build.MODEL.toLowerCase().contains("wizarpos")) {
+            return true;
+        }
+        return false;
+    }
 }

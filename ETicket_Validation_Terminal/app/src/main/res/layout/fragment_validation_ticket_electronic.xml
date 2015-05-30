@@ -70,12 +70,12 @@
 
     <GridView
         android:id="@+id/grid_view"
+        style="@style/border_transparent_style"
         android:layout_width="@dimen/keyboard_limit_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_box"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/exit_keyboard_margin_top3"
-        android:background="@drawable/keyboard_bg"
         android:gravity="center"
         android:horizontalSpacing="3dp"
         android:listSelector="@android:color/transparent"

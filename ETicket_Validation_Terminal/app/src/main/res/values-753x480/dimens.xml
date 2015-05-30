@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sys_info_content_margin">40dp</dimen>
+    <dimen name="sys_info_title_margin">40dp</dimen>
+
+    <dimen name="exit_keyboard_margin_top">30dp</dimen>
+    <dimen name="exit_keyboard_margin_top2">30dp</dimen>
+
+    <dimen name="report_top_margin">30dp</dimen>
+    <dimen name="report_top2_margin">30dp</dimen>
+</resources>

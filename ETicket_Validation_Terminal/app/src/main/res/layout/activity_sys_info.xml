@@ -17,12 +17,12 @@
         android:textSize="@dimen/sys_info_title_size" />
 
     <LinearLayout
+        style="@style/border_white_style"
         android:layout_width="@dimen/sys_info_limit_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_name_text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/sys_info_content_margin"
-        android:background="@drawable/report_bg"
         android:orientation="vertical"
         android:paddingBottom="20dp"
         android:paddingTop="15dp">
