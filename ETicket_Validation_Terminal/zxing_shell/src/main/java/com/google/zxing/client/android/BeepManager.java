@@ -117,7 +117,7 @@ public final class BeepManager implements
   public synchronized boolean onError(MediaPlayer mp, int what, int extra) {
     if (what == MediaPlayer.MEDIA_ERROR_SERVER_DIED) {
       // we are finished, so put up an appropriate error toast if required and finish
-      activity.finish();
+//      activity.finish();
     } else {
       // possibly media player error, so release and recreate
       mp.release();
