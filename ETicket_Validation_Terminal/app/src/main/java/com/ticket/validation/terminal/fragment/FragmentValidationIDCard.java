@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.ticket.validation.terminal.R;
 import com.ticket.validation.terminal.ValidationResultActivity;
+import com.ticket.validation.terminal.helper.IDCardHelper;
+import com.ticket.validation.terminal.helper.IDCardStrategy;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
@@ -71,52 +73,56 @@ public class FragmentValidationIDCard extends BaseQueryFragment {
 
                 mStatusText.setText("");
                 mProgressBar.setVisibility(View.VISIBLE);
-//                animateFadeInOut(mIdCardWarnText);
-                getHandler().postDelayed(new Runnable() {
+                IDCardHelper.getInstance(getApplicationContext()).startRecognition(new IDCardStrategy.RecognitionCallback() {
                     @Override
-                    public void run() {
-//                        pauseAnimation(mIdCardWarnText);
-                        boolean isValidationSucc = true;
-                        if (getActivity() == null || getActivity().isFinishing()) {
-                            return;
-                        }
-                        if (isValidationSucc) { //识别成功
-                            queryData(test, new RestfulCallback() {
-                                @Override
-                                public void success(LinkedList<GoodsModel> list) {
-                                    mProgressBar.setVisibility(View.GONE);
-                                    if (list.isEmpty()) {
-                                        ToastUtil.showToast(getApplicationContext(), R.string.loading_empty_data);
-                                        return;
-                                    }
-                                    Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
-                                    intent.putExtra(ValidationResultActivity.MODELS, list);
-                                    startActivity(intent);
-                                }
-
-                                @Override
-                                public void failureViaLocal() {
-                                    mProgressBar.setVisibility(View.GONE);
-                                    ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
-                                }
-
-                                @Override
-                                public void failureViaServer(ErrorModel errorModel) {
-                                    mProgressBar.setVisibility(View.GONE);
-                                    if (errorModel == null) {
-                                        ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
-                                        return;
-                                    }
-                                    ToastUtil.showToast(getApplicationContext(), errorModel.mInfo);
-                                }
-                            });
-                        } else {//识别失败
-                            mProgressBar.setVisibility(View.GONE);
-                            mStatusText.setText(getString(R.string.validation_id_card_fail));
-                        }
+                    public void onErrorIDCard() {
 
                     }
-                }, 1000);
+
+                    @Override
+                    public void onStartIDCard() {
+
+                    }
+
+                    @Override
+                    public void onFinishIDCard(String idcard) {
+                        queryData(idcard, new RestfulCallback() {
+                            @Override
+                            public void success(LinkedList<GoodsModel> list) {
+                                mProgressBar.setVisibility(View.GONE);
+                                if (list.isEmpty()) {
+                                    ToastUtil.showToast(getApplicationContext(), R.string.loading_empty_data);
+                                    return;
+                                }
+                                Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
+                                intent.putExtra(ValidationResultActivity.MODELS, list);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void failureViaLocal() {
+                                mProgressBar.setVisibility(View.GONE);
+                                ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                            }
+
+                            @Override
+                            public void failureViaServer(ErrorModel errorModel) {
+                                mProgressBar.setVisibility(View.GONE);
+                                if (errorModel == null) {
+                                    ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
+                                    return;
+                                }
+                                ToastUtil.showToast(getApplicationContext(), errorModel.mInfo);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailIDCard() {
+                        mProgressBar.setVisibility(View.GONE);
+                        mStatusText.setText(getString(R.string.validation_id_card_fail));
+                    }
+                });
             }
         });
     }
