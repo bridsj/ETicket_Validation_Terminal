@@ -286,7 +286,7 @@
 //            return;
 //        }
 //        inactivityTimer.onActivity();
-//        handler.sendEmptyMessageDelayed(R.id.restart_preview, 500);
+//
 //        beepManager.playBeepSoundAndVibrate();
 //        mVerifyBox.setVisibility(View.VISIBLE);
 //        mStatusText.setText(String.format(getString(R.string.validation_qr_code_result), result));
@@ -307,6 +307,7 @@
 //            public void failureViaLocal() {
 //                mVerifyBox.setVisibility(View.INVISIBLE);
 //                ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+//                handler.sendEmptyMessageDelayed(R.id.restart_preview, 1000l);
 //            }
 //
 //            @Override
@@ -317,6 +318,7 @@
 //                    return;
 //                }
 //                ToastUtil.showToast(getApplicationContext(), errorModel.mInfo);
+//                handler.sendEmptyMessageDelayed(R.id.restart_preview, 1000l);
 //            }
 //        });
 //
