@@ -7,6 +7,7 @@ import android.os.PowerManager;
 
 import com.synjones.sdt.IDCard;
 import com.synjones.sdt.SerialPort;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,10 +26,6 @@ public class IDCardZKCStrategy implements IDCardStrategy {
     private boolean mIsPrinting;
 
     public IDCardZKCStrategy(Context context) {
-        try {
-            mSerialPort = getSerialPort();
-        } catch (Throwable t) {
-        }
         mExecutorService = Executors.newSingleThreadExecutor();
         mHandler = new Handler(Looper.getMainLooper());
         mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "wake_lock");
@@ -64,7 +61,9 @@ public class IDCardZKCStrategy implements IDCardStrategy {
                 try {
                     mWakeLock.acquire();
                     //开始打印
+                    mSerialPort = getSerialPort();
                     final IDCard idcard = mSerialPort.getIDCard();
+                    LogUtil.e("idcard=" + idcard);
                     if (idcard == null) {
                         throw new Exception();
                     }
