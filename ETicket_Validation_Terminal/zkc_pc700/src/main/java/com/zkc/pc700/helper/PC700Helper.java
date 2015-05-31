@@ -1,4 +1,4 @@
-package com.zkc.helper;
+package com.zkc.pc700.helper;
 
 public class PC700Helper {
 		static {

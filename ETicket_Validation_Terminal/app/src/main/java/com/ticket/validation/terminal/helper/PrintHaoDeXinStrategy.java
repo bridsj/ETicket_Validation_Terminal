@@ -86,9 +86,14 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
                         }
                     });
                 } catch (Throwable t) {
-                    if (printCallback != null) {
-                        printCallback.onFailPrint();
-                    }
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (printCallback != null) {
+                                printCallback.onFailPrint();
+                            }
+                        }
+                    });
                 } finally {
                     mWakeLock.release();
                     HdxUtil.SetPrinterPower(0);

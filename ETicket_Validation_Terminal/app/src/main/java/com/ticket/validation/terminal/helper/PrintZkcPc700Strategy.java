@@ -7,14 +7,12 @@ import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
 
-import com.hdx.lib.printer.SerialPrinter;
-import com.hdx.lib.serial.SerialParam;
-import com.hdx.lib.serial.SerialPortOperaion;
+import com.zkc.helper.printer.PrintService;
+import com.zkc.helper.printer.PrinterClass;
+import com.zkc.pc700.helper.PrinterClassSerialPort;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import hdx.HdxUtil;
 
 /**
  * Created by dengshengjin on 15/5/27.
@@ -26,20 +24,15 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
     private ExecutorService mExecutorService;
     private boolean mIsPrinting;
     private PowerManager.WakeLock mWakeLock;
-    private SerialPrinter mSerialPrinter;
+    private PrinterClassSerialPort mPrinterClassSerialPort;
     private Handler mHandler;
 
     public PrintZkcPc700Strategy(Context context) {
         super();
         mContext = context;
         mExecutorService = Executors.newSingleThreadExecutor();
-        mSerialPrinter = SerialPrinter.GetSerialPrinter();
-        HdxUtil.SwitchSerialFunction(HdxUtil.SERIAL_FUNCTION_PRINTER);
-        try {
-            mSerialPrinter.OpenPrinter(new SerialParam(115200, "/dev/ttyS1", 0), new SerialDataHandler());
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
+        mPrinterClassSerialPort = new PrinterClassSerialPort(callbackHandler);
+
         mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "wake_lock");
         mHandler = new Handler(Looper.getMainLooper());
         mIsPrinting = false;
@@ -73,11 +66,9 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
             public void run() {
                 try {
                     mWakeLock.acquire();
-                    HdxUtil.SetPrinterPower(1);
-                    SystemClock.sleep(200);
+                    mPrinterClassSerialPort.open(mContext);
                     //开始打印
                     startPrintAsync(printCallback, printStr);
-                    SystemClock.sleep(2000);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -87,12 +78,22 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
                         }
                     });
                 } catch (Throwable t) {
-                    if (printCallback != null) {
-                        printCallback.onFailPrint();
-                    }
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (printCallback != null) {
+                                printCallback.onFailPrint();
+                            }
+                        }
+                    });
+
                 } finally {
-                    mWakeLock.release();
-                    HdxUtil.SetPrinterPower(0);
+                    try {
+                        mWakeLock.release();
+                        mPrinterClassSerialPort.close(mContext);
+                    } catch (Throwable t) {
+
+                    }
                     mIsPrinting = false;
                 }
 
@@ -100,29 +101,37 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
         });
     }
 
-    //mSerialPrinter.setLineSpace(50);//行间距
-//    mSerialPrinter.sendLineFeed();//换行
-//    mSerialPrinter.enlargeFontSize(1, 1); 正常字体打印
-    //mSerialPrinter.enlargeFontSize(1, 2); 倍高打印
-//    mSerialPrinter.enlargeFontSize(2, 1); 倍宽打印
-    // mSerialPrinter.printString(arr.get(1)); 打印文字
-    //mSerialPrinter.walkPaper(100); 继续走50点行
     private void startPrintAsync(final PrintCallback printCallback, final String printStr) throws Throwable {
-        mSerialPrinter.printString(printStr);
-        mSerialPrinter.walkPaper(80);// 测试结束往下走纸25点行 */
+        SystemClock.sleep(500);
+        mPrinterClassSerialPort.printText(printStr);
+        mPrinterClassSerialPort.printText("\n\n\n\n");
+        SystemClock.sleep(500);
     }
 
-    private class SerialDataHandler extends Handler {
+    private Handler callbackHandler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case SerialPortOperaion.SERIAL_RECEIVED_DATA_MSG:
-                    SerialPortOperaion.SerialReadData data = (SerialPortOperaion.SerialReadData) msg.obj;
-                    StringBuilder sb = new StringBuilder();
-                    for (int x = 0; x < data.size; x++) {
-                        sb.append(String.format("%02x", data.data[x]));
+                case PrinterClass.MESSAGE_READ:
+                    byte[] readBuf = (byte[]) msg.obj;
+                    if (readBuf[0] == 0x13) {
+                        PrintService.isFUll = true;
+                    } else if (readBuf[0] == 0x11) {
+                        PrintService.isFUll = false;
+                    } else {
+                        String readMessage = new String(readBuf, 0, msg.arg1);
+                        if (readMessage.contains("800"))// 80mm paper
+                        {
+                            PrintService.imageWidth = 72;
+                        } else if (readMessage.contains("580"))// 58mm paper
+                        {
+                            PrintService.imageWidth = 48;
+                        } else {
+
+                        }
                     }
-//                    ToastUtil.showToast(mContext, "data=" + sb);
+                    break;
             }
+            super.handleMessage(msg);
         }
-    }
+    };
 }
