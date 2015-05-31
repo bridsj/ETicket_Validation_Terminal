@@ -1,6 +1,4 @@
-package com.zkc.pc700.helper;
-
-import java.io.FileDescriptor;
+package com.zkc.helper;
 
 public class PC700Helper {
 		static {

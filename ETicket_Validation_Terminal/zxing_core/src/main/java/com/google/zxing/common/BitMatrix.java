@@ -40,7 +40,7 @@ public final class BitMatrix implements Cloneable {
   private final int rowSize;
   private final int[] bits;
 
-  // A helper to construct a square matrix.
+  // A com.zkc.helper to construct a square matrix.
   public BitMatrix(int dimension) {
     this(dimension, dimension);
   }

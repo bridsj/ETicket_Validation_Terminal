@@ -11,7 +11,7 @@ import com.ticket.validation.terminal.fragment.BaseFragment;
 import com.ticket.validation.terminal.fragment.FragmentValidationElectronic;
 import com.ticket.validation.terminal.fragment.FragmentValidationIDCard;
 import com.ticket.validation.terminal.fragment.FragmentValidationTicketMenu;
-import com.ticket.validation.terminal.fragment.qrcode.FragmentValidationQrCodeForWizarpos;
+import com.ticket.validation.terminal.fragment.qrcode.FragmentValidationQrCodeForGoogle;
 import com.ticket.validation.terminal.util.DeviceTypeUtil;
 
 /**
@@ -83,33 +83,30 @@ public class ValidationTicketActivity extends BaseUserActivity {
 
     private void createQrFragment() {
         if (DeviceTypeUtil.isHaoDeXin()) {
-//            mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
-//            ((FragmentValidationQrCodeForGoogle) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForGoogle.OnLightClickListener() {
+            initValidationForGoogle();
+        } else if (DeviceTypeUtil.isWizarpos()) {
+//            mFragmentValidationQrCode = FragmentValidationQrCodeForWizarpos.newInstance();
+//            ((FragmentValidationQrCodeForWizarpos) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForWizarpos.OnLightClickListener() {
 //                @Override
 //                public void onChangeLight(boolean isOpenLight) {
 //                    mIsOpenLight = isOpenLight;
 //                }
 //            });
 //            initContentFrame(mFragmentValidationQrCode);
-        } else if (DeviceTypeUtil.isWizarpos()) {
-            mFragmentValidationQrCode = FragmentValidationQrCodeForWizarpos.newInstance();
-            ((FragmentValidationQrCodeForWizarpos) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForWizarpos.OnLightClickListener() {
+        } else {
+           initValidationForGoogle();
+        }
+    }
+
+    private void initValidationForGoogle(){
+        mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
+            ((FragmentValidationQrCodeForGoogle) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForGoogle.OnLightClickListener() {
                 @Override
                 public void onChangeLight(boolean isOpenLight) {
                     mIsOpenLight = isOpenLight;
                 }
             });
             initContentFrame(mFragmentValidationQrCode);
-        } else {
-//            mFragmentValidationQrCode = FragmentValidationQrCodeForGoogle.newInstance();
-//            ((FragmentValidationQrCodeForGoogle) mFragmentValidationQrCode).setOnLightClickListener(new FragmentValidationQrCodeForGoogle.OnLightClickListener() {
-//                @Override
-//                public void onChangeLight(boolean isOpenLight) {
-//                    mIsOpenLight = isOpenLight;
-//                }
-//            });
-//            initContentFrame(mFragmentValidationQrCode);
-        }
     }
 
     @Override

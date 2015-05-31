@@ -1,9 +1,5 @@
-package com.zkc.helper.printer;
+package com.zkc.helper;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.util.HashMap;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -15,11 +11,17 @@ import android.view.Gravity;
 import android.view.View.MeasureSpec;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.HashMap;
 
 public abstract class BarcodeCreater {
 
@@ -195,7 +197,7 @@ public abstract class BarcodeCreater {
 		}
 
 		Bitmap bitmap = Bitmap.createBitmap(width, height,
-				Bitmap.Config.ARGB_8888);
+				Config.ARGB_8888);
 		bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
 		return bitmap;
 	}
@@ -211,7 +213,7 @@ public abstract class BarcodeCreater {
 	}
 
 	public static boolean saveBitmap2file(Bitmap bmp, String filename) {
-		CompressFormat format = Bitmap.CompressFormat.JPEG;
+		CompressFormat format = CompressFormat.JPEG;
 		int quality = 100;
 		OutputStream stream = null;
 		try {

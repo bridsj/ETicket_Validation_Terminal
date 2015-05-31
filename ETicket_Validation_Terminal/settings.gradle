@@ -1,4 +1,4 @@
-include ':app', ':zxing_core', ':zxing_shell', ':wizarpos_core', ':hao_de_xin_printer', ':zkc_pc700_printer'
+include ':app', ':zxing_core', ':zxing_shell', ':wizarpos_core', ':hao_de_xin_printer', ':zkc_pc700'
 
 include ':android_utils'
 project(':android_utils').projectDir = new File('../../android_common_modules/AndroidCommonModules/android_utils')

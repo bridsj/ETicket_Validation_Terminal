@@ -1,4 +1,4 @@
-package redirect.zuiapps.com.zkc_pc700_printer;
+package make.suite.zuiapps.com.zkc_pc700;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

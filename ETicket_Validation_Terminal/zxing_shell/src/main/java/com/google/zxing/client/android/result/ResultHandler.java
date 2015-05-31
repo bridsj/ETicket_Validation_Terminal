@@ -48,7 +48,7 @@ import java.util.ArrayList;
  * suggest the appropriate actions for each data type.
  *
  * This class also contains a bunch of utility methods to take common actions like opening a URL.
- * They could easily be moved into a helper object, but it can't be static because the Activity
+ * They could easily be moved into a com.zkc.helper object, but it can't be static because the Activity
  * instance is needed to launch an intent.
  *
  * @author dswitkin@google.com (Daniel Switkin)
