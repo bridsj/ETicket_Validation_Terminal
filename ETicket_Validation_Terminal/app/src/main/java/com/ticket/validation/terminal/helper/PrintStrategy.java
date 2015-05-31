@@ -7,7 +7,7 @@ package com.ticket.validation.terminal.helper;
 public interface PrintStrategy {
     void startPrintViaChar(final String printStr, final PrintCallback printCallback);
 
-    public interface PrintCallback {
+    interface PrintCallback {
 
         void onErrorPrint();
 
