@@ -65,4 +65,5 @@
     <dimen name="validation_result_padding">15dp</dimen>
 
     <dimen name="query_result_limit_height">190dp</dimen>
+    <dimen name="go_back_padding">10dp</dimen>
 </resources>
