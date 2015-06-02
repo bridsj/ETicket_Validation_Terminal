@@ -15,6 +15,6 @@ public interface PrintStrategy {
 
         void onFinishPrint();
 
-        void onFailPrint();
+        void onFailPrint(String errorMsg);
     }
 }

@@ -1,6 +1,7 @@
 package com.ticket.validation.terminal.helper;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -11,6 +12,8 @@ import com.zkc.helper.printer.PrintService;
 import com.zkc.helper.printer.PrinterClass;
 import com.zkc.pc700.helper.PrinterClassSerialPort;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -31,8 +34,6 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
         super();
         mContext = context;
         mExecutorService = Executors.newSingleThreadExecutor();
-        mPrinterClassSerialPort = new PrinterClassSerialPort(callbackHandler);
-        mPrinterClassSerialPort.setSerialPortBaudrate(38400);
         mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "wake_lock");
         mHandler = new Handler(Looper.getMainLooper());
         mIsPrinting = false;
@@ -66,6 +67,7 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
             public void run() {
                 try {
                     mWakeLock.acquire();
+                    mPrinterClassSerialPort = new PrinterClassSerialPort(callbackHandler);
                     mPrinterClassSerialPort.open(mContext);
                     //开始打印
                     startPrintAsync(printCallback, printStr);
@@ -77,12 +79,12 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
                             }
                         }
                     });
-                } catch (Throwable t) {
+                } catch (final Throwable t) {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
                             if (printCallback != null) {
-                                printCallback.onFailPrint();
+                                printCallback.onFailPrint("");
                             }
                         }
                     });
@@ -134,4 +136,67 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
             super.handleMessage(msg);
         }
     };
+
+    static public String getCpuType() {
+        String strInfo = getCpuString();
+        String strType = null;
+
+        if (strInfo.contains("ARMv5")) {
+            strType = "armv5";
+        } else if (strInfo.contains("ARMv6")) {
+            strType = "armv6";
+        } else if (strInfo.contains("ARMv7")) {
+            strType = "armv7";
+        } else if (strInfo.contains("Intel")) {
+            strType = "x86";
+        } else {
+            strType = "unknown";
+            return strType;
+        }
+
+        if (strInfo.contains("neon")) {
+            strType += "_neon";
+        } else if (strInfo.contains("vfpv3")) {
+            strType += "_vfpv3";
+        } else if (strInfo.contains(" vfp")) {
+            strType += "_vfp";
+        } else {
+            strType += "_none";
+        }
+
+        return strType;
+    }
+
+    static public String getCpuString() {
+        if (Build.CPU_ABI.equalsIgnoreCase("x86")) {
+            return "Intel";
+        }
+
+        String strInfo = "";
+        RandomAccessFile reader = null;
+        try {
+            byte[] bs = new byte[1024];
+            reader = new RandomAccessFile("/proc/cpuinfo", "r");
+            reader.read(bs);
+            String ret = new String(bs);
+            int index = ret.indexOf(0);
+            if (index != -1) {
+                strInfo = ret.substring(0, index);
+            } else {
+                strInfo = ret;
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return strInfo;
+    }
 }
