@@ -287,6 +287,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                                           ToastUtil.showToast(getApplicationContext(), String.format(getString(R.string.verify_succ), num));
                                                                           mProgressBar.setVisibility(View.GONE);
                                                                           mAdapter.verifySucc(mGoodsModel, num);
+                                                                          finish();
                                                                       }
 
                                                                       @Override
