@@ -189,8 +189,8 @@ public class FragmentValidationTicketMenu extends BaseFragment {
                                                     }
 
                                                     @Override
-                                                    public void onFailPrint() {
-                                                        ToastUtil.showToast(getApplicationContext(), R.string.print_fail);
+                                                    public void onFailPrint(String errorMsg) {
+                                                        ToastUtil.showToast(getApplicationContext(), getApplicationContext().getString(R.string.print_fail) + errorMsg);
                                                         mProgressBar.setVisibility(View.GONE);
                                                     }
                                                 });

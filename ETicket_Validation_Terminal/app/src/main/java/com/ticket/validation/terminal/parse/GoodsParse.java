@@ -127,7 +127,7 @@ public class GoodsParse {
         String str1 = mContext.getResources().getString(R.string.normal_print_str1);
         String printStr = String.format(str1, model.mPrintContent);
         if (model.mPrintCount > 1) {
-            printStr += "\r\n\r\n\r\n";
+            printStr += "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
             String str2 = mContext.getResources().getString(R.string.normal_print_str2);
             printStr = printStr + String.format(str2, model.mPrintContent);
         }
@@ -138,7 +138,7 @@ public class GoodsParse {
         String str1 = mContext.getResources().getString(R.string.re_print_str1);
         String printStr = String.format(str1, model.mPrintContent);
         if (model.mPrintCount > 1) {
-            printStr += "\r\n\r\n\r\n";
+            printStr += "\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n";
             String str2 = mContext.getResources().getString(R.string.re_print_str2);
             printStr = printStr + String.format(str2, model.mPrintContent);
         }

@@ -287,11 +287,12 @@ public class ValidationResultActivity extends BaseUserActivity {
                                                                           ToastUtil.showToast(getApplicationContext(), String.format(getString(R.string.verify_succ), num));
                                                                           mProgressBar.setVisibility(View.GONE);
                                                                           mAdapter.verifySucc(mGoodsModel, num);
+                                                                          finish();
                                                                       }
 
                                                                       @Override
-                                                                      public void onFailPrint() {
-                                                                          ToastUtil.showToast(getApplicationContext(), R.string.print_fail);
+                                                                      public void onFailPrint(String errorMsg) {
+                                                                          ToastUtil.showToast(getApplicationContext(), getString(R.string.print_fail)+errorMsg);
                                                                           mAdapter.verifySucc(mGoodsModel, num);
                                                                           mProgressBar.setVisibility(View.GONE);
                                                                       }
