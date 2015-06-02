@@ -32,7 +32,7 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
         mContext = context;
         mExecutorService = Executors.newSingleThreadExecutor();
         mPrinterClassSerialPort = new PrinterClassSerialPort(callbackHandler);
-
+        mPrinterClassSerialPort.setSerialPortBaudrate(38400);
         mWakeLock = ((PowerManager) context.getSystemService(Context.POWER_SERVICE)).newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "wake_lock");
         mHandler = new Handler(Looper.getMainLooper());
         mIsPrinting = false;
