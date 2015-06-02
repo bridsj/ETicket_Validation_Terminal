@@ -195,8 +195,8 @@
             android:id="@+id/back_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp">
+            android:paddingBottom="@dimen/go_back_padding"
+            android:paddingTop="@dimen/go_back_padding">
 
             <ImageView
                 style="@style/go_back"

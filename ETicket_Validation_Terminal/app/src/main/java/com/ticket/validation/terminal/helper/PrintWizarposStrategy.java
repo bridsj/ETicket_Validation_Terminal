@@ -87,7 +87,7 @@
 //                        @Override
 //                        public void run() {
 //                            if (printCallback != null) {
-//                                printCallback.onFailPrint();
+//                                printCallback.onFailPrint("");
 //                            }
 //                        }
 //                    });
