@@ -75,4 +75,16 @@
     <string name="exit_warn">再按一次即可退出</string>
     <string name="printing">正在打印其它内容，请稍后再试</string>
     <string name="print_fail">打印相关内容失败，请稍后再试</string>
+
+
+    <string name="goodsname">商品名：</string>
+    <string name="endtime">有效期：</string>
+    <string name="acttime">预定日期：</string>
+    <string name="endtime_desc" formatted="false">%s至%s</string>
+    <string name="piececode">验证码：</string>
+    <string name="storagestatus">票码状态：</string>
+    <string name="username">姓名：</string>
+    <string name="idcard">身份证：</string>
+    <string name="ordercomments">订单备注：</string>
+    <string name="status">是否可验证：</string>
 </resources>

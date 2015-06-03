@@ -20,8 +20,8 @@ import android.widget.ProgressBar;
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.model.ErrorModel;
-import com.ticket.validation.terminal.model.ReportPrintModel;
-import com.ticket.validation.terminal.parse.ReportParse;
+import com.ticket.validation.terminal.model.GoodsModel;
+import com.ticket.validation.terminal.parse.GoodsParse;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
@@ -30,6 +30,8 @@ import com.ticket.validation.terminal.util.ToastUtil;
 
 import org.json.JSONObject;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -109,13 +111,13 @@ public class QueryActivity extends BaseUserActivity {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
-                mRestfulRequest.dailyreportJson(CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
+                mRestfulRequest.queryChecked(text, CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
                     @Override
                     public void success(final JSONObject jsonObject, Response response) {
                         mExecutorService.execute(new Runnable() {
                             @Override
                             public void run() {
-                                final Object object = ReportParse.parse(getApplicationContext(), jsonObject);
+                                final Object object = GoodsParse.parse(jsonObject);
                                 if (isFinishing()) {
                                     return;
                                 }
@@ -129,10 +131,17 @@ public class QueryActivity extends BaseUserActivity {
                                             if (object instanceof ErrorModel) {
                                                 mProgressBar.setVisibility(View.GONE);
                                                 ToastUtil.showToast(getApplicationContext(), ((ErrorModel) object).mInfo);
-                                            } else if (object instanceof ReportPrintModel) {
-                                                mProgressBar.setVisibility(View.GONE);
-                                                Intent intent = new Intent(QueryActivity.this, QueryResultActivity.class);
-                                                startActivity(intent);
+                                            } else if (object instanceof List) {
+                                                LinkedList<GoodsModel> goodsList = (LinkedList<GoodsModel>) object;
+                                                if (goodsList.isEmpty()) {
+                                                    mProgressBar.setVisibility(View.GONE);
+                                                    ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                                                } else {
+                                                    mProgressBar.setVisibility(View.GONE);
+                                                    Intent intent = new Intent(QueryActivity.this, QueryResultActivity.class);
+                                                    intent.putExtra(QueryResultActivity.MODEL, goodsList.get(0));
+                                                    startActivity(intent);
+                                                }
                                             } else {
                                                 mProgressBar.setVisibility(View.GONE);
                                                 ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);

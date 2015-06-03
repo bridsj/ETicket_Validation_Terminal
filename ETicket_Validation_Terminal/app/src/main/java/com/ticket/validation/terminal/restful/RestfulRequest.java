@@ -42,4 +42,7 @@ public interface RestfulRequest {
     //统计报表协议
     @GET("/index.php/mobilesite/mobile/dailyreportJson")
     void dailyreportJson(@Query("sessionid") String sessionid, Callback<JSONObject> callback);
+
+    @GET("/index.php/mobilesite/mobile/queryChecked")
+    void queryChecked(@Query("code") String code, @Query("sessionid") String sessionid, Callback<JSONObject> callback);
 }

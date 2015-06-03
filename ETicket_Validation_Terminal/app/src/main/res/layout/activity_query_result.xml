@@ -54,6 +54,7 @@
                     android:paddingLeft="50dp">
 
                     <TextView
+                        android:id="@+id/row1_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -62,7 +63,7 @@
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
-                        android:id="@+id/name_text"
+                        android:id="@+id/row1_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -73,67 +74,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
+                        android:id="@+id/row2_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_id_card"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
-                        android:id="@+id/id_card_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="@color/black_60_alpha"
-                        android:textSize="@dimen/validation_result_info_text_size" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
-                    android:orientation="horizontal"
-                    android:paddingLeft="50dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/validation_validity"
-                        android:textColor="@color/black_60_alpha"
-                        android:textSize="@dimen/validation_result_info_text_size" />
-
-                    <TextView
-                        android:id="@+id/validity_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:textColor="@color/black_60_alpha"
-                        android:textSize="@dimen/validation_result_info_text_size" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
-                    android:orientation="horizontal"
-                    android:paddingLeft="50dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:text="@string/validation_mark"
-                        android:textColor="@color/black_60_alpha"
-                        android:textSize="@dimen/validation_result_info_text_size" />
-
-                    <TextView
+                        android:id="@+id/row2_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -144,19 +99,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/row3_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_mark"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
+                        android:id="@+id/row3_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -167,19 +124,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/row4_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_mark"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
+                        android:id="@+id/row4_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -190,19 +149,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/row5_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_mark"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
+                        android:id="@+id/row5_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -213,19 +174,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/row6_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_mark"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
+                        android:id="@+id/row6_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -236,19 +199,21 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/row7_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_mark"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
+                        android:id="@+id/row7_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
@@ -259,26 +224,53 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/validation_result_info_margin2"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
                     android:orientation="horizontal"
                     android:paddingLeft="50dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/row8_title"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="@string/validation_mark"
+                        android:text="@string/validation_name"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
 
                     <TextView
-                        android:id="@+id/mark_text"
+                        android:id="@+id/row8_desc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:textColor="@color/black_60_alpha"
                         android:textSize="@dimen/validation_result_info_text_size" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/validation_result_info_margin"
+                    android:orientation="horizontal"
+                    android:paddingLeft="50dp">
+
+                    <TextView
+                        android:id="@+id/row9_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="@string/validation_name"
+                        android:textColor="@color/black_60_alpha"
+                        android:textSize="@dimen/validation_result_info_text_size" />
+
+                    <TextView
+                        android:id="@+id/row9_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:textColor="@color/black_60_alpha"
+                        android:textSize="@dimen/validation_result_info_text_size" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 
