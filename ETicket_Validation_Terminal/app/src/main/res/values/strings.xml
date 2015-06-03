@@ -87,4 +87,6 @@
     <string name="idcard">身份证：</string>
     <string name="ordercomments">订单备注：</string>
     <string name="status">是否可验证：</string>
+
+    <string name="download_start">开始下载...</string>
 </resources>

@@ -15,9 +15,11 @@ import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
+import com.zuiapps.suite.utils.app.AppUtil;
 
 import org.json.JSONObject;
 
+import download.AppDownloadManager;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -78,6 +80,7 @@ public class SysInfoActivity extends BaseUserActivity {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
+                AppDownloadManager.getInstance(getApplicationContext()).download("http://zuimeiapp.zuimeia.com/android/wallpaper.apk", AppUtil.getAppName(getApplicationContext()));
             }
         });
         getHandler().postDelayed(new Runnable() {
