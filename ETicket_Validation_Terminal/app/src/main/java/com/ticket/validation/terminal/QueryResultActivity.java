@@ -61,7 +61,7 @@ public class QueryResultActivity extends BaseUserActivity {
             public void run() {
                 loadData();
             }
-        }, 100);
+        }, 0);
     }
 
     @Override
