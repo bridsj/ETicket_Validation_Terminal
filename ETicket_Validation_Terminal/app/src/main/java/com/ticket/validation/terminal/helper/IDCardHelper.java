@@ -19,6 +19,8 @@ public class IDCardHelper {
         mContext = context;
         if (DeviceTypeUtil.isGuZhiLian()) {
             mIDCardStrategy = new IDCardZKCStrategy(context);
+        } else if (DeviceTypeUtil.isHaoDeXin()) {
+            mIDCardStrategy = new IDCardHaoDeXinStrategy(context);
         }
     }
 

@@ -10,6 +10,7 @@ import android.os.SystemClock;
 import com.hdx.lib.printer.SerialPrinter;
 import com.hdx.lib.serial.SerialParam;
 import com.hdx.lib.serial.SerialPortOperaion;
+import com.zuiapps.suite.utils.log.LogUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,11 +29,12 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
     private SerialPrinter mSerialPrinter;
     private Handler mHandler;
 
-    public PrintHaoDeXinStrategy(Context context) {
+    public PrintHaoDeXinStrategy(final Context context) {
         super();
         mContext = context;
         mExecutorService = Executors.newSingleThreadExecutor();
         mSerialPrinter = SerialPrinter.GetSerialPrinter();
+
         HdxUtil.SwitchSerialFunction(HdxUtil.SERIAL_FUNCTION_PRINTER);
         try {
             mSerialPrinter.OpenPrinter(new SerialParam(115200, "/dev/ttyS1", 0), new SerialDataHandler());
@@ -75,8 +77,17 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
                     HdxUtil.SetPrinterPower(1);
                     SystemClock.sleep(200);
                     //开始打印
-                    startPrintAsync(printCallback, printStr);
-                    SystemClock.sleep(2000);
+                    startPrintAsync(printCallback, printStr);//一行100秒
+                    int rowNum = 0;
+                    try {
+                        rowNum = printStr.split("\n").length;
+                    } catch (Throwable t) {
+                        t.printStackTrace();
+                    }
+                    if (rowNum < 10) {
+                        rowNum = 10;
+                    }
+                    SystemClock.sleep(rowNum * 130);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -112,6 +123,7 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
     // mSerialPrinter.printString(arr.get(1)); 打印文字
     //mSerialPrinter.walkPaper(100); 继续走50点行
     private void startPrintAsync(final PrintCallback printCallback, final String printStr) throws Throwable {
+        LogUtil.e("");
         mSerialPrinter.printString(printStr);
         mSerialPrinter.walkPaper(80);// 测试结束往下走纸25点行 */
     }

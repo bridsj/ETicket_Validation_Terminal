@@ -51,7 +51,6 @@ dependencies {
     compile project(':zxing_shell')
     compile project(':hao_de_xin_printer')
     //    compile project(':wizarpos_core')
-    compile project(':zkc_pc700')
 }
 android.applicationVariants.all { variant ->
     variant.outputs[0].processManifest.doLast {

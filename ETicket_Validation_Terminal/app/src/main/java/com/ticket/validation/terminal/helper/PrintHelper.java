@@ -22,7 +22,7 @@ public class PrintHelper {
         } else if (DeviceTypeUtil.isWizarpos()) {
 //            mPrintStrategy = new PrintWizarposStrategy(context);
         }else if(DeviceTypeUtil.isGuZhiLian()){
-            mPrintStrategy=new PrintZkcPc700Strategy(context);
+//            mPrintStrategy=new PrintZkcPc700Strategy(context);
         }
     }
 
