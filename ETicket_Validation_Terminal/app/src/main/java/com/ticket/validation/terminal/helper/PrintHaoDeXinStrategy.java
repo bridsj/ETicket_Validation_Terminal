@@ -10,7 +10,6 @@ import android.os.SystemClock;
 import com.hdx.lib.printer.SerialPrinter;
 import com.hdx.lib.serial.SerialParam;
 import com.hdx.lib.serial.SerialPortOperaion;
-import com.zuiapps.suite.utils.log.LogUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -87,7 +86,7 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
                     if (rowNum < 10) {
                         rowNum = 10;
                     }
-                    SystemClock.sleep(rowNum * 130);
+                    SystemClock.sleep(rowNum * 150);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -123,9 +122,8 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
     // mSerialPrinter.printString(arr.get(1)); 打印文字
     //mSerialPrinter.walkPaper(100); 继续走50点行
     private void startPrintAsync(final PrintCallback printCallback, final String printStr) throws Throwable {
-        LogUtil.e("");
         mSerialPrinter.printString(printStr);
-        mSerialPrinter.walkPaper(80);// 测试结束往下走纸25点行 */
+        mSerialPrinter.walkPaper(100);// 测试结束往下走纸25点行 */
     }
 
     private class SerialDataHandler extends Handler {
