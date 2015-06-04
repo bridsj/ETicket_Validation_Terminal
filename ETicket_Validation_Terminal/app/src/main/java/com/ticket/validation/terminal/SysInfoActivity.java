@@ -9,18 +9,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ticket.validation.terminal.db.CacheDBUtil;
-import com.ticket.validation.terminal.model.UserModel;
-import com.ticket.validation.terminal.parse.UserParse;
+import com.ticket.validation.terminal.model.SysInfoModel;
+import com.ticket.validation.terminal.parse.SysInfoParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
+import com.zuiapps.suite.utils.string.StringUtils;
 
-import org.json.JSONObject;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by dengshengjin on 15/5/15.
@@ -33,6 +31,7 @@ public class SysInfoActivity extends BaseUserActivity {
     private Handler mHandler;
     private ViewGroup mUpgradeBox;
     private ProgressBar mProgressBar;
+    private ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
 
     @Override
     protected void initData() {
@@ -78,46 +77,33 @@ public class SysInfoActivity extends BaseUserActivity {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
+//                AppDownloadManager.getInstance(getApplicationContext()).download("http://zuimeiapp.zuimeia.com/android/wallpaper.apk", AppUtil.getAppName(getApplicationContext()));
             }
         });
-        getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadData();
-            }
-        }, 300);
+        loadData();
     }
 
     private void loadData() {
-
-        mRestfulRequest.updateConfigJson(CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
-
+        mExecutorService.execute(new Runnable() {
             @Override
-            public void success(final JSONObject jsonObject, Response response) {
-                final UserModel model = UserParse.parseUser(jsonObject);
-                if (model != null) {
-                    CacheDBUtil.saveAppUrl(getApplicationContext(), model.mUrl);
-                    CacheDBUtil.saveName(getApplicationContext(), model.mUser);
-                    if (isFinishing()) {
-                        return;
+            public void run() {
+                try {
+                    String jsonData = StringUtils.inputSteamToString(getAssets().open("default_system_info.txt"), "utf-8");
+                    final SysInfoModel model = SysInfoParse.parse(jsonData);
+                    if (model != null) {
+                        getHandler().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                mUrlText.setText(String.format(getString(R.string.sys_info_address), model.mInfo));
+                                mIdText.setText(String.format(getString(R.string.sys_info_id), model.mData));
+                            }
+                        });
                     }
-                    getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            mUrlText.setText(String.format(getString(R.string.sys_info_address), model.mUrl));
-                            mIdText.setText(String.format(getString(R.string.sys_info_id), model.mUser));
-                        }
-                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
-
-            @Override
-            public void failure(RetrofitError error) {
-
-
-            }
         });
-
 
     }
 }

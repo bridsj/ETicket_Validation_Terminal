@@ -16,4 +16,5 @@
     <dimen name="keyboard_limit_width2">550dp</dimen>
 
     <dimen name="validation_result_limit_height">345dp</dimen>
+    <dimen name="query_result_max_height">300dp</dimen>
 </resources>
