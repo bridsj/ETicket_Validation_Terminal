@@ -7,10 +7,7 @@ import android.text.TextUtils;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.helper.SessionHelper;
 import com.ticket.validation.terminal.model.LoginModel;
-import com.ticket.validation.terminal.model.UserModel;
 import com.ticket.validation.terminal.parse.UserParse;
-import com.zuiapps.suite.utils.device.PhoneUtil;
-import com.zuiapps.suite.utils.log.LogUtil;
 
 import org.json.JSONObject;
 
@@ -52,7 +49,6 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        LogUtil.i("display="+ PhoneUtil.getResolution(getApplicationContext())+","+PhoneUtil.getDisplayDensity(getApplicationContext()));//800x444,120.0
         final SessionHelper mSessionHelper = SessionHelper.getInstance(getApplicationContext());
         mSessionHelper.loginUser(new Callback<JSONObject>() {
 
@@ -67,22 +63,6 @@ public class SplashActivity extends BaseActivity {
                     Intent intent = new Intent(BaseUserActivity.USER_BROADCASTRECEIVER);
                     intent.setPackage(getPackageName());
                     sendBroadcast(intent);
-                    mSessionHelper.updateConfigJson(new Callback<JSONObject>() {
-                        @Override
-                        public void success(JSONObject jsonObject, Response response) {
-                            UserModel model = UserParse.parseUser(jsonObject);
-                            if (model != null) {
-                                CacheDBUtil.saveAppUrl(getApplicationContext(), model.mUrl);
-                                CacheDBUtil.saveName(getApplicationContext(), model.mUser);
-                            }
-                        }
-
-                        @Override
-                        public void failure(RetrofitError error) {
-
-                        }
-                    });
-
                 }
             }
 

@@ -20,7 +20,7 @@ import android.widget.ProgressBar;
 import com.ticket.validation.terminal.adapter.KeyboardAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.model.ErrorModel;
-import com.ticket.validation.terminal.model.GoodsModel;
+import com.ticket.validation.terminal.model.TicketModel;
 import com.ticket.validation.terminal.parse.TicketParse;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
@@ -132,14 +132,14 @@ public class QueryActivity extends BaseUserActivity {
                                                 mProgressBar.setVisibility(View.GONE);
                                                 ToastUtil.showToast(getApplicationContext(), ((ErrorModel) object).mInfo);
                                             } else if (object instanceof List) {
-                                                LinkedList<GoodsModel> goodsList = (LinkedList<GoodsModel>) object;
+                                                LinkedList<TicketModel> goodsList = (LinkedList<TicketModel>) object;
                                                 if (goodsList.isEmpty()) {
                                                     mProgressBar.setVisibility(View.GONE);
                                                     ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
                                                 } else {
                                                     mProgressBar.setVisibility(View.GONE);
                                                     Intent intent = new Intent(QueryActivity.this, QueryResultActivity.class);
-                                                    intent.putExtra(QueryResultActivity.MODEL, goodsList.get(0));
+                                                    intent.putExtra(QueryResultActivity.MODEL, goodsList);
                                                     startActivity(intent);
                                                 }
                                             } else {

@@ -29,13 +29,13 @@ public class SessionReceiver extends BroadcastReceiver {
         mRestfulRequest.activate(session, new Callback<JSONObject>() {
             @Override
             public void success(JSONObject jsonObject, Response response) {
-                SessionHelper.getInstance(context).openNextSession();
             }
 
             @Override
             public void failure(RetrofitError error) {
-                SessionHelper.getInstance(context).openNextSession();
+
             }
         });
+        SessionHelper.getInstance(context).openNextSession();
     }
 }
