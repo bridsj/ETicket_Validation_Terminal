@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sys_info_normal_text" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="@dimen/report_h_margin"
+        android:text="X"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sys_info_normal_text" />
+
+    <TextView
+        android:id="@+id/userId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="@dimen/report_h_margin"
+        android:text="X"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sys_info_normal_text" />
+
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="@dimen/report_h_margin"
+        android:text="100"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sys_info_normal_text" />
+</LinearLayout>
