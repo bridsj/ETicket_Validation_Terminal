@@ -21,7 +21,7 @@ import com.ticket.validation.terminal.adapter.KeyboardAdapter;
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.GoodsModel;
-import com.ticket.validation.terminal.parse.GoodsParse;
+import com.ticket.validation.terminal.parse.TicketParse;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.KeyCodeUtil;
@@ -117,7 +117,7 @@ public class QueryActivity extends BaseUserActivity {
                         mExecutorService.execute(new Runnable() {
                             @Override
                             public void run() {
-                                final Object object = GoodsParse.parse(jsonObject);
+                                final Object object = TicketParse.parse(jsonObject);
                                 if (isFinishing()) {
                                     return;
                                 }
