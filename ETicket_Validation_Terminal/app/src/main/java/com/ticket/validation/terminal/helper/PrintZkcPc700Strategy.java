@@ -109,7 +109,7 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
         mPrinterClassSerialPort.printText("\n\n\n\n\n\n\n");
         int rowNum = 0;
         try {
-            rowNum = printStr.split("\n").length + 3;
+            rowNum = printStr.split("\n").length + 7;
         } catch (Throwable t) {
             t.printStackTrace();
         }
