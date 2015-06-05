@@ -83,11 +83,11 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
                     } catch (Throwable t) {
                         t.printStackTrace();
                     }
-                    if (rowNum < 10) {
-                        rowNum = 10;
+                    if (rowNum < 5) {
+                        rowNum = 5;
                     }
 
-                    SystemClock.sleep(rowNum * 105);
+                    SystemClock.sleep(rowNum * 102);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
