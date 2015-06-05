@@ -1,5 +1,7 @@
 package com.ticket.validation.terminal;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
@@ -9,16 +11,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ticket.validation.terminal.db.CacheDBUtil;
+import com.ticket.validation.terminal.model.ErrorModel;
 import com.ticket.validation.terminal.model.SysInfoModel;
+import com.ticket.validation.terminal.model.UpgradeModel;
 import com.ticket.validation.terminal.parse.SysInfoParse;
+import com.ticket.validation.terminal.parse.UpgradeParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
 import com.ticket.validation.terminal.util.LoginInterceporUtil;
+import com.ticket.validation.terminal.util.ToastUtil;
+import com.zuiapps.suite.utils.app.AppUtil;
 import com.zuiapps.suite.utils.string.StringUtils;
+
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import download.AppDownloadManager;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * Created by dengshengjin on 15/5/15.
@@ -77,10 +91,61 @@ public class SysInfoActivity extends BaseUserActivity {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
-//                AppDownloadManager.getInstance(getApplicationContext()).download("http://zuimeiapp.zuimeia.com/android/wallpaper.apk", AppUtil.getAppName(getApplicationContext()));
+                int versionCode = AppUtil.getVersionCode(getApplicationContext());
+                mRestfulRequest.checkUpdate(versionCode + "", CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
+
+                    @Override
+                    public void success(JSONObject jsonObject, Response response) {
+                        Object object = UpgradeParse.parse(jsonObject);
+                        mProgressBar.setVisibility(View.GONE);
+                        if (object == null) {
+                            ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                        } else {
+                            if (object instanceof ErrorModel) {
+                                ToastUtil.showToast(getApplicationContext(), ((ErrorModel) object).mInfo);
+                            } else if (object instanceof UpgradeModel) {
+                                final UpgradeModel upgradeModel = (UpgradeModel) object;
+                                getHandler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        showUpgradeDialog(upgradeModel.mData);
+                                    }
+                                });
+                            } else {
+                                ToastUtil.showToast(getApplicationContext(), R.string.loading_fail);
+                            }
+
+
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        mProgressBar.setVisibility(View.GONE);
+                        ToastUtil.showToast(getApplicationContext(), R.string.loading_fail2);
+                    }
+                });
             }
         });
         loadData();
+    }
+
+    private void showUpgradeDialog(final String downloadUrl) {
+        new AlertDialog.Builder(SysInfoActivity.this, R.style.alert_dialog_style).setTitle(getApplicationContext().getString(R.string.warn_title))
+                .setMessage(getApplicationContext().getString(R.string.warn_content_str)).setNegativeButton(R.string.cancel_str, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+
+        }).setPositiveButton(R.string.ok_str, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AppDownloadManager.getInstance(getApplicationContext()).download(downloadUrl, AppUtil.getAppName(getApplicationContext()));
+            }
+        }).create().show();
     }
 
     private void loadData() {
