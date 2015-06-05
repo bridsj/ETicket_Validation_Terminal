@@ -1,6 +1,7 @@
 package com.ticket.validation.terminal.helper;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -10,7 +11,10 @@ import android.os.SystemClock;
 import com.hdx.lib.printer.SerialPrinter;
 import com.hdx.lib.serial.SerialParam;
 import com.hdx.lib.serial.SerialPortOperaion;
+import com.zuiapps.suite.utils.log.LogUtil;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,7 +33,7 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
     private Handler mHandler;
 
     public PrintHaoDeXinStrategy(final Context context) {
-        super();
+        super();       LogUtil.e("cpu=" + getCpuType());
         mContext = context;
         mExecutorService = Executors.newSingleThreadExecutor();
         mSerialPrinter = SerialPrinter.GetSerialPrinter();
@@ -86,6 +90,7 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
                     if (rowNum < 10) {
                         rowNum = 10;
                     }
+
                     SystemClock.sleep(rowNum * 105);
                     mHandler.post(new Runnable() {
                         @Override
@@ -138,5 +143,68 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
 //                    ToastUtil.showToast(mContext, "data=" + sb);
             }
         }
+    }
+
+    static public String getCpuType() {
+        String strInfo = getCpuString();
+        String strType = null;
+
+        if (strInfo.contains("ARMv5")) {
+            strType = "armv5";
+        } else if (strInfo.contains("ARMv6")) {
+            strType = "armv6";
+        } else if (strInfo.contains("ARMv7")) {
+            strType = "armv7";
+        } else if (strInfo.contains("Intel")) {
+            strType = "x86";
+        } else {
+            strType = "unknown";
+            return strType;
+        }
+
+        if (strInfo.contains("neon")) {
+            strType += "_neon";
+        } else if (strInfo.contains("vfpv3")) {
+            strType += "_vfpv3";
+        } else if (strInfo.contains(" vfp")) {
+            strType += "_vfp";
+        } else {
+            strType += "_none";
+        }
+
+        return strType;
+    }
+
+    static public String getCpuString() {
+        if (Build.CPU_ABI.equalsIgnoreCase("x86")) {
+            return "Intel";
+        }
+
+        String strInfo = "";
+        RandomAccessFile reader = null;
+        try {
+            byte[] bs = new byte[1024];
+            reader = new RandomAccessFile("/proc/cpuinfo", "r");
+            reader.read(bs);
+            String ret = new String(bs);
+            int index = ret.indexOf(0);
+            if (index != -1) {
+                strInfo = ret.substring(0, index);
+            } else {
+                strInfo = ret;
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return strInfo;
     }
 }
