@@ -86,7 +86,7 @@ public class PrintHaoDeXinStrategy implements PrintStrategy {
                     if (rowNum < 10) {
                         rowNum = 10;
                     }
-                    SystemClock.sleep(rowNum * 150);
+                    SystemClock.sleep(rowNum * 105);
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
