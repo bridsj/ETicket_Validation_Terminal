@@ -106,7 +106,7 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
     private void startPrintAsync(final PrintCallback printCallback, final String printStr) throws Throwable {
         SystemClock.sleep(200);
         mPrinterClassSerialPort.printText(printStr);
-        mPrinterClassSerialPort.printText("\n\n\n\n");
+        mPrinterClassSerialPort.printText("\n\n\n\n\n\n\n");
         int rowNum = 0;
         try {
             rowNum = printStr.split("\n").length + 3;
