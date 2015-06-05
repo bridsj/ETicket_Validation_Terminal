@@ -92,7 +92,7 @@ public class SysInfoActivity extends BaseUserActivity {
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
                 int versionCode = AppUtil.getVersionCode(getApplicationContext());
-                mRestfulRequest.checkUpdate(versionCode+"", CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
+                mRestfulRequest.checkUpdate(versionCode + "", CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
 
                     @Override
                     public void success(JSONObject jsonObject, Response response) {
@@ -143,7 +143,11 @@ public class SysInfoActivity extends BaseUserActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                AppDownloadManager.getInstance(getApplicationContext()).download(downloadUrl, AppUtil.getAppName(getApplicationContext()));
+                if (LoginInterceporUtil.pauseRedirect(getApplicationContext())) {
+                    return;
+                }
+                String realDownloadUrl = downloadUrl + "?sessionId=" + CacheDBUtil.getSessionId(getApplicationContext()) + "&outId=" + System.currentTimeMillis() + "&device=2";
+                AppDownloadManager.getInstance(getApplicationContext()).download(realDownloadUrl, AppUtil.getAppName(getApplicationContext()));
             }
         }).create().show();
     }
