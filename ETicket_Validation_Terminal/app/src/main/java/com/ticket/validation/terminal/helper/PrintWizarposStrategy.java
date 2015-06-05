@@ -111,5 +111,16 @@ public class PrintWizarposStrategy implements PrintStrategy {
         PrinterInterface.PrinterWrite(
                 PrinterCommand.getCmdEscDN(4),
                 PrinterCommand.getCmdEscDN(4).length);
+        int rowNum = 0;
+        try {
+            rowNum = printStr.split("\n").length;
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        if (rowNum < 5) {
+            rowNum = 5;
+        }
+
+        SystemClock.sleep(rowNum * 85);
     }
 }
