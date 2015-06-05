@@ -62,6 +62,7 @@
             android:layout_marginTop="@dimen/sys_info_button_margin"
             android:text="@string/sys_info_no_upgrade"
             android:textColor="@color/red"
+            android:visibility="invisible"
             android:textSize="@dimen/sys_info_warn_text" />
 
         <RelativeLayout

@@ -45,4 +45,7 @@ public interface RestfulRequest {
 
     @GET("/index.php/mobilesite/mobile/queryChecked")
     void queryChecked(@Query("code") String code, @Query("sessionid") String sessionid, Callback<JSONObject> callback);
+
+    @GET("/index.php/mobilesite/mobile/checkUpdate")
+    void checkUpdate(@Query("version") String version, @Query("sessionid") String sessionid, Callback<JSONObject> callback);
 }
