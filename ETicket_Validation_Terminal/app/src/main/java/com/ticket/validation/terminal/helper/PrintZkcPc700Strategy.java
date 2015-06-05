@@ -113,11 +113,11 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-        if (rowNum < 10) {
-            rowNum = 10;
+        if (rowNum < 5) {
+            rowNum = 5;
         }
 
-        SystemClock.sleep(rowNum * 105);
+        SystemClock.sleep(rowNum * 170);
     }
 
     private Handler callbackHandler = new Handler() {
