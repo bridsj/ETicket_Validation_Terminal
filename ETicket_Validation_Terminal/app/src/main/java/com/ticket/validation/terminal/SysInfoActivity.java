@@ -91,8 +91,8 @@ public class SysInfoActivity extends BaseUserActivity {
                     return;
                 }
                 mProgressBar.setVisibility(View.VISIBLE);
-                int versionCode = AppUtil.getVersionCode(getApplicationContext());
-                mRestfulRequest.checkUpdate(versionCode + "", CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
+                String versionName = AppUtil.getVersionName(getApplicationContext());
+                mRestfulRequest.checkUpdate(versionName, CacheDBUtil.getSessionId(getApplicationContext()), new Callback<JSONObject>() {
 
                     @Override
                     public void success(JSONObject jsonObject, Response response) {
