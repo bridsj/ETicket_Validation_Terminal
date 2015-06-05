@@ -104,10 +104,20 @@ public class PrintZkcPc700Strategy implements PrintStrategy {
     }
 
     private void startPrintAsync(final PrintCallback printCallback, final String printStr) throws Throwable {
-        SystemClock.sleep(500);
+        SystemClock.sleep(200);
         mPrinterClassSerialPort.printText(printStr);
         mPrinterClassSerialPort.printText("\n\n\n\n");
-        SystemClock.sleep(500);
+        int rowNum = 0;
+        try {
+            rowNum = printStr.split("\n").length + 3;
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        if (rowNum < 10) {
+            rowNum = 10;
+        }
+
+        SystemClock.sleep(rowNum * 105);
     }
 
     private Handler callbackHandler = new Handler() {
