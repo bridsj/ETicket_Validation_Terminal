@@ -20,8 +20,7 @@
         android:gravity="center"
         android:paddingLeft="@dimen/report_h_margin"
         android:text="X"
-        android:visibility="gone"
-        android:textColor="@color/black"
+        android:textColor="@color/black_50_alpha"
         android:textSize="@dimen/sys_info_normal_text" />
 
     <TextView
