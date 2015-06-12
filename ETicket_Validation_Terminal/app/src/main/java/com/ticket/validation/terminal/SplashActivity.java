@@ -59,7 +59,7 @@ public class SplashActivity extends BaseActivity {
                 if (model != null && !TextUtils.isEmpty(model.mSession)) {
                     CacheDBUtil.saveSessionId(getApplicationContext(), model.mSession);
                     CacheDBUtil.saveUserName(getApplicationContext(), model.mUser);
-                    mSessionHelper.sendSession();
+                    mSessionHelper.openNextSession();
                     Intent intent = new Intent(BaseUserActivity.USER_BROADCASTRECEIVER);
                     intent.setPackage(getPackageName());
                     sendBroadcast(intent);

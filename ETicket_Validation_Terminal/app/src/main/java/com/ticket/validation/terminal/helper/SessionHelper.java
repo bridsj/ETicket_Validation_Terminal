@@ -50,7 +50,7 @@ public class SessionHelper {
         mContext.sendBroadcast(intent);
     }
 
-    private final int ALARM = 1;
+    private final int ALARM = 5;
 
     public void openNextSession() {
         long now = SystemClock.elapsedRealtime();

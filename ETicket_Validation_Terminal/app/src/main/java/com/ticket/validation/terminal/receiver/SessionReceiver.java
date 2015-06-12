@@ -3,9 +3,12 @@ package com.ticket.validation.terminal.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.ticket.validation.terminal.db.CacheDBUtil;
 import com.ticket.validation.terminal.helper.SessionHelper;
+import com.ticket.validation.terminal.model.LoginModel;
+import com.ticket.validation.terminal.parse.UserParse;
 import com.ticket.validation.terminal.restful.ApiConstants;
 import com.ticket.validation.terminal.restful.ReqRestAdapter;
 import com.ticket.validation.terminal.restful.RestfulRequest;
@@ -29,6 +32,24 @@ public class SessionReceiver extends BroadcastReceiver {
         mRestfulRequest.activate(session, new Callback<JSONObject>() {
             @Override
             public void success(JSONObject jsonObject, Response response) {
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+        final SessionHelper mSessionHelper = SessionHelper.getInstance(context);
+        mSessionHelper.loginUser(new Callback<JSONObject>() {
+
+            @Override
+            public void success(JSONObject jsonObject, Response response) {
+                LoginModel model = UserParse.parseLogin(jsonObject);
+
+                if (model != null && !TextUtils.isEmpty(model.mSession)) {
+                    CacheDBUtil.saveSessionId(context, model.mSession);
+                    CacheDBUtil.saveUserName(context, model.mUser);
+                }
             }
 
             @Override
