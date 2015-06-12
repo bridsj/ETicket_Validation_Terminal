@@ -54,7 +54,8 @@ public class ReportParse {
             } else {
                 ErrorModel errorModel = new ErrorModel();
                 errorModel.mStatus = status;
-                errorModel.mInfo = jObj.optString("info");
+//                errorModel.mInfo = jObj.optString("info");
+                errorModel.mInfo = mContext.getString(R.string.loading_empty_data);
                 return errorModel;
             }
         } catch (Throwable t) {
