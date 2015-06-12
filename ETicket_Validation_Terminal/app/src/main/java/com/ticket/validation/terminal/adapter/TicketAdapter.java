@@ -66,8 +66,9 @@ public class TicketAdapter extends BaseAdapter {
 
     public String getFormatTime(String time) {
         try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String timeStr = simpleDateFormat.format(time);
+            long timeLong = Long.parseLong(time + "000");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            String timeStr = simpleDateFormat.format(timeLong);
             return timeStr;
         } catch (Throwable t) {
             t.printStackTrace();
