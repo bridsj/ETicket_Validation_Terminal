@@ -94,4 +94,5 @@
     <string name="cancel_str">取消</string>
     <string name="ok_str">确定</string>
     <string name="warn_content_str">应用有升级啦，是否需要升级？</string>
+    <string name="input_limit_max">请将输入内容限制在18字以内</string>
 </resources>

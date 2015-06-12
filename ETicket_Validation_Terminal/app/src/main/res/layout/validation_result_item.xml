@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:textColor="@color/validation_result_text_color"
-        android:textSize="@dimen/sys_info_normal_text" />
+        android:textSize="@dimen/shop_name_text_size" />
 
 
 </LinearLayout>

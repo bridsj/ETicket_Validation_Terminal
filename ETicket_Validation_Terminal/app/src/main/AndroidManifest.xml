@@ -5,7 +5,7 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -66,6 +66,11 @@
         <receiver android:name="com.ticket.validation.terminal.receiver.SessionReceiver">
             <intent-filter>
                 <action android:name="com.ticket.validation.terminal.receiver.SessionReceiver" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.ticket.validation.terminal.receiver.BootCompletedReceiver">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
     </application>
