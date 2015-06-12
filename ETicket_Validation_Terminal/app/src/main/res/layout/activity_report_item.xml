@@ -11,7 +11,7 @@
         android:layout_weight="1"
         android:gravity="left"
         android:textColor="@color/black"
-        android:textSize="@dimen/sys_info_normal_text" />
+        android:textSize="@dimen/shop_name_text_size" />
 
     <TextView
         android:id="@+id/desc"

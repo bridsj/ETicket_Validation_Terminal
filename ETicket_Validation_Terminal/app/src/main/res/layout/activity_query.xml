@@ -46,7 +46,6 @@
                     android:background="@drawable/input_bg"
                     android:enabled="false"
                     android:gravity="left"
-                    android:hint="@string/exit_sys_hint"
                     android:inputType="number"
                     android:textColor="@color/black" />
 

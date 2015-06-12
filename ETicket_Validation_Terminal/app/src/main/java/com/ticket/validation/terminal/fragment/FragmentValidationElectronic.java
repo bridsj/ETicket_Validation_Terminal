@@ -93,6 +93,9 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
             public void onItemClick(String str) {
                 if (!str.equals("del")) {
                     String text = mEditText.getText().toString();
+                    if (text.length() >= 18) {
+                        return;
+                    }
                     mEditText.setText(text + str);
                     mEditText.setSelection(text.length() + 1);
                 } else {
@@ -129,6 +132,9 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
                 if (TextUtils.isEmpty(text)) {
                     ToastUtil.showToast(getApplicationContext(), R.string.input_error);
                     return;
+                } else if (text.length() > 18) {
+                    ToastUtil.showToast(getApplicationContext(), R.string.input_limit_max);
+                    return;
                 }
                 if (mProgressBar.getVisibility() == View.VISIBLE) {
                     return;
@@ -145,6 +151,7 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
                         Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
                         intent.putExtra(ValidationResultActivity.MODELS, list);
                         startActivity(intent);
+                        mClearImg.performClick();
                     }
 
                     @Override
@@ -204,6 +211,9 @@ public class FragmentValidationElectronic extends BaseQueryFragment {
 
     private void onAddEvent(String key) {
         String text = mEditText.getText().toString();
+        if (text.length() >= 18) {
+            return;
+        }
         mEditText.setText(text + key);
         mEditText.setSelection(text.length() + 1);
 
