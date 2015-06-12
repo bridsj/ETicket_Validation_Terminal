@@ -106,6 +106,9 @@ public class QueryActivity extends BaseUserActivity {
                 if (TextUtils.isEmpty(text)) {
                     ToastUtil.showToast(getApplicationContext(), R.string.input_error);
                     return;
+                } else if (text.length() > 18) {
+                    ToastUtil.showToast(getApplicationContext(), R.string.input_limit_max);
+                    return;
                 }
                 if (mProgressBar.getVisibility() == View.VISIBLE) {
                     return;
@@ -141,6 +144,7 @@ public class QueryActivity extends BaseUserActivity {
                                                     Intent intent = new Intent(QueryActivity.this, QueryResultActivity.class);
                                                     intent.putExtra(QueryResultActivity.MODEL, goodsList);
                                                     startActivity(intent);
+                                                    mClearImg.performClick();
                                                 }
                                             } else {
                                                 mProgressBar.setVisibility(View.GONE);
@@ -174,6 +178,9 @@ public class QueryActivity extends BaseUserActivity {
             public void onItemClick(String str) {
                 if (!str.equals("del")) {
                     String text = mEditText.getText().toString();
+                    if (text.length() >= 18) {
+                        return;
+                    }
                     mEditText.setText(text + str);
                     mEditText.setSelection(text.length() + 1);
                 } else {
@@ -246,6 +253,9 @@ public class QueryActivity extends BaseUserActivity {
 
     private void onAddEvent(String key) {
         String text = mEditText.getText().toString();
+        if (text.length() >= 18) {
+            return;
+        }
         mEditText.setText(text + key);
         mEditText.setSelection(text.length() + 1);
 

@@ -115,7 +115,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                 mGoodsModel = goodsModel;
 
                 mNumText.setText(goodsModel.mCount + "");
-                mInputText.setText("0");
+                mInputText.setText(goodsModel.mCount + "");
                 mNameText.setText(goodsModel.mUserName);
                 mIdCardText.setText(goodsModel.mIdCard);
                 mValidityText.setText(goodsModel.mEndTime);
@@ -130,7 +130,7 @@ public class ValidationResultActivity extends BaseUserActivity {
                         mGoodsModel = goodsModel;
 
                         mNumText.setText(goodsModel.mCount + "");
-                        mInputText.setText("0");
+                        mInputText.setText(goodsModel.mCount + "");
                         mNameText.setText(goodsModel.mUserName);
                         mIdCardText.setText(goodsModel.mIdCard);
                         mValidityText.setText(goodsModel.mEndTime);
@@ -292,7 +292,7 @@ public class ValidationResultActivity extends BaseUserActivity {
 
                                                                       @Override
                                                                       public void onFailPrint(String errorMsg) {
-                                                                          ToastUtil.showToast(getApplicationContext(), getString(R.string.print_fail)+errorMsg);
+                                                                          ToastUtil.showToast(getApplicationContext(), getString(R.string.print_fail) + errorMsg);
                                                                           mAdapter.verifySucc(mGoodsModel, num);
                                                                           mProgressBar.setVisibility(View.GONE);
                                                                       }

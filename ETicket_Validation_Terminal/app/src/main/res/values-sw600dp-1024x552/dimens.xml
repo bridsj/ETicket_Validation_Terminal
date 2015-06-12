@@ -69,4 +69,6 @@
     <dimen name="go_back_padding">15dp</dimen>
 
     <dimen name="query_result_max_height">270dp</dimen>
+    <dimen name="shop_name_text_size">24sp</dimen>
+    <dimen name="time_text_size">20sp</dimen>
 </resources>
