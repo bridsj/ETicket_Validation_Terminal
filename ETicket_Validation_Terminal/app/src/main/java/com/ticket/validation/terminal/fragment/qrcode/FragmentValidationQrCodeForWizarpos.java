@@ -162,6 +162,7 @@ public class FragmentValidationQrCodeForWizarpos extends BaseQueryFragment {
                     Intent intent = new Intent(getActivity(), ValidationResultActivity.class);
                     intent.putExtra(ValidationResultActivity.MODELS, list);
                     startActivity(intent);
+                    mStatusText.setText("");
                 }
 
                 @Override
