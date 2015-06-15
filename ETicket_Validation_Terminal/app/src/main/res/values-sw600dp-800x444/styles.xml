@@ -13,8 +13,8 @@
     </style>
 
     <style name="validation_add_style">
-        <item name="android:paddingLeft">38dp</item>
-        <item name="android:paddingRight">38dp</item>
+        <item name="android:paddingLeft">36dp</item>
+        <item name="android:paddingRight">36dp</item>
         <item name="android:textSize">30sp</item>
         <item name="android:layout_height">85dp</item>
     </style>
