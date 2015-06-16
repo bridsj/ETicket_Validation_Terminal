@@ -1,5 +1,5 @@
  {
       "status": 1,
-      "info": "系统地址",
-      "data": "yanpiaoshebei67"
+      "info": "android-2",
+      "data": "http://www.x-1.cn"
 }
