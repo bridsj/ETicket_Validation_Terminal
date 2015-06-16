@@ -1,5 +1,5 @@
  {
       "status": 1,
-      "info": "android-2",
-      "data": "http://www.x-1.cn"
+      "info": "http://www.x-1.cn",
+      "data": "android-2"
 }
