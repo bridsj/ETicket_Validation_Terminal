@@ -6,6 +6,6 @@ package com.ticket.validation.terminal.restful;
 public interface ApiConstants {
     public static final String API_BASE_URL = "http://www.x-1.cn/devicemanage";
 
-    String USER_NAME = "wince-67";
+    String USER_NAME = "android-4";
     String PASSWORD = "123456";
 }
