@@ -1,7 +1,1 @@
-libserial_port.so 好德芯
-
-libPC700.so
-libprinter.so 谷智联
-
-libDecodeWlt.so
-libjni_wizarpo_* Wizarpos
+此分支为Wizarpos的代码
