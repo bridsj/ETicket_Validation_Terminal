@@ -61,7 +61,6 @@ dependencies {
     compile project(':android_utils')
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile project(':zxing_shell')
-    //    compile project(':wizarpos_core')
     compile project(':zkc_pc700')
 }
 android.applicationVariants.all { variant ->
