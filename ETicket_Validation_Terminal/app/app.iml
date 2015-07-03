@@ -108,6 +108,5 @@
     <orderEntry type="module" module-name="zkc_pc700" exported="" />
     <orderEntry type="module" module-name="zxing_shell" exported="" />
     <orderEntry type="module" module-name="android_utils" exported="" />
-    <orderEntry type="module" module-name="hao_de_xin_printer" exported="" />
   </component>
 </module>

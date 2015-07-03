@@ -18,7 +18,7 @@ public class PrintHelper {
     private PrintHelper(Context context) {
         mContext = context;
         if (DeviceTypeUtil.isHaoDeXin()) {
-            mPrintStrategy = new PrintHaoDeXinStrategy(context);
+//            mPrintStrategy = new PrintHaoDeXinStrategy(context);
         } else if (DeviceTypeUtil.isWizarpos()) {
 //            mPrintStrategy = new PrintWizarposStrategy(context);
         }else if(DeviceTypeUtil.isGuZhiLian()){
