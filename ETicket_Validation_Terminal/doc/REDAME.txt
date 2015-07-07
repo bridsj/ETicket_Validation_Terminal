@@ -14,8 +14,8 @@ com.ticket.validation.terminal.util.DeviceTypeUtil
 4、所包含的module
 app：为主工程的入口
 hao_de_xin_printer：为好德芯的打印和身份证验证的library
-zxing_shell:为二维码扫描的UI层(具体参考google 的demo)
-zxing_core：为二维码扫描的核心层(具体参考google 的demo)
+zxing_shell:为二维码扫描的UI层(具体参考google 二维码的demo)
+zxing_core：为二维码扫描的核心层(具体参考google 二维码的demo)
 
 5、代码目录
 网络请求：com.ticket.validation.terminal.restful/
