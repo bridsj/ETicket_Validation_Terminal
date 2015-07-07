@@ -1,1 +1,21 @@
 此分支为好德芯代码
+
+1、判断厂家型号的工具类
+com.ticket.validation.terminal.util.DeviceTypeUtil
+
+2、打印
+入口：com.ticket.validation.terminal.helper.PrintHelper
+核心代码位置：ETicket_Validation_Terminal/hao_de_xin_printer/libs
+
+3、身份证识别
+入口：com.ticket.validation.terminal.helper.IDCardHelper
+核心代码位置：ETicket_Validation_Terminal/hao_de_xin_printer/src
+
+4、所包含的module
+app：为主工程的入口
+hao_de_xin_printer：为好德芯的打印和身份证验证的library
+zxing_shell:为二维码扫描的UI层(具体参考google 的demo)
+zxing_core：为二维码扫描的核心层(具体参考google 的demo)
+
+5、代码目录
+网络请求：com.ticket.validation.terminal.restful/
