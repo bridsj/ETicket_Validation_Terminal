@@ -19,3 +19,11 @@ zxing_core：为二维码扫描的核心层(具体参考google 的demo)
 
 5、代码目录
 网络请求：com.ticket.validation.terminal.restful/
+
+6、机型配置：如配置android-1
+6.1 在assets/default_system_info.txt
+    info字段表示接口请求地址
+    data表示设备号
+    此处修改为修改系统信息界面的内容
+6.2 com.ticket.validation.terminal.restful/ApiConstants
+    配置用户名和密码，此处修改向服务器发送的请求的设备号
