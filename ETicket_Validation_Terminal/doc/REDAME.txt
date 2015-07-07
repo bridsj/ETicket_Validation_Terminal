@@ -5,7 +5,7 @@ com.ticket.validation.terminal.util.DeviceTypeUtil
 
 2、打印
 入口：com.ticket.validation.terminal.helper.PrintHelper
-核心代码位置：com.wizarpos.printer/
+核心代码位置：wizarpos_core/com.wizarpos.printer/
 
 3、所包含的module
 app：为主工程的入口
