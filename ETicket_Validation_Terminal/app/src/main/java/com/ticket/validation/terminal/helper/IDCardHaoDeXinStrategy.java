@@ -14,6 +14,8 @@ import java.security.InvalidParameterException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import hdx.HdxUtil;
+
 /**
  * Created by dengshengjin on 15/5/31.
  */
@@ -59,6 +61,8 @@ public class IDCardHaoDeXinStrategy implements IDCardStrategy {
             public void run() {
                 try {
                     mWakeLock.acquire();
+                    HdxUtil.SetIDCARDPower(1);
+                    HdxUtil.SwitchSerialFunction(HdxUtil.SERIAL_FUNCTION_IDCARD);
                     //开始打印
                     mSerialPort = getSerialPort();
                     final IDCard idcard = mSerialPort.getIDCard();
@@ -94,7 +98,7 @@ public class IDCardHaoDeXinStrategy implements IDCardStrategy {
 
     private SerialPort getSerialPort()  throws SecurityException, IOException, InvalidParameterException {
         if (mSerialPort == null) {
-            mSerialPort = new SerialPort(new File("/dev/ttyUSB0"), 115200, 0);
+            mSerialPort = new SerialPort(new File("/dev/ttyS1"), 115200, 0);
             mSerialPort.setMaxRFByte((byte)0x50);
         }
 

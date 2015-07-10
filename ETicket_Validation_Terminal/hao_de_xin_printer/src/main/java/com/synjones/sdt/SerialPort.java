@@ -1,18 +1,18 @@
 /*
- * 
- * Copyright 2009 Cedric Priscal  
- * 
- * Licensed under the Apache License, Version 2.0 (the "License");  
- * you may not use this file except in compliance with the License.  
- * You may obtain a copy of the License at  
- * 
- * http://www.apache.org/licenses/LICENSE-2.0  
- * 
- * Unless required by applicable law or agreed to in writing, software  
- * distributed under the License is distributed on an "AS IS" BASIS,  
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
- * See the License for the specific language governing permissions and  
- * limitations under the License.   
+ *
+ * Copyright 2009 Cedric Priscal
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package com.synjones.sdt;
@@ -29,10 +29,10 @@ import java.io.UnsupportedEncodingException;
 
 public class SerialPort {
 
-	//private static final String TAG = "SerialPort";          
+	//private static final String TAG = "SerialPort";
 
 	/*
-     * Do not remove or rename the field mFd: it is used by native method close();          
+     * Do not remove or rename the field mFd: it is used by native method close();
      */
 	private FileDescriptor mFd;
 	private FileInputStream mFileInputStream;
@@ -41,7 +41,7 @@ public class SerialPort {
 	private IDCard idcard = new IDCard();
 	private byte[] basemsg = null;
 	public SerialPort(File device, int baudrate, int flags) throws SecurityException, IOException {
-		
+
 		/* Check access permission */
 		if (!device.canRead() || !device.canWrite()) {
 			try {
@@ -71,7 +71,7 @@ public class SerialPort {
 		mFileOutputStream = new FileOutputStream(mFd);
 	}
 
-	// Getters and setters         
+	// Getters and setters
 	public FileInputStream getInputStream() {
 		return mFileInputStream;
 	}
@@ -324,7 +324,6 @@ public class SerialPort {
 	public native void close();
 	public native int readCard();
 	public native int getField(int fieldId);
-
 
 	static {
 		System.loadLibrary("idcard_serial_port");
